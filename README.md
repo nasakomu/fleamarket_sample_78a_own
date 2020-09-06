@@ -8,10 +8,10 @@
 |password|string|null: false|
 |password_confirmation|string|null: false|
 ### Association
-- has_many :items
-- has_one :profile
-- has_one :destination
-- has_one :credit_card
+- has_many :items, dependent: :destroy
+- has_one :profile, dependent: :destroy
+- has_one :destination, dependent: :destroy
+- has_one :credit_card, dependent: :destroy
 
 ## profilesテーブル
 |Column|Type|Options|
@@ -67,7 +67,7 @@
 |status|references|null: false, foreign_key: true|
 |user|references|null: false, foreign_key: true|
 ### Association
-- has_many :images
+- has_many :images, dependent: :destroy
 - belongs_to :category
 - belongs_to_active_hash :size
 - belongs_to :brand
@@ -78,7 +78,7 @@
 - belongs_to :user
 
 
-## imagesテーブル
+## item_imagesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |url|text|null: false|
