@@ -32,7 +32,7 @@
 |family_name|string|null: false|
 |first_name_kana|string|null: false|
 |family_name_kana|string|null: false|
-|postal_code|integer|null: false|
+|postal_code|string|null: false|
 |prefecture_code|integer|null: false|
 |city|string|null: false|
 |house_number|string|null: false|
@@ -46,7 +46,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |card_id|string|null: false|
-|costumer_id|string|null: false|
+|customer_id|string|null: false|
 |user|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
@@ -58,13 +58,13 @@
 |introduction|text|null: false|
 |price|integer|null: false|
 |category|references|null: false, foreign_key: true|
-|size|references|foreign_key: true|
+|size|integer||
 |brand|references|foreign_key: true|
-|item_condition|references|null: false, foreign_key: true|
-|postage_payer|references|null: false, foreign_key: true|
+|item_condition|integer|null: false|
+|postage_payer|integer|null: false|
 |prefecture_code|integer|null: false|
-|preparation_day|references|null: false, foreign_key: true|
-|status|references|null: false, foreign_key: true|
+|preparation_day|integer|null: false|
+|status|integer|null: false|
 |user|references|null: false, foreign_key: true|
 ### Association
 - has_many :images, dependent: :destroy
