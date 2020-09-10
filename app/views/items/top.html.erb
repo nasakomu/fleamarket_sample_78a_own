@@ -1,1 +1,339 @@
-<div><h1>トップページ</h1></div>
+<header>
+  <div class="header_container">
+    <div class="header_main">
+      <%= link_to "/" do %>
+        <%= image_tag 'logo/logo.png', class: "header_logo", size: "140x41" %>
+      <% end %>
+      <%= form_with url: "#", class: "Search" do |f| %>
+        <%= f.text_field :search, class: "Search__form", placeholder: "キーワードから探す" %>
+        <label class="Search__btn" >
+          <div class="Search__btn__icon_wrapper">
+            <%= image_tag 'icon/icon-search 1.png', size: "20x20", class: "Search__btn__icon" %>
+          </div>
+          <%= f.submit "btn", class: "Search__btn__submit" %>
+        </label>
+      <%end%>
+    </div>
+    <div class="header_navs">
+      <ul class="Header_nav_left">
+        <%= link_to "カテゴリー", "#", class: "Header_nav_left__list" %>
+        <%= link_to "ブランド", "#", class: "Header_nav_left__list"%>
+      </ul>
+      <ul class="Header_nav_right">
+        <%= link_to "ログイン", "#", class: "Header_nav_right__list"%>
+        <%= link_to "新規会員登録", "#", class: "Header_nav_right__list"%>        
+      </ul>
+    </div>
+  </div>
+</header>
+
+<div class="main_visual_section">
+  <div class="Main_visual">
+    <h1 class="Main_visual__headline">人生を変えるフリマアプリ</h1>
+    <p class="Main_visual__text">FURIMAはだれでもかんたんに出品・購入できる<br>フリマアプリです</p>
+    <div class="Main_visual__badge">
+      <%= link_to "#" do %>
+        <%= image_tag 'badge/app_store_badge.png', class: "Main_visual__badge--apple", size: "180x53" %>
+      <% end %>
+      <%= link_to "#" do %>
+        <%= image_tag 'badge/google-play-badge.png', class: "Main_visual__badge--google", size: "180x53" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="strong_point_section">
+  <div class="Strong_point_list">
+    <h1 class="Strong_point_list__headline">FURIMAが選ばれる3つの理由</h1>
+    <div class="Strong_point_list__reason_list">
+      <div class="Reason_box">
+        <div class="Reason_box__image_box">
+          <%= image_tag 'pict/pict-reason-01.jpg', class: "Reason_box__image_box__img" %>
+          <div class="Reason_box__image_box__number">1</div>
+        </div>
+        <h2 class="Reason_box__headline"><span class="Reason_box__headline--blue">3分</span>ですぐに出品</h2>
+        <p class="Reason_box__text">スマホで入力するだけで簡単に出品できる！</p>
+      </div>
+      <div class="Reason_box">
+        <div class="Reason_box__image_box">
+          <%= image_tag 'pict/pict-reason-02.jpg', class: "Reason_box__image_box__img" %>
+          <div class="Reason_box__image_box__number">2</div>
+        </div>
+        <h2 class="Reason_box__headline"><span class="Reason_box__headline--blue">シンプル</span>で使いやすい</h2>
+        <p class="Reason_box__text">めんどくさい入力は必要なく、検索も購入もスムーズ！</p>
+      </div>
+      <div class="Reason_box">
+        <div class="Reason_box__image_box">
+          <%= image_tag 'pict/pict-reason-03.jpg', class: "Reason_box__image_box__img" %>
+          <div class="Reason_box__image_box__number">3</div>
+        </div>
+        <h2 class="Reason_box__headline">手数料<span class="Reason_box__headline--blue">業界最安</span></h2>
+        <p class="Reason_box__text">最大3%でお得に出品&購入！</p>
+      </div>
+    </div>
+  </div>
+  <div class="strong_point_visual_wrapper">
+    <div class="Strong_point_visual">
+      <h1 class="Strong_point_visual__headline">会員数日本一</h1>
+      <p class="Strong_point_visual__text">FURIMAは、フリマアプリで最も人気。<br>出品・購入回数も業界最多です！<br>ほしかったあの商品に出会えるかもしれません。</p>
+      <div class="Strong_point_visual__badge">
+      <%= link_to "#" do %>
+        <%= image_tag 'badge/app_store_badge.png', class: "Main_visual__badge--apple", size: "180x53" %>
+      <% end %>
+      <%= link_to "#" do %>
+        <%= image_tag 'badge/google-play-badge.png', class: "Main_visual__badge--google", size: "180x53" %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="Feature_section">
+  <div class="Feature_section__wrapper">
+    <h1 class="feature_headline">FURIMAの特徴</h1>
+    <div class="Feature_list">
+      <div class="Feature_box">
+        <%= image_tag "icon/icon-01.png", class: "Feature_box__img" %>
+        <h2 class="Feature_box__headline">簡単に売り買いできる</h2>
+        <p class="Feature_box__text">スマホひとつで、いつでもどこでも簡単に出品・購入が可能！</p>
+      </div>
+      <div class="Feature_box">
+        <%= image_tag "icon/icon-03.png", class: "Feature_box__img" %>
+        <h2 class="Feature_box__headline">売上金は即日振込みに対応</h2>
+        <p class="Feature_box__text">午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします!</p>
+      </div>
+      <div class="Feature_box">
+        <%= image_tag "icon/icon-04.png", class: "Feature_box__img" %>
+        <h2 class="Feature_box__headline">様々な支払いに対応</h2>
+        <p class="Feature_box__text">お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="items_section">
+  <div class="Item_block">
+    <h1 class="Item_block__headline">ピックアップカテゴリー</h1>
+    <h2 class="Item_block__subtitle">新規投稿商品</h2>
+    <div class="Item_block__lists">
+      <%= link_to "#", class: "Item_box" do %>
+        <%= image_tag "pict/coffee.jpg", class: "Item_box__img" %>
+        <div class="Item_box__text_block">
+          <h3 class="Item_box__text_block__item_name">テスト</h3>
+          <ul class="Item_box__text_block__price">
+            <li>10000円</li>
+            <div>
+              <li class="star_icon"><%= icon("fas", "star") %></li>
+              <li>1</li>
+            </div>
+          </ul>
+          <p class="Item_box__text_block__tax">（税込）</p>
+        </div>
+      <% end %>
+      <%= link_to "#", class: "Item_box" do %>
+        <%= image_tag "pict/coffee.jpg", class: "Item_box__img" %>
+        <div class="Item_box__text_block">
+          <h3 class="Item_box__text_block__item_name">テスト</h3>
+          <ul class="Item_box__text_block__price">
+            <li>10000円</li>
+            <div>
+              <li class="star_icon"><%= icon("fas", "star") %></li>
+              <li>1</li>
+            </div>
+          </ul>
+          <p class="Item_box__text_block__tax">（税込）</p>
+        </div>
+      <% end %>
+      <%= link_to "#", class: "Item_box" do %>
+        <%= image_tag "pict/coffee.jpg", class: "Item_box__img" %>
+        <div class="Item_box__text_block">
+          <h3 class="Item_box__text_block__item_name">テスト</h3>
+          <ul class="Item_box__text_block__price">
+            <li>10000円</li>
+            <div>
+              <li class="star_icon"><%= icon("fas", "star") %></li>
+              <li>1</li>
+            </div>
+          </ul>
+          <p class="Item_box__text_block__tax">（税込）</p>
+        </div>
+      <% end %>
+      <%= link_to "#", class: "Item_box" do %>
+        <%= image_tag "pict/coffee.jpg", class: "Item_box__img" %>
+        <div class="Item_box__text_block">
+          <h3 class="Item_box__text_block__item_name">テスト</h3>
+          <ul class="Item_box__text_block__price">
+            <li>10000円</li>
+            <div>
+              <li class="star_icon"><%= icon("fas", "star") %></li>
+              <li>1</li>
+            </div>
+          </ul>
+          <p class="Item_box__text_block__tax">（税込）</p>
+        </div>
+      <% end %>
+      <%= link_to "#", class: "Item_box" do %>
+        <%= image_tag "pict/coffee.jpg", class: "Item_box__img" %>
+        <div class="Item_box__text_block">
+          <h3 class="Item_box__text_block__item_name">テスト</h3>
+          <ul class="Item_box__text_block__price">
+            <li>10000円</li>
+            <div>
+              <li class="star_icon"><%= icon("fas", "star") %></li>
+              <li>1</li>
+            </div>
+          </ul>
+          <p class="Item_box__text_block__tax">（税込）</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="Item_block">
+    <h1 class="Item_block__headline">ピックアップブランド</h1>
+    <h2 class="Item_block__subtitle">アーカイバ</h2>
+    <div class="Item_block__lists">
+      <%= link_to "#", class: "Item_box" do %>
+        <%= image_tag "pict/coffee.jpg", class: "Item_box__img" %>
+        <div class="Item_box__text_block">
+          <h3 class="Item_box__text_block__item_name">テスト</h3>
+          <ul class="Item_box__text_block__price">
+            <li>10000円</li>
+            <div>
+              <li class="star_icon"><%= icon("fas", "star") %></li>
+              <li>1</li>
+            </div>
+          </ul>
+          <p class="Item_box__text_block__tax">（税込）</p>
+        </div>
+      <% end %>
+      <%= link_to "#", class: "Item_box" do %>
+        <%= image_tag "pict/coffee.jpg", class: "Item_box__img" %>
+        <div class="Item_box__text_block">
+          <h3 class="Item_box__text_block__item_name">テスト</h3>
+          <ul class="Item_box__text_block__price">
+            <li>10000円</li>
+            <div>
+              <li class="star_icon"><%= icon("fas", "star") %></li>
+              <li>1</li>
+            </div>
+          </ul>
+          <p class="Item_box__text_block__tax">（税込）</p>
+        </div>
+      <% end %>
+      <%= link_to "#", class: "Item_box" do %>
+        <%= image_tag "pict/coffee.jpg", class: "Item_box__img" %>
+        <div class="Item_box__text_block">
+          <h3 class="Item_box__text_block__item_name">テスト</h3>
+          <ul class="Item_box__text_block__price">
+            <li>10000円</li>
+            <div>
+              <li class="star_icon"><%= icon("fas", "star") %></li>
+              <li>1</li>
+            </div>
+          </ul>
+          <p class="Item_box__text_block__tax">（税込）</p>
+        </div>
+      <% end %>
+      <%= link_to "#", class: "Item_box" do %>
+        <%= image_tag "pict/coffee.jpg", class: "Item_box__img" %>
+        <div class="Item_box__text_block">
+          <h3 class="Item_box__text_block__item_name">テスト</h3>
+          <ul class="Item_box__text_block__price">
+            <li>10000円</li>
+            <div>
+              <li class="star_icon"><%= icon("fas", "star") %></li>
+              <li>1</li>
+            </div>
+          </ul>
+          <p class="Item_box__text_block__tax">（税込）</p>
+        </div>
+      <% end %>
+      <%= link_to "#", class: "Item_box" do %>
+        <%= image_tag "pict/coffee.jpg", class: "Item_box__img" %>
+        <div class="Item_box__text_block">
+          <h3 class="Item_box__text_block__item_name">テスト</h3>
+          <ul class="Item_box__text_block__price">
+            <li>10000円</li>
+            <div>
+              <li class="star_icon"><%= icon("fas", "star") %></li>
+              <li>1</li>
+            </div>
+          </ul>
+          <p class="Item_box__text_block__tax">（税込）</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="footer_visual_section">
+  <div class="Footer_visual">
+    <h2 class="Footer_visual__headline">だれでもかんたん、人生を変えるフリマアプリ</h2>
+    <p class="Footer_visual__text">今すぐ無料ダウンロード！</p>
+    <div class="Footer_visual__badge">
+      <%= link_to "#" do %>
+        <%= image_tag 'badge/app_store_badge.png', class: "Main_visual__badge--apple", size: "180x53" %>
+      <% end %>
+      <%= link_to "#" do %>
+        <%= image_tag 'badge/google-play-badge.png', class: "Main_visual__badge--google", size: "180x53" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer_container">
+    <div class="footer_list">
+      <div class="Footer_content">
+        <h2 class="Footer_content__headline">FURIMAについて</h2>
+        <ul class="Footer_content__list">
+          <div class="Footer_content__list__link_wrapper"> 
+            <%= link_to "会社概要（運営会社）", "#", class: "Footer_content__list__link" %>
+          </div>
+          <div class="Footer_content__list__link_wrapper"> 
+            <%= link_to "プライバシーポリシー", "#", class: "Footer_content__list__link" %>
+          </div>
+          <div class="Footer_content__list__link_wrapper"> 
+            <%= link_to "FURIMA利用規約", "#", class: "Footer_content__list__link" %>
+          </div>
+          <div class="Footer_content__list__link_wrapper"> 
+            <%= link_to "ポイントに関する特約", "#", class: "Footer_content__list__link" %>
+          </div>
+        </ul>
+      </div>
+      <div class="Footer_content">
+        <h2 class="Footer_content__headline">FURIMAを見る</h2>
+        <ul class="Footer_content__list">
+          <div class="Footer_content__list__link_wrapper"> 
+            <%= link_to "カテゴリー一覧", "#", class: "Footer_content__list__link" %>
+          </div>
+          <div class="Footer_content__list__link_wrapper"> 
+            <%= link_to "ブランド一覧", "#", class: "Footer_content__list__link" %>
+          </div>
+        </ul>
+      </div><div class="Footer_content">
+        <h2 class="Footer_content__headline">ヘルプ＆ガイド</h2>
+        <ul class="Footer_content__list">
+          <div class="Footer_content__list__link_wrapper"> 
+            <%= link_to "FURIMAガイド", "#", class: "Footer_content__list__link" %>
+          </div>
+          <div class="Footer_content__list__link_wrapper"> 
+            <%= link_to "FURIMAロゴ利用ガイドライン", "#", class: "Footer_content__list__link" %>
+          </div>
+          <div class="Footer_content__list__link_wrapper"> 
+            <%= link_to "お知らせ", "#", class: "Footer_content__list__link" %>
+          </div>
+        </ul>
+      </div>
+    </div>
+    <%= link_to "/" do %>
+      <%= image_tag "logo/logo-white.png", class:"footer_logo", size:"160x46" %>
+    <% end %>
+    <p class="footer_copy">&copy; FURIMA</p>
+  </div>
+</footer>
+
+<%= link_to "#", class:"Listing_btn" do %>
+  <p class="Listing_btn__text">出品する</p>
+  <%= image_tag "icon/icon_camera.png", class:"Listing_btn__icon", size:"54x54" %>
+<% end %>
