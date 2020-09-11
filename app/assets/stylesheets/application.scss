@@ -3,6 +3,20 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+//mixin
+@mixin flex_box($Justify, $Align){
+  display: flex;
+  justify-content: $Justify;
+  align-items: $Align;
+}
+@mixin h_w($height, $width){
+  height: $height;
+  width: $width;
+}
+
+//variables
+$LightBlue: #3ccace;
+
 body {
   font-family: Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
 }
@@ -20,9 +34,7 @@ header {
 .header_main {
   width: 100%;
   margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex_box(center, center);
 }
 
 .Search {
@@ -30,8 +42,7 @@ header {
   width: calc(100% - 41px);
   padding-left: 25px;
   &__form {
-    height: 30px;
-    width: calc(100% - 34px);
+    @include h_w(30px, calc(100% - 34px));
     padding-left: 5px;
   }
   &__btn {
@@ -43,21 +54,16 @@ header {
       display: none;
     }
     &__icon_wrapper {
-      height: 34px;
-      width: 34px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color:#3CCACE;
+      @include h_w(34px, 34px);
+      @include flex_box(center, center);
+      background-color: $LightBlue;
     }
   }
 }
 
 .header_navs {
   height: 45px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex_box(space-between, center);
   font-size: 13px;
 }
 
@@ -86,8 +92,7 @@ header {
   padding: 0 60px;
   background-image: url("pict/bg-mainVisual-pict_pc.jpg");
   background-size: cover;
-  display: flex;
-  align-items: center;
+  @include flex_box(flex-start, center);
 }
 
 .Main_visual {
@@ -107,12 +112,10 @@ header {
     line-height: 30px;
   }
   &__badge {
-    display: flex;
-    align-items: center;
+    @include flex_box(flex-start, center);
     padding: 10px 0;
     & a {
-      height: 53px;
-      width: 180px;
+      @include h_w(53px, 180px);
       margin-right: 10px;
     }
     &--apple {
@@ -141,36 +144,31 @@ header {
     position: relative;
     &::after {
       content: "";
-      width: 70px;
-      height: 4px;
-      background-color: #3ccace;
+      @include h_w(4px, 70px);
+      background-color: $LightBlue;
       position: absolute;
       bottom: 0;
       left: calc(50% - 35px);
     }
   }
   &__reason_list {
-    display: flex;
-    justify-content: space-between;
+    @include flex_box(space-between, start);
     width: 100%;
-    padding-bottom: 60px;
     & .Reason_box {
       width: 30%;
       margin-top: 20px;
-      display: flex;
       flex-direction: column;
-      align-items: center;
+      @include flex_box(flex-start, center);
       &__image_box {
         padding-bottom: 10px;
         position: relative;
         &__number {
-          width: 57px;
-          height: 55px;
+          @include h_w(55px, 57px);
           font-size: 30px;
           text-align: center;
           line-height: 55px;
           color: #fff;
-          background-color: #3ccace;
+          background-color: $LightBlue;
           position: absolute;
           left: 0;
           top: 0;
@@ -185,7 +183,7 @@ header {
         line-height: 50px;
         text-align: center;
         &--blue {
-          color: #3CCACE;
+          color: $LightBlue;
           padding: 0 5px;
         }
       }
@@ -221,8 +219,7 @@ header {
   }
   &__badge {
     & a {
-      height: 53px;
-      width: 180px;
+      @include h_w(53px, 180px);
       margin-right: 5px;
     }
     &--apple {
@@ -253,9 +250,8 @@ header {
     position: relative;
     &::after {
       content: "";
-      width: 70px;
-      height: 4px;
-      background-color: #3ccace;
+      @include h_w(4px, 70px);
+      background-color: $LightBlue;
       position: absolute;
       bottom: 0;
       left: calc(50% - 35px);
@@ -264,14 +260,12 @@ header {
 }
 
 .Feature_list {
-  display: flex;
-  justify-content: center;
+  @include flex_box(center, start);
   & .Feature_box {
     width: calc(100% * 1 / 3);
     padding: 0 20px;
-    display: flex;
     flex-direction: column;
-    align-items: center;
+    @include flex_box(flex-start, center);
     &__img {
       width: 75%;
     }
@@ -306,12 +300,11 @@ header {
     font-size: 24px;
     font-weight: bold;
     text-align: center;
-    color: #3ccace;
+    color: $LightBlue;
     padding-bottom: 25px;
   }
   &__lists {
-    display: flex;
-    justify-content: center;
+    @include flex_box(center, start);
     background-color: #fff;
     margin: 0 auto;
   }
@@ -322,14 +315,12 @@ header {
   text-decoration: none;
   color: black;
   &__img {
-    width: 100%;
-    height: 150px;
+    @include h_w(150px, 100%);
   }
   &__text_block {
     padding: 16px;
     &__price {
-      display: flex;
-      justify-content: space-between;
+      @include flex_box(space-between, start);
       & div {
         display: flex;
         & .star_icon {
@@ -352,17 +343,14 @@ header {
   background-size: cover;
   background-position: center;
   height: 360px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex_box(center, center);
 }
 
 .Footer_visual {
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
   color: white;
-  display: flex;
   flex-direction: column;
-  align-items: center;
+  @include flex_box(flex-start, center);
   &__headline {
     font-size: 24px;
     font-weight: bold;
@@ -373,8 +361,7 @@ header {
   &__badge {
     padding-top: 20px;
     & a {
-      height: 53px;
-      width: 180px;
+      @include h_w(53px, 180px);
       margin-right: 5px;
     }
     &--apple {
@@ -394,16 +381,14 @@ footer {
   background-color: black;
   height: 355px;
   color: #fff;
-  display: flex;
-  align-items: center;
+  @include flex_box(flex-start, center);
   & .footer_container {
     max-width: 800px;
     width: 800px;
     margin: 0 auto;
     text-align: center;
     & .footer_list {
-      display: flex;
-      justify-content: space-between;
+      @include flex_box(space-between, start);
     }
     & .footer_copy {
       font-size: 14px;
@@ -434,7 +419,7 @@ footer {
 
 .Listing_btn {
   width: 120px;
-  background-color: #3CCACE;
+  background-color: $LightBlue;
   border-radius: 4%;
   position: fixed;
   bottom: 32px;
