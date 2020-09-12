@@ -1,3 +1,98 @@
-// Place all the styles related to the items controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+* {
+  box-sizing: border-box;
+  font-family: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
+}
+.SettingGroupForm {
+  background-color: #f8f8f8;
+  #FormHeader {
+    height: 128px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #FormFooter {
+    font-size: 12px;
+    text-align: center;
+    padding: 20px 0 40px;
+  }
+    
+  .FormArea {
+    width: 700px;
+    padding: 40px;
+    margin: 0 auto;
+    background-color: #fff;
+    .FormItem {
+      margin-bottom: 32px;
+      &__label {
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 18px;
+        margin-bottom: 16px;
+        & span {
+          display: inline-block;
+          color: #fff;
+          background-color: #ffb340;
+          font-size: 14px;
+          line-height: 18px;
+          padding: 0 4px;
+          margin-left: 5px;
+          border-radius: 2px;
+        }
+        & .required {
+          background-color: #ffb340;
+        }
+        & .any {
+          background-color: #bfbfbf;
+        }
+      }
+      &__detail {
+        & input, & textarea, & select {
+          display: block;
+          width: 100%;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          height: 48px;
+          padding: 0 16px;
+        }
+        & textarea {
+          height: auto;
+          padding: 13px 16px;
+        }
+        & select {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          padding-right: 56px;
+          background: url(/assets/arrow.png) 98% center no-repeat;
+          cursor: pointer;
+        }
+        & input#image {
+          border: none;
+          padding: 0 0 0 0;
+          height: auto;
+        }        
+      }
+      &__btn {
+        width: 200px;
+        margin: 0 auto;
+        & input {
+          width: 100%;
+          appearance: none;
+          background: #3CCACE;
+          color: #fff;
+          font-weight: bold;
+          text-align: center;
+          border: none;
+          border-radius: 4px;
+          padding: 15px 0;
+          cursor: pointer;
+        }
+      }
+    }
+    .border {
+      border-top: 1px dashed #dfdfdf;
+      padding-top: 32px;
+      margin-bottom: 32px;
+    }
+  }
+}
