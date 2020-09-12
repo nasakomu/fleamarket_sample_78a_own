@@ -72,3 +72,4 @@ end
 gem 'font-awesome-sass'
 gem "haml-rails", "~> 2.0"
 gem 'jquery-rails'
+gem 'ancestry'
