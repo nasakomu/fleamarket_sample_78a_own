@@ -1,21 +1,9 @@
 @import "reset";
 @import "module/items";
+@import "mixin";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-//mixin
-@mixin flex_box($Justify, $Align){
-  display: flex;
-  justify-content: $Justify;
-  align-items: $Align;
-}
-@mixin h_w($height, $width){
-  height: $height;
-  width: $width;
-}
-
-//variables
-$LightBlue: #3ccace;
 
 body {
   font-family: Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
