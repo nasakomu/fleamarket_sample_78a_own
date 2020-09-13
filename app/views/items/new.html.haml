@@ -1,0 +1,104 @@
+.SettingExhibitionForm
+  #FormHeader
+    %h1
+      = link_to image_tag('logo.png', size: "214x62", alt: "FURIMA"), root_path
+  .FormArea
+    = form_with model: @item, local: true do |form|
+      .FormItem
+        %dl
+          %dt.FormItem__label
+            = form.label :name, "商品画像1"
+            %span.required 必須
+          %dd.FormItem__detail
+            = form.file_field :image
+      .FormItem
+        %dl
+          %dt.FormItem__label
+            = form.label :name, "商品画像2"
+            %span.any 任意
+          %dd.FormItem__detail
+            = form.file_field :image
+      .FormItem
+        %dl
+          %dt.FormItem__label
+            = form.label :name, "商品画像3"
+            %span.any 任意
+          %dd.FormItem__detail
+            = form.file_field :image
+      .FormItem.border
+        %dl
+          %dt.FormItem__label
+            = form.label :name, "商品名"
+            %span.required 必須
+          %dd.FormItem__detail
+            = form.text_field :name, class: "form_detail"
+      .FormItem
+        %dl
+          %dt.FormItem__label
+            = form.label :introduction, "商品の説明"
+            %span.required 必須
+          %dd.FormItem__detail
+            = form.text_area :introduction, rows: 6, class: "form_detail"
+      .FormItem.border
+        %dl
+          %dt.FormItem__label
+            = form.label :category, "カテゴリー"
+            %span.required 必須
+          %dd.FormItem__detail
+            = form.select :category, [["レディース", 1], ["メンズ", 2], ["ベビー・キッズ", 3], ["インテリア・住まい・小物", 4], ["本・音楽・ゲーム", 5], ["おもちゃ・ホビー・グッズ", 6], ["コスメ・香水・美容", 7], ["家電・スマホ・カメラ", 8], ["スポーツ・レジャー", 9], ["ハンドメイド", 10], ["チケット", 11], ["自動車・オートバイ", 12], ["その他", 13]], prompt: "選択してください"
+      .FormItem
+        %dl
+          %dt.FormItem__label
+            = form.label :size, "サイズ"
+            %span.required 必須
+          %dd.FormItem__detail
+            = form.select :size, [["S", 1], ["M", 2], ["L", 3], ["XL", 4], ["フリーサイズ", 5]], prompt: "選択してください"
+      .FormItem
+        %dl
+          %dt.FormItem__label
+            = form.label :brand, "ブランド"
+            %span.any 任意
+          %dd.FormItem__detail
+            = form.select :brand, [["サンプル1", 1], ["サンプル2", 2], ["サンプル3", 3]], prompt: "選択してください"
+      .FormItem
+        %dl
+          %dt.FormItem__label
+            = form.label :item_condition, "商品の状態"
+            %span.required 必須
+          %dd.FormItem__detail
+            = form.select :item_condition, [["新品", 1], ["未使用品", 2], ["良い", 3], ["普通", 4], ["悪い", 5]], prompt: "選択してください"
+      .FormItem.border
+        %dl
+          %dt.FormItem__label
+            = form.label :postage_payer, "配送料の負担"
+            %span.required 必須
+          %dd.FormItem__detail
+            = form.select :postage_payer, [["送料込み（出品者負担）", 1], ["着払い（落札者負担）", 2]], prompt: "選択してください"
+      .FormItem
+        %dl
+          %dt.FormItem__label
+            = form.label :prefecture_code, "発送元の地域"
+            %span.required 必須
+          %dd.FormItem__detail
+            = form.select :prefecture_code, [["北海道", 1], ["青森", 2], ["秋田", 3], ["山形", 4], ["岩手", 5]], prompt: "選択してください"
+      .FormItem
+        %dl
+          %dt.FormItem__label
+            = form.label :preparation_day, "発送までの日数"
+            %span.required 必須
+          %dd.FormItem__detail
+            = form.select :preparation_day, [["0〜1日で発送", 1], ["2〜3日で発送", 2], ["4〜7日で発送", 3]], prompt: "選択してください" 
+      .FormItem.border
+        %dl
+          %dt.FormItem__label
+            = form.label :price, "価格"
+            %span.required 必須
+          %dd.FormItem__detail
+            = form.text_field :price, class: "form_detail"
+      .formItem
+        %p.FormItem__btn
+          = form.submit "出品する"
+  #FormFooter
+    %h2
+      = image_tag "logo.png", size: "107x31", alt: "FURIMA"
+    %p &copy; FURIMA
