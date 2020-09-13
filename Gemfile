@@ -69,5 +69,6 @@ group :production do
   gem 'unicorn'
 end
 
+gem 'font-awesome-sass'
 gem "haml-rails", "~> 2.0"
 gem 'jquery-rails'
