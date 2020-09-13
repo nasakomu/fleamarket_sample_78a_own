@@ -323,9 +323,9 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano3-unicorn
   capybara (>= 2.15)
-  font-awesome-sass
   factory_bot_rails
   faker
+  font-awesome-sass
   haml-rails (~> 2.0)
   jbuilder (~> 2.7)
   jquery-rails

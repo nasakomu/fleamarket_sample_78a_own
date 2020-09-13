@@ -1,7 +1,7 @@
 .SettingExhibitionForm
   #FormHeader
     %h1
-      = image_tag "logo.png", size: "214x62", alt: "FURIMA"
+      = link_to image_tag('logo.png', size: "214x62", alt: "FURIMA"), root_path
   .FormArea
     = form_with model: @item, local: true do |form|
       .FormItem
