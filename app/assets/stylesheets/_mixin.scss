@@ -1,0 +1,13 @@
+//mixin
+@mixin flex_box($Justify, $Align){
+  display: flex;
+  justify-content: $Justify;
+  align-items: $Align;
+}
+@mixin h_w($height, $width){
+  height: $height;
+  width: $width;
+}
+
+//variables
+$LightBlue: #3ccace;
