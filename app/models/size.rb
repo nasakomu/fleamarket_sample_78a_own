@@ -1,7 +1,7 @@
 class Size < ActiveHash::Base
   self.data = [
     # メンズ、レディース服
-    { id: 1, name: '--' },
+    { id: 1, name: '選択してください' },
     { id: 2, name: 'XXS以下' },
     { id: 3, name: 'XS(SS)' },
     { id: 4, name: 'S' },

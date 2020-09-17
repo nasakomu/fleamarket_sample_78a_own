@@ -5,7 +5,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :size
   belongs_to :brand
   belongs_to_active_hash :item_condition
-  belongs_to_active_hash :potage_payer
+  belongs_to_active_hash :postage_payer
   belongs_to_active_hash :preparation_day
   belongs_to_active_hash :status
   belongs_to :user
@@ -16,11 +16,12 @@ class Item < ApplicationRecord
     validates :price
     validates :category
 
-    with_options numericality: { other_than: 1 } do
-      validates :item_condition
-      validates :postage_payer
-      validates :prefecture_code
-      validates :preparation_day
-    end
+    # with_options numericality: { other_than: 1 } do
+    #   validates :size
+    #   validates :item_condition
+    #   validates :postage_payer
+    #   validates :prefecture_code
+    #   validates :preparation_day
+    # end
   end
 end

@@ -45,35 +45,37 @@
             = form.label :category, "カテゴリー"
             %span.required 必須
           %dd.FormItem__detail
-            = form.select :category, [["レディース", 1], ["メンズ", 2], ["ベビー・キッズ", 3], ["インテリア・住まい・小物", 4], ["本・音楽・ゲーム", 5], ["おもちゃ・ホビー・グッズ", 6], ["コスメ・香水・美容", 7], ["家電・スマホ・カメラ", 8], ["スポーツ・レジャー", 9], ["ハンドメイド", 10], ["チケット", 11], ["自動車・オートバイ", 12], ["その他", 13]], prompt: "選択してください"
+            -# = form.select :category, [["レディース", 1], ["メンズ", 2], ["ベビー・キッズ", 3], ["インテリア・住まい・小物", 4], ["本・音楽・ゲーム", 5], ["おもちゃ・ホビー・グッズ", 6], ["コスメ・香水・美容", 7], ["家電・スマホ・カメラ", 8], ["スポーツ・レジャー", 9], ["ハンドメイド", 10], ["チケット", 11], ["自動車・オートバイ", 12], ["その他", 13]], prompt: "選択してください"
+            = form.collection_select(:category_id, Category.all, :id, :name, {prompt: '選択'}, {})
       .FormItem
         %dl
           %dt.FormItem__label
             = form.label :size, "サイズ"
             %span.required 必須
           %dd.FormItem__detail
-            = form.select :size, [["S", 1], ["M", 2], ["L", 3], ["XL", 4], ["フリーサイズ", 5]], prompt: "選択してください"
+            = form.collection_select(:size_id, Size.all, :id, :name, {}, {})
       .FormItem
         %dl
           %dt.FormItem__label
             = form.label :brand, "ブランド"
             %span.any 任意
           %dd.FormItem__detail
-            = form.select :brand, [["サンプル1", 1], ["サンプル2", 2], ["サンプル3", 3]], prompt: "選択してください"
+            -# = form.select :brand, [["サンプル1", 1], ["サンプル2", 2], ["サンプル3", 3]], prompt: "選択してください"
+            = form.collection_select(:brand_id, Brand.all, :id, :name, {prompt: '選択'}, {})
       .FormItem
         %dl
           %dt.FormItem__label
             = form.label :item_condition, "商品の状態"
             %span.required 必須
           %dd.FormItem__detail
-            = form.select :item_condition, [["新品", 1], ["未使用品", 2], ["良い", 3], ["普通", 4], ["悪い", 5]], prompt: "選択してください"
+            = form.collection_select(:item_condition_id, ItemCondition.all, :id, :name, {}, {})
       .FormItem.border
         %dl
           %dt.FormItem__label
             = form.label :postage_payer, "配送料の負担"
             %span.required 必須
           %dd.FormItem__detail
-            = form.select :postage_payer, [["送料込み（出品者負担）", 1], ["着払い（落札者負担）", 2]], prompt: "選択してください"
+            = form.collection_select(:postage_payer_id, PostagePayer.all, :id, :name, {}, {})
       .FormItem
         %dl
           %dt.FormItem__label
@@ -87,7 +89,7 @@
             = form.label :preparation_day, "発送までの日数"
             %span.required 必須
           %dd.FormItem__detail
-            = form.select :preparation_day, [["0〜1日で発送", 1], ["2〜3日で発送", 2], ["4〜7日で発送", 3]], prompt: "選択してください" 
+            = form.collection_select(:preparation_day_id, PreparationDay.all, :id, :name, {}, {})
       .FormItem.border
         %dl
           %dt.FormItem__label
