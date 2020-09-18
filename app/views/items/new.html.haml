@@ -10,21 +10,22 @@
             = form.label :name, "商品画像1"
             %span.required 必須
           %dd.FormItem__detail
-            = form.file_field :image
-      .FormItem
-        %dl
-          %dt.FormItem__label
-            = form.label :name, "商品画像2"
-            %span.any 任意
-          %dd.FormItem__detail
-            = form.file_field :image
-      .FormItem
-        %dl
-          %dt.FormItem__label
-            = form.label :name, "商品画像3"
-            %span.any 任意
-          %dd.FormItem__detail
-            = form.file_field :image
+            = form.fields_for :item_images do |i|
+              = i.file_field :url
+      -# .FormItem
+      -#   %dl
+      -#     %dt.FormItem__label
+      -#       = form.label :name, "商品画像2"
+      -#       %span.any 任意
+      -#     %dd.FormItem__detail
+      -#       = form.file_field :image
+      -# .FormItem
+      -#   %dl
+      -#     %dt.FormItem__label
+      -#       = form.label :name, "商品画像3"
+      -#       %span.any 任意
+      -#     %dd.FormItem__detail
+      -#       = form.file_field :image
       .FormItem.border
         %dl
           %dt.FormItem__label
@@ -97,7 +98,9 @@
             %span.required 必須
           %dd.FormItem__detail
             = form.text_field :price, class: "form_detail"
-      .formItem
+      .FormItem
+        = form.hidden_field :status_id, value: 1
+      .formItem 
         %p.FormItem__btn
           = form.submit "出品する"
   #FormFooter
