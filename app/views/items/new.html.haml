@@ -7,25 +7,17 @@
       .FormItem
         %dl
           %dt.FormItem__label
-            = form.label :name, "商品画像1"
+            = form.label :name, "商品画像"
             %span.required 必須
-          %dd.FormItem__detail
+          %dd.FormItem__detail.FormItem__imagebox
+            #previews
+              - if @item.persisted?
+                - @item.item_images.each_with_index do |image, i|
+                  = image_tag image.url.to_s, data: { index: i }, width: "200", height: '200'
             = form.fields_for :item_images do |i|
-              = i.file_field :url
-      -# .FormItem
-      -#   %dl
-      -#     %dt.FormItem__label
-      -#       = form.label :name, "商品画像2"
-      -#       %span.any 任意
-      -#     %dd.FormItem__detail
-      -#       = form.file_field :image
-      -# .FormItem
-      -#   %dl
-      -#     %dt.FormItem__label
-      -#       = form.label :name, "商品画像3"
-      -#       %span.any 任意
-      -#     %dd.FormItem__detail
-      -#       = form.file_field :image
+              .js-file_group{data: {index: i.index}}
+                = i.file_field :url, class: 'js-file'
+                %span.js-remove 削除
       .FormItem.border
         %dl
           %dt.FormItem__label
