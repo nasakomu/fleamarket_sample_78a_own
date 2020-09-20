@@ -1,111 +1,130 @@
-<h2 class = "headname"> ユーザー登録</h2>
+<div class = "RegistrationPage">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<h2 class = "head-name"> 会員情報登録</h2>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :nickname %><br />
-    <%= f.text_field :nickname, autofocus: true %>
-  </div>
+    <div class="field">
+      <%= f.label :nickname,"ニックネーム" %>
+      <span class = "sabu-red">(必須)</span> <br />
+      <%= f.text_field :nickname, autofocus: true %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="field">
+      <%= f.label :email  %>
+      <span class = "sabu-red">(必須)</span><br/>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div class="field">
+      <%= f.label :password,"パスワード" %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> 文字以上)</em>
+      <span class = "sabu-red">(必須)</span><br />
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="field">
+      <%= f.label :password_confirmation,"パスワード再確認" %>
+      <span class = "sabu-red">(必須)</span><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+  <h2 class = "head-name">本人登録</h2>
+    <%= f.fields_for :profile do |i| %>
+    <div class = "field">
+      <%= i.label :first_name,"名字" %>
+      <span class = "sabu-red">(必須)</span><br />
+      <%= i.text_field :first_name, autofocus: true %>
+    </div>
 
-  <%= f.fields_for :profile do |i| %>
-  <div class = "field">
-    <%= i.label :first_name %>
-    <%= i.text_field :first_name, autofocus: true %>
-  </div>
+    <div class = "field">
+      <%= i.label :family_name,"名前" %>
+      <span class = "sabu-red">(必須)</span><br />
+      <%= i.text_field :family_name, autofocus: true %>
+    <div>
 
-  <div class = "field">
-    <%= i.label :family_name%>
-    <%= i.text_field :family_name, autofocus: true %>
-  <div>
+    <div class = "field">
+      <%= i.label :first_name_kana, "名字フリカナ" %>
+      <span class = "sabu-red">(必須)</span><br />
+      <%= i.text_field :first_name_kana, autofocus: true %>
+    </div>
 
-  <div class = "field">
-    <%= i.label :first_name_kana%>
-    <%= i.text_field :first_name_kana, autofocus: true %>
-  </div>
+    <div class = "field" >
+      <%= i.label :family_name_kana, "名前フリガナ" %>
+      <span class = "sabu-red">(必須)</span><br />
+      <%= i.text_field :family_name_kana, autofocus: true %>
+    </div>
 
-  <div class = "field" >
-    <%= i.label :family_name_kana %>
-    <%= i.text_field :family_name_kana, autofocus: true %>
-  </div>
+    <div class = "field">
+      <%= i.label :birth_date,"生年月日" %>
+      <span class = "sabu-red">(必須)</span><br />
+      <%= i.date_select :birth_date, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1) %>
+    </div>
+    <%end%>
+  <h2 class = "head-name">送り主住所</h2>
+    <%= f.fields_for :destination do |d| %>
+    <div class = "field">
+      <%= d.label :first_name,"送り先の名字"%>
+      <span class = "sabu-red">(必須)</span><br />
+      <%= d.text_field :first_name, autofocus: true %>
+    </div>
 
-  <div class = "field">
-    <%= i.label :birth_date %>
-    <%= i.text_field :birth_date, autofocus: true %>
-  </div>
-  <%end%>
+    <div class = "field">
+      <%= d.label :family_name, "送り先名前"%>
+      <span class = "sabu-red">(必須)</span><br />
+      <%= d.text_field :family_name, autofocus: true %>
+    <div>
 
-  <%= f.fields_for :destination do |d| %>
-  <div class = "field">
-    <%= d.label :first_name %>
-    <%= d.text_field :first_name, autofocus: true %>
-  </div>
+    <div class = "field">
+      <%= d.label :first_name_kana, "送り先名字フリガナ" %>
+      <span class = "sabu-red">(必須)</span><br />
+      <%= d.text_field :first_name_kana, autofocus: true %>
+    </div>
 
-  <div class = "field">
-    <%= d.label :family_name%>
-    <%= d.text_field :family_name, autofocus: true %>
-  <div>
+    <div class = "field" >
+      <%= d.label :family_name_kana, "送り先名前フリガナ" %>
+      <span class = "sabu-red">(必須)</span><br />
+      <%= d.text_field :family_name_kana, autofocus: true %>
+    </div>
 
-  <div class = "field">
-    <%= d.label :first_name_kana%>
-    <%= d.text_field :first_name_kana, autofocus: true %>
-  </div>
+    <div class = "field">
+      <%= d.label :postal_code, "郵便番号" %>
+      <span class = "sabu-red">(必須)</span><br />
+      <%= d.text_field :postal_code, autofocus: true %>
+    </div>
 
-  <div class = "field" >
-    <%= d.label :family_name_kana %>
-    <%= d.text_field :family_name_kana, autofocus: true %>
-  </div>
+    <div class = "field">
+      <%= d.label :prefecture_code, "住所" %>
+      <span class = "sabu-red">(必須)</span><br />
+      <%= d.text_field :prefecture_code, autofocus: true %>
+    </div>
 
-  <div class = "field">
-    <%= d.label :postal_code %>
-    <%= d.text_field :postal_code, autofocus: true %>
-  </div>
+    <div class = "field">
+      <%= d.label :city,"県を選んでください" %>
+      <span class = "sabu-red">(必須)</span><br />
+      <%= d.text_field :city, autofocus: true %>
+    </div>
 
-  <div class = "field">
-    <%= d.label :prefecture_code %>
-    <%= d.text_field :prefecture_code, autofocus: true %>
-  </div>
+    <div class = "field">
+      <%= d.label :house_number, "番地" %>
+      <span class = "sabu-red">(必須)</span><br />
+      <%= d.text_field :house_number, autofocus: true %>
+    </div>
+    <div class = "field">
+      <%= d.label :room_number,"マンションの場合は部屋の番号" %><br />
+      <%= d.text_field :room_number, autofocus: true %>
+    </div>
+    <div class = "lebel">
+      <%= d.label :phone_number,"電話番号" %>
+      <span class = "sabu-red">(必須)</span><br />
+      <%= d.text_field :phone_number, autofocus: true %>
+    </div>
+    <%end%>
 
-  <div class = "field">
-    <%= d.label :city %>
-    <%= d.text_field :city, autofocus: true %>
-  </div>
-
-  <div class = "field">
-    <%= d.label :house_number %>
-    <%= d.text_field :house_number, autofocus: true %>
-  </div>
-  <div class = "field">
-    <%= d.label :room_number %>
-    <%= d.text_field :room_number, autofocus: true %>
-  </div>
-  <div class = "lebel">
-    <%= d.label :phone_number %>
-    <%= d.text_field :phone_number, autofocus: true %>
-  </div>
-  <%end%>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
+    <div class="actions">
+      <%= f.submit "登録" %>
+    </div>
+  <% end %>
+</div>
 <%= render "devise/shared/links" %>
