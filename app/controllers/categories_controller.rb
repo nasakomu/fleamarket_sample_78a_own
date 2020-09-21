@@ -2,6 +2,10 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.where(ancestry: nil)
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def show
@@ -9,4 +13,11 @@ class CategoriesController < ApplicationController
     # @items = @category.items
   end
 
+  def get_category_children
+    @category_children = Category.find(params[:parent_id]).children
+  end
+
+  def get_category_grandchildren
+    @category_grandchildren = Category.find(params[:child_id]).children
+  end
 end

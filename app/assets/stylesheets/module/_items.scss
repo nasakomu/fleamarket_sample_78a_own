@@ -48,6 +48,7 @@ header {
   height: 45px;
   @include flex_box(space-between, center);
   font-size: 13px;
+  position: relative;
 }
 
 .Header_nav_left {
