@@ -8,6 +8,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.new
     @user.build_destination
     @user.build_profile
+    
   end
 
   def create

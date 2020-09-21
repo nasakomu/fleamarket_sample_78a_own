@@ -73,3 +73,4 @@ gem "haml-rails", "~> 2.0"
 gem 'jquery-rails'
 #ログイン機能
 gem 'devise'
+gem 'jp_prefecture'

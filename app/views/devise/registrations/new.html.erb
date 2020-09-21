@@ -1,5 +1,5 @@
 <div class = "RegistrationPage">
-
+<%= link_to image_tag("logo/logo.png",size:"428x125") , "/" %>
 <h2 class = "head-name"> 会員情報登録</h2>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
@@ -91,26 +91,17 @@
     <div class = "field">
       <%= d.label :postal_code, "郵便番号" %>
       <span class = "sabu-red">(必須)</span><br />
-      <%= d.text_field :postal_code, autofocus: true %>
+      <%= d.text_field :postal_code, autofocus: true, placeholder: 'postal_code', class: "postal_code", id: "address_zipcode" %>
     </div>
 
     <div class = "field">
       <%= d.label :prefecture_code, "住所" %>
       <span class = "sabu-red">(必須)</span><br />
-      <%= d.text_field :prefecture_code, autofocus: true %>
+      <%= d.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, class: "address", id: "address_prefecture_name" %>
+      <%= d.text_field :city, autofocus: true, placeholder: 'city', class: "address", id:"address_city" %>
+      <%= d.text_field :house_number, autofocus: true, placeholder: 'house_number', class: "address", id: "address_street" %>
     </div>
 
-    <div class = "field">
-      <%= d.label :city,"県を選んでください" %>
-      <span class = "sabu-red">(必須)</span><br />
-      <%= d.text_field :city, autofocus: true %>
-    </div>
-
-    <div class = "field">
-      <%= d.label :house_number, "番地" %>
-      <span class = "sabu-red">(必須)</span><br />
-      <%= d.text_field :house_number, autofocus: true %>
-    </div>
     <div class = "field">
       <%= d.label :room_number,"マンションの場合は部屋の番号" %><br />
       <%= d.text_field :room_number, autofocus: true %>
