@@ -6,7 +6,7 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
@@ -28,13 +28,21 @@
         </div>
         <div class="header_navs">
           <ul class="Header_nav_left">
-            <%= link_to "カテゴリー", categories_path, class: "Header_nav_left__list" %>
+            <%= link_to "カテゴリー", categories_path, class: "Header_nav_left__list", id: "category_nav" %>
             <%= link_to "ブランド", "#", class: "Header_nav_left__list"%>
           </ul>
           <ul class="Header_nav_right">
             <%= link_to "ログイン", "#", class: "Header_nav_right__list"%>
             <%= link_to "新規会員登録", "#", class: "Header_nav_right__list"%>        
           </ul>
+          <div class="category_nav_box">
+            <div class="parent_nav_box">
+            </div>
+            <div class="child_nav_box">
+            </div>
+            <div class="grandchild_nav_box">
+            </div>
+          </div>
         </div>
       </div>
     </header>
