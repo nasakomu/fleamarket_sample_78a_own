@@ -1,3 +1,5 @@
+<%= render partial: "/items/header" %>
+
 <div class="category_list_wrapper">
   <div class="parent_category_box">
     <% @categories.each do |category| %>
@@ -27,3 +29,5 @@
     <% end %>
   </div>
 </div>
+
+<%= render partial: "/items/footer" %>
