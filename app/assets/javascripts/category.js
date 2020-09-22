@@ -42,6 +42,7 @@ $(function() {
     })
     .done(function(children){
       $('.child_nav_box').empty();
+      $('.grandchild_nav_box').empty();
       children.forEach(function(child){
         appendChildCategory(child);
       })
@@ -70,10 +71,14 @@ $(function() {
     })
   });
   //表示削除用
-  $('.header_main,.main_visual_section,.Strong_point_list').on('mousemove', function(){
+  $('.header_main,.main_visual_section,.Strong_point_list,.category_list_wrapper,footer').on('mousemove', function(){
     $('.parent_nav_box').empty();
     $('.child_nav_box').empty();
     $('.grandchild_nav_box').empty();
   });
-
+  $('.header_navs').on('mouseleave', function(){
+    $('.parent_nav_box').empty();
+    $('.child_nav_box').empty();
+    $('.grandchild_nav_box').empty();
+  });
 });
