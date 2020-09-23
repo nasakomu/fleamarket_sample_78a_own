@@ -3,6 +3,7 @@ class Item < ApplicationRecord
 
   has_many :item_images, dependent: :destroy
   accepts_nested_attributes_for :item_images, allow_destroy: true
+  validates_associated :item_images
 
   belongs_to :category
   belongs_to_active_hash :size
@@ -17,7 +18,7 @@ class Item < ApplicationRecord
     validates :name
     validates :introduction
     validates :price
-    validates :category
+    validates :category_id
 
     with_options numericality: { other_than: 1 } do
       validates :size_id
