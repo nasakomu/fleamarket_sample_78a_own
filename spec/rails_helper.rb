@@ -41,12 +41,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
-  config.after(:all) do
-    if Rails.env.test?
-      FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads_#{Rails.env}/tmp/"])
-      # FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads/tmp/"])
-    end
-  end
+
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.
