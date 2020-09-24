@@ -1,12 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-  describe '#create' do
-    before do
-      @category = FactoryBot.create(:category)
-      @brand = FactoryBot.create(:brand)
-    end
 
+  describe '#create' do
     #全てのデータが存在すると登録できる
     it "is valid with all data" do
       item = build(:item)

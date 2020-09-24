@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :item do
-    id                  {"1"}
     name                {"sample"}
     introduction        {"サンプルです"}
     price               {"111111"}
@@ -10,10 +9,8 @@ FactoryBot.define do
     prefecture_code     {"2"}
     preparation_day_id  {"2"}
     status_id           {"1"}
-
-    category {FactoryBot.create(:category)}
-    brand {FactoryBot.create(:brand)}
-
+    category_id         {create(:category).id}
+    brand_id            {create(:brand).id}
 
     after(:build) do |item|
       item.item_images << FactoryBot.build(:item_image, item: item)
