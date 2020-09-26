@@ -1,0 +1,36 @@
+<header>
+  <div class="header_container">
+    <div class="header_main">
+      <%= link_to "/" do %>
+        <%= image_tag 'logo/logo.png', class: "header_logo", size: "140x41" %>
+      <% end %>
+      <%= form_with url: "#", class: "Search" do |f| %>
+        <%= f.text_field :search, class: "Search__form", placeholder: "キーワードから探す" %>
+        <label class="Search__btn" >
+          <div class="Search__btn__icon_wrapper">
+            <%= image_tag 'icon/icon-search 1.png', size: "20x20", class: "Search__btn__icon" %>
+          </div>
+          <%= f.submit "btn", class: "Search__btn__submit" %>
+        </label>
+      <%end%>
+    </div>
+    <div class="header_navs">
+      <ul class="Header_nav_left">
+        <%= link_to "カテゴリー", categories_path, class: "Header_nav_left__list", id: "category_nav" %>
+        <%= link_to "ブランド", "#", class: "Header_nav_left__list"%>
+      </ul>
+      <ul class="Header_nav_right">
+        <%= link_to "ログイン", "#", class: "Header_nav_right__list"%>
+        <%= link_to "新規会員登録", "#", class: "Header_nav_right__list"%>        
+      </ul>
+      <div class="category_nav_box">
+        <div class="parent_nav_box">
+        </div>
+        <div class="child_nav_box">
+        </div>
+        <div class="grandchild_nav_box">
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

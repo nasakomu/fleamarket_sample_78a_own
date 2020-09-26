@@ -6,91 +6,10 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
-    <header>
-      <div class="header_container">
-        <div class="header_main">
-          <%= link_to "/" do %>
-            <%= image_tag 'logo/logo.png', class: "header_logo", size: "140x41" %>
-          <% end %>
-          <%= form_with url: "#", class: "Search" do |f| %>
-            <%= f.text_field :search, class: "Search__form", placeholder: "キーワードから探す" %>
-            <label class="Search__btn" >
-              <div class="Search__btn__icon_wrapper">
-                <%= image_tag 'icon/icon-search 1.png', size: "20x20", class: "Search__btn__icon" %>
-              </div>
-              <%= f.submit "btn", class: "Search__btn__submit" %>
-            </label>
-          <%end%>
-        </div>
-        <div class="header_navs">
-          <ul class="Header_nav_left">
-            <%= link_to "カテゴリー", "#", class: "Header_nav_left__list" %>
-            <%= link_to "ブランド", "#", class: "Header_nav_left__list"%>
-          </ul>
-          <ul class="Header_nav_right">
-            <%= link_to "ログイン", "#", class: "Header_nav_right__list"%>
-            <%= link_to "新規会員登録", "#", class: "Header_nav_right__list"%>        
-          </ul>
-        </div>
-      </div>
-    </header>
-
     <%= yield %>
-
-    <footer>
-      <div class="footer_container">
-        <div class="footer_list">
-          <div class="Footer_content">
-            <h2 class="Footer_content__headline">FURIMAについて</h2>
-            <ul class="Footer_content__list">
-              <div class="Footer_content__list__link_wrapper"> 
-                <%= link_to "会社概要（運営会社）", "#", class: "Footer_content__list__link" %>
-              </div>
-              <div class="Footer_content__list__link_wrapper"> 
-                <%= link_to "プライバシーポリシー", "#", class: "Footer_content__list__link" %>
-              </div>
-              <div class="Footer_content__list__link_wrapper"> 
-                <%= link_to "FURIMA利用規約", "#", class: "Footer_content__list__link" %>
-              </div>
-              <div class="Footer_content__list__link_wrapper"> 
-                <%= link_to "ポイントに関する特約", "#", class: "Footer_content__list__link" %>
-              </div>
-            </ul>
-          </div>
-          <div class="Footer_content">
-            <h2 class="Footer_content__headline">FURIMAを見る</h2>
-            <ul class="Footer_content__list">
-              <div class="Footer_content__list__link_wrapper"> 
-                <%= link_to "カテゴリー一覧", "#", class: "Footer_content__list__link" %>
-              </div>
-              <div class="Footer_content__list__link_wrapper"> 
-                <%= link_to "ブランド一覧", "#", class: "Footer_content__list__link" %>
-              </div>
-            </ul>
-          </div><div class="Footer_content">
-            <h2 class="Footer_content__headline">ヘルプ＆ガイド</h2>
-            <ul class="Footer_content__list">
-              <div class="Footer_content__list__link_wrapper"> 
-                <%= link_to "FURIMAガイド", "#", class: "Footer_content__list__link" %>
-              </div>
-              <div class="Footer_content__list__link_wrapper"> 
-                <%= link_to "FURIMAロゴ利用ガイドライン", "#", class: "Footer_content__list__link" %>
-              </div>
-              <div class="Footer_content__list__link_wrapper"> 
-                <%= link_to "お知らせ", "#", class: "Footer_content__list__link" %>
-              </div>
-            </ul>
-          </div>
-        </div>
-        <%= link_to "/" do %>
-          <%= image_tag "logo/logo-white.png", class:"footer_logo", size:"160x46" %>
-        <% end %>
-        <p class="footer_copy">&copy; FURIMA</p>
-      </div>
-    </footer>
   </body>
 </html>
