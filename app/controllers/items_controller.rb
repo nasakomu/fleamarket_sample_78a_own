@@ -7,4 +7,10 @@ class ItemsController < ApplicationController
   
   def new
   end
+
+  def buy
+  end
+
+  def payment_method
+  end
 end
