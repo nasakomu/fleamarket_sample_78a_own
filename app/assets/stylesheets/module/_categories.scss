@@ -1,0 +1,167 @@
+@import '../mixin';
+
+.category_list_wrapper {
+  padding: 30px;
+  background-color: #f5f5f5;
+}
+
+.parent_category_box {
+  width: 800px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  & a {
+    text-decoration: none;
+  }
+  & .parent_category_btn {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    margin: 5px;
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    &:hover {
+      cursor: pointer;
+      color: #fff;
+      background-color: $LightBlue;
+      opacity: 0.8;
+    }
+  }
+}
+
+.child_category_list_wrapper {
+  width: 800px;
+  margin: 0 auto;
+  & .child_category_list {
+    background-color: #fff;
+    box-sizing: border-box;
+    margin: 20px 0;
+    & .parent_name {
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+      background-color: $LightBlue;
+      padding: 10px;
+      width: 100%;
+      display: block;
+      text-decoration: none;
+      box-sizing: border-box;
+      border-radius: 4px 4px 0 0;
+    }
+    & .child_box {
+      width: 100%;
+      padding: 10px 20px;
+      margin-top: 10px;
+      box-sizing: border-box;
+      & .child_name {
+        font-size: 16px;
+        color: black;
+        text-decoration: none;
+      }
+    }
+    & .grandchild_flexbox {
+      display: flex;
+      flex-wrap: wrap;
+      & .grandchild_box {
+        width : 50%;
+        display: inline-block;
+        padding: 10px 30px;
+        box-sizing: border-box;
+        & .grandchild_name {
+          font-size: 14px;
+          color: #ffa500;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    & .category_top_link {
+      color: black;
+      font-size: 18px;
+      padding: 5px 10px;
+      text-decoration: none;
+      display: block;
+      box-sizing: border-box;
+      background-color: #ffd700;
+      border-radius: 4px;
+      text-align: center;
+      &:hover {
+        opacity: 0.8;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.category_list {
+  max-width: 1100px;
+  margin: 0 auto;
+  overflow: scroll;
+  & .category_headline {
+    width: calc(100% - 20px);
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    display: block;
+    text-align: center;
+    padding: 10px 0;
+    margin: 0 auto;
+    background-color: $LightBlue;
+    border-radius: 10px 10px 0 0;
+  }
+}
+
+// ヘッダーのカテゴリー選択
+.category_nav_box {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 70%;
+  @include flex_box(flex-start, start);
+  z-index: 1;
+  & .parent_nav_box {
+    width: calc(100% / 3);
+    background-color: #fff;
+    & .parent_nav_list {
+      color: black;
+      padding: 10px 10px;
+      display: block;
+      text-decoration: none;
+      border-bottom: 1px solid #f5f5f5;
+      &:hover {
+        background-color: #ffa500;
+      }
+    }
+  }
+  & .child_nav_box {
+    width: calc(100% / 3);
+    background-color: #fff;
+    & .child_nav_list {
+      color: black;
+      padding: 10px 10px;
+      display: block;
+      text-decoration: none;
+      border-bottom: 1px solid #f5f5f5;
+      &:hover {
+        background-color: #ffa500;
+      }
+    }
+  }
+  & .grandchild_nav_box {
+    width: calc(100% / 3);
+    background-color: #fff;
+    & .grandchild_nav_list {
+      color: black;
+      padding: 10px 10px;
+      display: block;
+      text-decoration: none;
+      border-bottom: 1px solid #f5f5f5;
+      &:hover {
+        background-color: #ffa500;
+      }
+    }
+  }
+}

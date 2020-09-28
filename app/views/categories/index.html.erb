@@ -1,0 +1,33 @@
+<%= render partial: "/items/header" %>
+
+<div class="category_list_wrapper">
+  <div class="parent_category_box">
+    <% @categories.each do |category| %>
+      <%= link_to "##{category.id}" do %>
+        <button class="parent_category_btn"><%= category.name %></button>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="child_category_list_wrapper">
+    <% @categories.each do |category| %>
+      <div class="child_category_list">
+        <%= link_to "#{category.name}", "/categories/#{category.id}", class: "parent_name", id: "#{category.id}" %> 
+        <% category.children.each do |child| %>
+          <div class="child_box">
+            <%= link_to "#{child.name}", "/categories/#{child.id}", class: "child_name" %>
+          </div>
+          <div class="grandchild_flexbox">
+            <% child.children.each do |grandchild| %>
+              <div class="grandchild_box">
+                <%= link_to "#{grandchild.name}", "/categories/#{grandchild.id}", class: "grandchild_name" %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+        <%= link_to "ページトップへ戻る", "/categories", class:"category_top_link" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= render partial: "/items/footer" %>
