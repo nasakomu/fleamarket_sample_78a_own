@@ -1,0 +1,10 @@
+<%= render partial: "/items/header" %>
+
+<div class="category_list_wrapper">
+  <div class="category_list">
+    <h2 class="category_headline"><%= @category.name %>の商品一覧</h2>
+    <%= render partial:"items/items_list" %>
+  </div>
+</div>
+
+<%= render partial: "/items/footer" %>
