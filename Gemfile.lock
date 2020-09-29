@@ -108,6 +108,8 @@ GEM
     concurrent-ruby (1.1.7)
     crass (1.0.6)
     diff-lcs (1.4.4)
+    erb2haml (0.1.5)
+      html2haml
     erubi (1.9.0)
     erubis (2.7.0)
     excon (0.76.0)
@@ -366,6 +368,7 @@ DEPENDENCIES
   capistrano3-unicorn
   capybara (>= 2.15)
   carrierwave
+  erb2haml
   factory_bot_rails
   faker
   fog-aws
