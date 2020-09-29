@@ -20,5 +20,10 @@ class Item < ApplicationRecord
     validates :price, numericality: {only_integer: true}
     validates :category_id
     validates :item_images
+    validates :size_id
+    validates :item_condition_id
+    validates :postage_payer_id
+    validates :preparation_day_id
+    validates :prefecture_code
   end
 end
