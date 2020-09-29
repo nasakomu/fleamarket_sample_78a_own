@@ -73,7 +73,7 @@
             = form.label :prefecture_code, "発送元の地域"
             %span.required 必須
           %dd.FormItem__detail
-            = form.select :prefecture_code, [["北海道", 1], ["青森", 2], ["秋田", 3], ["山形", 4], ["岩手", 5]], prompt: "選択してください",required: true
+            = form.select :prefecture_code, [["北海道", 1], ["青森", 2], ["秋田", 3], ["山形", 4], ["岩手", 5]], {prompt: "選択してください"},{required: true}
       .FormItem
         %dl
           %dt.FormItem__label
