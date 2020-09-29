@@ -17,15 +17,8 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :name
     validates :introduction
-    validates :price
+    validates :price, numericality: {only_integer: true}
     validates :category_id
-
-    with_options numericality: { other_than: 1 } do
-      validates :size_id
-      validates :item_condition_id
-      validates :postage_payer_id
-      validates :prefecture_code
-      validates :preparation_day_id
-    end
+    validates :item_images
   end
 end
