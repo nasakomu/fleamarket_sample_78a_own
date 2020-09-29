@@ -1,0 +1,99 @@
+.SettingExhibitionForm
+  #FormHeader
+    %h1
+      = link_to image_tag('logo.png', size: "214x62", alt: "FURIMA"), root_path
+  .FormArea
+    = form_with model: @item, local: true do |form|
+      .FormItem
+        %dl
+          %dt.FormItem__label
+            = form.label :name, "商品画像"
+            %span.required 必須
+          %dd.FormItem__detail.FormItem__imagebox
+            #previews
+              - if @item.persisted?
+                - @item.item_images.each_with_index do |image, i|
+                  = image_tag image.url.to_s, data: { index: i }, width: "200", height: '200'
+            = form.fields_for :item_images do |i|
+              .js-file_group{data: {index: i.index}}
+                = i.file_field :url, class: 'js-file',required: true
+                %span.js-remove 削除
+      .FormItem.border
+        %dl
+          %dt.FormItem__label
+            = form.label :name, "商品名"
+            %span.required 必須
+          %dd.FormItem__detail
+            = form.text_field :name, class: "form_detail",required: true
+      .FormItem
+        %dl
+          %dt.FormItem__label
+            = form.label :introduction, "商品の説明"
+            %span.required 必須
+          %dd.FormItem__detail
+            = form.text_area :introduction, rows: 6, class: "form_detail",required: true
+      .FormItem.border
+        %dl
+          %dt.FormItem__label
+            = form.label :category, "カテゴリー"
+            %span.required 必須
+          %dd.FormItem__detail
+            = form.collection_select(:category_id, Category.all, :id, :name, {prompt: '選択してください'}, {required: true})
+      .FormItem
+        %dl
+          %dt.FormItem__label
+            = form.label :size, "サイズ"
+            %span.required 必須
+          %dd.FormItem__detail
+            = form.collection_select(:size_id, Size.all, :id, :name, {prompt: '選択してください'}, {required: true})
+      .FormItem
+        %dl
+          %dt.FormItem__label
+            = form.label :brand, "ブランド"
+            %span.any 任意
+          %dd.FormItem__detail
+            = form.collection_select(:brand_id, Brand.all, :id, :name, {prompt: '選択してください'}, {})
+      .FormItem
+        %dl
+          %dt.FormItem__label
+            = form.label :item_condition, "商品の状態"
+            %span.required 必須
+          %dd.FormItem__detail
+            = form.collection_select(:item_condition_id, ItemCondition.all, :id, :name, {prompt: '選択してください'}, {required: true})
+      .FormItem.border
+        %dl
+          %dt.FormItem__label
+            = form.label :postage_payer, "配送料の負担"
+            %span.required 必須
+          %dd.FormItem__detail
+            = form.collection_select(:postage_payer_id, PostagePayer.all, :id, :name, {prompt: '選択してください'}, {required: true})
+      .FormItem
+        %dl
+          %dt.FormItem__label
+            = form.label :prefecture_code, "発送元の地域"
+            %span.required 必須
+          %dd.FormItem__detail
+            = form.select :prefecture_code, [["北海道", 1], ["青森", 2], ["秋田", 3], ["山形", 4], ["岩手", 5]], {prompt: "選択してください"},{required: true}
+      .FormItem
+        %dl
+          %dt.FormItem__label
+            = form.label :preparation_day, "発送までの日数"
+            %span.required 必須
+          %dd.FormItem__detail
+            = form.collection_select(:preparation_day_id, PreparationDay.all, :id, :name, {prompt: '選択してください'}, {required: true})
+      .FormItem.border
+        %dl
+          %dt.FormItem__label
+            = form.label :price, "価格"
+            %span.required 必須
+          %dd.FormItem__detail
+            = form.text_field :price, class: "form_detail",required: true
+      .FormItem
+        = form.hidden_field :status_id, value: 1
+      .formItem 
+        %p.FormItem__btn
+          = form.submit "出品する"
+  #FormFooter
+    %h2
+      = image_tag "logo.png", size: "107x31", alt: "FURIMA"
+    %p &copy; FURIMA

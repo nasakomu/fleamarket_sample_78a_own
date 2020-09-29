@@ -1,0 +1,8 @@
+= render partial: "/items/header"
+.category_list_wrapper
+  .category_list
+    %h2.category_headline
+      = @category.name
+      の商品一覧
+    = render partial:"items/items_list"
+= render partial: "/items/footer"
