@@ -1,5 +1,4 @@
 $(function(){
-  console.log('w')
   $("#address_zipcode").jpostal({
     postcode : [ "#address_zipcode" ],
     address  : {

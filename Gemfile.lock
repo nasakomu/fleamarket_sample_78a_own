@@ -106,6 +106,8 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.4.4)
+    erb2haml (0.1.5)
+      html2haml
     erubi (1.9.0)
     erubis (2.7.0)
     factory_bot (6.1.0)
@@ -341,6 +343,7 @@ DEPENDENCIES
   capistrano3-unicorn
   capybara (>= 2.15)
   devise
+  erb2haml
   factory_bot_rails
   faker
   font-awesome-sass

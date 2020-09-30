@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
         expect(user).to be_valid
       end
   
-      2. nicknameが空では登録できないこと
+      #2. nicknameが空では登録できないこと
       it "is invalid without a nickname" do
         user = build(:user, nickname: nil)
         user.valid?
@@ -59,7 +59,7 @@ RSpec.describe User, type: :model do
       end
       it "パスワードがない場合、無効である" do
       user = build(:user)
-      user.password = "00000"
+      user.password = ""
       user.valid?
       expect(user.errors[:password]).to include("can't be blank")
       end
