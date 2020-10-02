@@ -1,0 +1,56 @@
+@import '../mixin';
+* {
+  box-sizing: border-box;
+  }
+
+.MyPage{
+  @include flex_box(center, start);
+  @include h_w(100%, 1020px);
+  margin: 40px auto;
+  
+  & .SideBar{
+    @include h_w(auto, 280px);
+    font-size: 14px;
+    margin-right: 40px;
+
+    h3{
+      font-size: 16px;
+      margin-top: 40px;
+      font-weight: 600;
+      line-height: 24px;
+    }
+    
+    .Nav > :not(:first-child){
+      border-top: 1px solid #eee;
+    }
+    
+    .Nav{
+      background-color: #fff;
+
+      &__content{
+        display: flex; 
+        padding: 16px;
+        min-height: 48px; 
+        text-decoration: none; 
+        color: #333;
+        position: relative;
+        &--name{
+          line-height: 14px;
+        }
+        .fas{
+          position: absolute;
+          right: 15px;
+          line-height: 14px;
+          font-size: 20px;
+          color: #ccc;
+        }
+      }
+    }
+  }
+
+  & .MainField{
+    @include h_w(auto, 700px);
+    background-color: #fff;
+  }
+}
+
