@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-
-  devise_for :users, controllers: {
-    registrations: 'users/registrations'
-  }
-  resources :profieles
-  resources :destinations
   root 'items#top'
   resources :items, only: [:index, :new, :create] do
     collection do

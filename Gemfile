@@ -72,13 +72,11 @@ end
 gem 'font-awesome-sass'
 gem "haml-rails", "~> 2.0"
 gem 'jquery-rails'
-#ログイン機能
-gem 'devise'
-gem 'jp_prefecture'
-gem 'ancestry'
 gem 'active_hash'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'jquery-rails'
 gem 'fog-aws'
+gem 'ancestry'
 gem 'erb2haml'
 
