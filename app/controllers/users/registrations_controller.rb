@@ -15,7 +15,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
     @user = User.new(configure_sign_up_params)
     @user.save
-    redirect_to root_path
   end
 
   
