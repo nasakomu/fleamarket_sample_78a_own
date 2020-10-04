@@ -51,6 +51,7 @@ header {
   height: 45px;
   @include flex_box(space-between, center);
   font-size: 13px;
+  position: relative;
 }
 
 .Header_nav_left {
@@ -290,18 +291,21 @@ header {
     padding-bottom: 25px;
   }
   &__lists {
-    @include flex_box(center, start);
-    background-color: #fff;
+    @include flex_box(flex-start, start);
+    flex-wrap: wrap;
     margin: 0 auto;
   }
 }
 
 .Item_box {
-  width: 20%;
+  width: calc(20% - 20px);
   text-decoration: none;
   color: black;
+  box-sizing: border-box;
+  margin: 20px 10px;
+  background-color: white;
   &__img {
-    @include h_w(150px, 100%);
+    width: 100%;
   }
   &__text_block {
     padding: 16px;

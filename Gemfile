@@ -73,3 +73,13 @@ gem 'font-awesome-sass'
 gem "haml-rails", "~> 2.0"
 gem 'jquery-rails'
 gem 'payjp'
+#ログイン機能
+gem 'devise'
+gem 'jp_prefecture'
+gem 'ancestry'
+gem 'active_hash'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog-aws'
+gem 'erb2haml'
+
