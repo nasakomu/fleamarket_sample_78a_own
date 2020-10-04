@@ -5,18 +5,23 @@ Rails.application.routes.draw do
   }
   resources :profieles
   resources :destinations
+
+  devise_scope :user do
+    get '/users/show', to: 'users/sessions#show'
+    get '/users/edit', to: 'users/sessions#edit'
+    get '/users/putting_up_list', to: 'users/sessions#putting_up_list'
+    get '/users/complicated_item', to: 'users/sessions#complicated_item'
+    get '/users/profile', to: 'users/sessions#profile'
+    get '/users/destination', to: 'users/sessions#destination'
+    get '/users/payment_method', to: 'users/sessions#payment_method'
+  end
+
   root 'items#top'
   resources :items, only: [:index, :new, :create, :show] do
     collection do
       get 'top'
     end
   end
-  # userコントローラに配置する
-  # get 'putting_up_list', on: :show
-  # get 'complicated_item', on: :show
-  # get 'profile', on: :edit
-  # get 'destination', on: :edit
-  # get 'payment_method', on: :edit
   resources :categories, only: [:index, :show] do
     collection do
       get 'get_category_children', defaults: { format: 'json' }
