@@ -267,14 +267,14 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (1.7.1)
+    responders (3.0.1)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    responders (3.0.1)
-      actionpack (>= 5.0)
-      railties (>= 5.0)
     rexml (3.2.4)
     rspec-core (3.9.2)
       rspec-support (~> 3.9.3)
@@ -397,9 +397,8 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano3-unicorn
   capybara (>= 2.15)
-
-  devise
   carrierwave
+  devise
   erb2haml
   factory_bot_rails
   faker
