@@ -8,9 +8,9 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get '/users/show', to: 'users/sessions#show'
-    get '/users/edit', to: 'users/sessions#edit'
+    get '/users/edit_info', to: 'users/sessions#edit_info'
     get '/users/putting_up_list', to: 'users/sessions#putting_up_list'
-    get '/users/complicated_item', to: 'users/sessions#complicated_item'
+    get '/users/completed_item', to: 'users/sessions#completed_item'
     get '/users/profile', to: 'users/sessions#profile'
     get '/users/destination', to: 'users/sessions#destination'
     get '/users/payment_method', to: 'users/sessions#payment_method'

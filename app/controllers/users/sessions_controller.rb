@@ -2,10 +2,25 @@
 
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  def show
+  end
+
   def putting_up_list
   end
 
-  def edit
+  def completed_item
+  end
+
+  def edit_info
+  end
+
+  def profile
+  end
+
+  def destination
+  end
+
+  def payment_method
   end
 
   # GET /resource/sign_in
