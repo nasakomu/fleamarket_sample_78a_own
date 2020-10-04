@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    # @items = @category.items
+    @items = @category.items.where(status_id: 1)
   end
 
   def get_category_children

@@ -1,51 +1,10 @@
-.Item_block__lists
-  = link_to "#", class: "Item_box" do
-    = image_tag "pict/coffee.jpg", class: "Item_box__img", size:"200x150"
-    .Item_box__text_block
-      %h3.Item_box__text_block__item_name テスト
-      %ul.Item_box__text_block__price
-        %li 10000円
-        %div
-          %li.star_icon= icon("fas", "star")
-          %li 1
-      %p.Item_box__text_block__tax （税込）
-  = link_to "#", class: "Item_box" do
-    = image_tag "pict/coffee.jpg", class: "Item_box__img", size:"200x150"
-    .Item_box__text_block
-      %h3.Item_box__text_block__item_name テスト
-      %ul.Item_box__text_block__price
-        %li 10000円
-        %div
-          %li.star_icon= icon("fas", "star")
-          %li 1
-      %p.Item_box__text_block__tax （税込）
-  = link_to "#", class: "Item_box" do
-    = image_tag "pict/coffee.jpg", class: "Item_box__img", size:"200x150"
-    .Item_box__text_block
-      %h3.Item_box__text_block__item_name テスト
-      %ul.Item_box__text_block__price
-        %li 10000円
-        %div
-          %li.star_icon= icon("fas", "star")
-          %li 1
-      %p.Item_box__text_block__tax （税込）
-  = link_to "#", class: "Item_box" do
-    = image_tag "pict/coffee.jpg", class: "Item_box__img", size:"200x150"
-    .Item_box__text_block
-      %h3.Item_box__text_block__item_name テスト
-      %ul.Item_box__text_block__price
-        %li 10000円
-        %div
-          %li.star_icon= icon("fas", "star")
-          %li 1
-      %p.Item_box__text_block__tax （税込）
-  = link_to "#", class: "Item_box" do
-    = image_tag "pict/coffee.jpg", class: "Item_box__img", size:"200x150"
-    .Item_box__text_block
-      %h3.Item_box__text_block__item_name テスト
-      %ul.Item_box__text_block__price
-        %li 10000円
-        %div
-          %li.star_icon= icon("fas", "star")
-          %li 1
-      %p.Item_box__text_block__tax （税込）
+= link_to "#", class: "Item_box" do
+  = image_tag "#{item.item_images.first.url}", class: "Item_box__img", size:"200x150"
+  .Item_box__text_block
+    %h3.Item_box__text_block__item_name= item.name
+    %ul.Item_box__text_block__price
+      %li= item.price
+      %div
+        %li.star_icon= icon("fas", "star")
+        %li 1
+    %p.Item_box__text_block__tax （税込）
