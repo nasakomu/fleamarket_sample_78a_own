@@ -193,45 +193,38 @@
       font-weight: bold;
       padding: 0 0 24px 0;
     }
-    .ShowCard {
-      margin-bottom: 32px;
-      &__label {
-        font-size: 14px;
-        font-weight: bold;
-        line-height: 18px;
-        margin-bottom: 16px;
-        & span {
-          display: inline-block;
-          color: #fff;
-          background-color: #ffb340;
-          font-size: 14px;
+    .Card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &__detail {
+        &__label {
+          font-size: 16px;
+          font-weight: bold;
           line-height: 18px;
-          padding: 0 4px;
-          margin-left: 5px;
-          border-radius: 2px;
+          margin-bottom: 32px;
         }
-        & .required {
-          background-color: #ffb340;
-        }
-        & .any {
-          background-color: #bfbfbf;
+        &__contents {
+          margin-bottom: 16px;
+          padding-left: 2em;
         }
       }
-      // &__detail {
-      //   & input {
-      //     display: block;
-      //     width: 100%;
-      //     border: 1px solid #ccc;
-      //     border-radius: 4px;
-      //     height: 48px;
-      //     padding: 0 16px;
-      //   }      
-      // }
-      &__note {
-        font-size: 14px;
-        color: #999;
-        margin: 10px 0 0 5px;
+      &__deleteBtn {
+        & a {
+          color: #ff2222;
+          font-size: 14px;
+          font-weight: bold;
+          border-radius: 4px;
+          border: 1px solid #ff2222;
+          padding: 8px 15px;
+        }
+        & a:hover {
+          opacity: 0.8;
+          text-decoration: none;
+        }
       }
+    }
+    .Button {
       &__btn {
         width: 200px;
         margin: 0 auto;
@@ -254,13 +247,6 @@
       }
       &__back {
         text-align: center;
-      }
-      &__exp_date {
-        display: flex;
-        align-items: center;
-        & p {
-          padding: 0 10px;
-        }
       }
     }
     .border {

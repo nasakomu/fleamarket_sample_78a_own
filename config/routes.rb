@@ -7,5 +7,5 @@ Rails.application.routes.draw do
       get 'payment_method'
     end
   end
-  resources :credit_cards, only: [:create, :new, :show, :delete]
+  resources :credit_cards, only: [:create, :new, :show, :destroy]
 end
