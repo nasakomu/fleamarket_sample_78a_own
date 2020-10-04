@@ -73,11 +73,8 @@
   .Item_block
     %h2.Item_block__headline ピックアップカテゴリー
     %h3.Item_block__subtitle 新規投稿商品
-    = render partial: "items_list"
-  .Item_block
-    %h2.Item_block__headline ピックアップブランド
-    %h3.Item_block__subtitle アーカイバ
-    = render partial: "items_list"
+    .Item_block__lists
+      = render partial: "items_list", collection: @new_items, as: "item"
 .footer_visual_section
   .Footer_visual
     %h2.Footer_visual__headline だれでもかんたん、人生を変えるフリマアプリ
