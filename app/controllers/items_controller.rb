@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   def top
+    @new_items = Item.where(status_id: 1).order(created_at: :desc).limit(5)
   end
 
   def index

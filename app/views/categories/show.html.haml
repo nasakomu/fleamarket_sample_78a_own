@@ -4,5 +4,6 @@
     %h2.category_headline
       = @category.name
       の商品一覧
-    = render partial:"items/items_list"
+    .Item_block__lists
+      = render partial:"items/items_list", collection: @items, as: "item"
 = render partial: "/items/footer"

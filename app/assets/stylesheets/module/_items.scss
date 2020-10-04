@@ -291,7 +291,8 @@ header {
     padding-bottom: 25px;
   }
   &__lists {
-    @include flex_box(center, start);
+    @include flex_box(flex-start, start);
+    flex-wrap: wrap;
     margin: 0 auto;
   }
 }
