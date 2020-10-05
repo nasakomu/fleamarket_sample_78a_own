@@ -12,6 +12,9 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def edit_info
+    @user = User.find(current_user.id)
+  #   @user.build_destination
+  #   @user.build_profile
   end
 
   def profile
