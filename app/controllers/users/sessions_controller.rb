@@ -3,27 +3,47 @@
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
   def show
+    @user = User.find(current_user.id)
+    @items = @user.items
   end
-
+  
   def putting_up_list
+    @user = User.find(current_user.id)
+    @items = []
+    @user.items.each do |item|
+      if item.status_id == 1
+        @items << item
+      end
+    end
   end
 
   def completed_item
+    @user = User.find(current_user.id)
+    @items = []
+    @user.items.each do |item|
+      if item.status_id == 2
+        @items << item
+      end
+    end
   end
 
   def edit_info
     @user = User.find(current_user.id)
-  #   @user.build_destination
-  #   @user.build_profile
   end
 
   def profile
+    @user = User.find(current_user.id)
   end
 
   def destination
+    @user = User.find(current_user.id)
   end
 
   def payment_method
+    @user = User.find(current_user.id)
+  end
+
+  def logout
   end
 
   # GET /resource/sign_in

@@ -3,7 +3,7 @@
 .MyPage
   = render partial: 'devise/sessions/side_nav'
   .MainField
-    putting_item_list
+    = render partial: 'items/items_list', collection: @items, as: "item"
 
 = render partial: 'items/footer'
 = render partial: 'items/putting_up_btn'

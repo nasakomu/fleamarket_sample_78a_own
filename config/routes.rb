@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get '/users/profile', to: 'users/sessions#profile'
     get '/users/destination', to: 'users/sessions#destination'
     get '/users/payment_method', to: 'users/sessions#payment_method'
+    get '/users/logout', to: 'users/sessions#logout'
   end
 
   root 'items#top'
