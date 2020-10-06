@@ -685,4 +685,7 @@ footer {
     margin: 10px 0;
     text-decoration: none;
   }
+  &__itemList {
+    @include flex_box(flex-start, center);
+  }
 }
