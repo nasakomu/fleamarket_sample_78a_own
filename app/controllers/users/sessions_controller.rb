@@ -4,27 +4,19 @@ class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
   def show
     @user = User.find(current_user.id)
-    @items = @user.items
+    @items = @user.items.where(status_id: 1)
   end
   
   def putting_up_list
     @user = User.find(current_user.id)
-    @items = []
-    @user.items.each do |item|
-      if item.status_id == 1
-        @items << item
-      end
-    end
+    @items = @user.items.where(status_id: 1)
+
   end
 
   def completed_item
     @user = User.find(current_user.id)
-    @items = []
-    @user.items.each do |item|
-      if item.status_id == 2
-        @items << item
-      end
-    end
+    @items = @user.items.where(status_id: 2)
+
   end
 
   def edit_info

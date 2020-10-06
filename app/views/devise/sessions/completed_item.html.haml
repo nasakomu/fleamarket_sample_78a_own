@@ -3,7 +3,9 @@
 .MyPage
   = render partial: 'devise/sessions/side_nav'
   .MainField
-    = render partial: 'items/items_list', collection: @items, as: "item"
+    %h1 売却済の商品
+    .Item_box__Wrap
+      = render partial: 'items/items_list', collection: @items, as: "item"
 
 = render partial: 'items/footer'
 = render partial: 'items/putting_up_btn'

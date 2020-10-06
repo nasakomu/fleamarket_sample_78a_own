@@ -2,12 +2,12 @@
 * {
   box-sizing: border-box;
   }
-
+// MyPageのスタイル
 .MyPage{
   @include flex_box(center, start);
   @include h_w(100%, 1020px);
   margin: 40px auto;
-  
+  // サイドナビゲーション
   & .SideBar{
     @include h_w(auto, 280px);
     font-size: 14px;
@@ -47,11 +47,72 @@
       }
     }
   }
-
+  // マイページメインエリア
   & .MainField{
     @include h_w(auto, 700px);
     background-color: #fff;
+    & h1{
+      padding: 0 16px;
+      font-weight: bold;
+      color: #333;
+      font-size: 16px;
+      line-height: 72px;
+      height: 72px;
+      border-bottom: 2px solid $LightBlue;
+    }
+    // マイページトップ
+    & .UserInfo{
+      @include h_w(100px, 100%);
+      @include flex_box(center, center);
+      flex-direction: column;
+      background: linear-gradient($LightBlue, #def6fb);
+      &__name{
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+      &__lists_num{
+        font-size: 14px;
+      }
+    }
 
+    // アイテムリスト(出品中、売却済商品一覧)
+    & .Item_box__Wrap{
+      @include flex_box(space-around, start);
+      flex-wrap: wrap;
+      padding: 5px;
+      & .Item_box {
+        margin: 10px;
+        width: 200px;
+        height: 260px;
+        border: 0.5px solid #ccc;
+        &__img {
+          display: block;
+          width: 100%;
+          height: 198px;
+        }
+        &__text_block {
+          padding: 10px;
+          font-size: 14px;
+          height: 60px;
+          position: relative;
+          &__item_name{
+            overflow: hidden;
+            height: 40px;
+          }
+          &__price {
+            position: absolute;
+            top: -50px;
+            left: 0px;
+            border-radius: 0 14px 14px 0;
+            background-color: rgba(0,0,0,.4);
+            color: #fff;
+            font-size: 17px;
+            padding: 5px 5px 5px 14px;
+          }
+        }
+      }
+    }
+    // ログアウトボタン
     &__logout{
       @include flex_box(center, center);
       width: 100%;
@@ -68,7 +129,6 @@
         color: #fff;
       }
     }
-
   }
 }
 
