@@ -13,28 +13,33 @@
     %table.itemInfoBox__itemInfoTable{border: "1"}
       %tr
         %td.leftColumn 出品者
-        %td.rightColumn テストユーザー
+        %td.rightColumn= @item.user.nickname
       %tr
         %td.leftColumn カテゴリー
-        %td.rightColumn カテゴリー内容
+        %td.rightColumn
+          - if @item.category.parent.parent.name
+            %div=link_to "#{@item.category.parent.parent.name}", category_path(@item.category.parent.parent.id)
+          - if @item.category.parent.name
+            %div=link_to "#{@item.category.parent.name}", category_path(@item.category.parent.id)
+          %div=link_to "#{@item.category.name}", category_path(@item.category.id)
       %tr
-        %td.leftColumn ブランド
-        %td.rightColumn 
+        %td.leftColumn ブランド名
+        %td.rightColumn= @item.brand.name
       %tr
         %td.leftColumn 商品のサイズ
-        %td.rightColumn 
+        %td.rightColumn= @item.size.name
       %tr
         %td.leftColumn 商品の状態
-        %td.rightColumn 
+        %td.rightColumn= @item.item_condition.name
       %tr
         %td.leftColumn 配送料の負担
-        %td.rightColumn 
+        %td.rightColumn= @item.postage_payer.name
       %tr
         %td.leftColumn 発送元の地域
-        %td.rightColumn 
+        %td.rightColumn= JpPrefecture::Prefecture.find(@item.prefecture_code).name
       %tr
         %td.leftColumn 発送日の目安
-        %td.rightColumn
+        %td.rightColumn= @item.preparation_day.name
     .itemInfoBox__btnBox
       = link_to "#", class:"favoriteBtn" do
         = icon "fas", "star" , class: "favoriteIcon"
@@ -54,10 +59,13 @@
           = icon "fas", "comment", class: "speechBubbleIcon"
           %p コメントする
   .fowardAndNextBtnBox
-    = link_to "〈 前の商品", "#", class: "fowardAndNextBtnBox__fowardBtn"
-    = link_to "後ろの商品 〉", "#", class: "fowardAndNextBtnBox__nextBtn"
+    - if (@items.index(@item)-1) >= 0
+      = link_to "〈 前の商品", item_path(@items[(@items.index(@item))-1].id), class: "fowardAndNextBtnBox__fowardBtn"
+    - if @items[(@items.index(@item))+1]
+      = link_to "後ろの商品 〉", item_path(@items[(@items.index(@item))+1].id), class: "fowardAndNextBtnBox__nextBtn"
   .moreItemsShowBox
-    = link_to "このカテゴリーをもっと見る", "#", class: "moreItemsShowBox__headline"
+    = link_to "#{@item.category.name}をもっと見る", category_path(@item.category_id), class: "moreItemsShowBox__headline"
     .moreItemsShowBox__itemList
+      = render partial: "items_list", collection: @more_items, as: "item"
 
 = render partial: "footer"
