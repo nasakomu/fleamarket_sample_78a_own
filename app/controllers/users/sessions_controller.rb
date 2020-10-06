@@ -10,13 +10,11 @@ class Users::SessionsController < Devise::SessionsController
   def putting_up_list
     @user = User.find(current_user.id)
     @items = @user.items.where(status_id: 1)
-
   end
 
   def completed_item
     @user = User.find(current_user.id)
     @items = @user.items.where(status_id: 2)
-
   end
 
   def edit_info
