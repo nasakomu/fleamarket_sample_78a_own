@@ -2,9 +2,8 @@
   = image_tag "#{item.item_images.first.url}", class: "Item_box__img", size:"180x180"
   .Item_box__text_block
     %h3.Item_box__text_block__item_name= item.name
-    %ul.Item_box__text_block__price 
-      %li ¥ #{item.price}
-      -# いいね機能実装時に追加
-      -# %div
-      -#   %li.star_icon= icon("fas", "star")
-      -#   %li 1
+    .Item_box__text_block__price ¥ #{item.price}
+    %dl.Item_box__text_block__favorite
+      %dt.Item_box__text_block__favorite--icon= icon("fas", "star")
+      %dd.Item_box__text_block__favorite--num 111
+    .Item_box__text_block__hide_area

@@ -95,6 +95,7 @@
           font-size: 14px;
           height: 60px;
           position: relative;
+          color: #333;
           &__item_name{
             overflow: hidden;
             height: 40px;
@@ -107,7 +108,19 @@
             background-color: rgba(0,0,0,.4);
             color: #fff;
             font-size: 17px;
-            padding: 5px 5px 5px 14px;
+            padding: 5px 5px 5px 10px;
+          }
+          &__favorite{
+            @include flex_box(space-around, center);
+            @include h_w(20px, 25%);
+            position: absolute;
+            right: 5px;
+            bottom: 10px;
+            background:#fff;
+            color: #222;
+            &--icon{
+              font-size: 13px;
+            }
           }
         }
       }
