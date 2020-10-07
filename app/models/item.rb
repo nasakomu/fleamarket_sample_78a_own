@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :postage_payer
   belongs_to_active_hash :preparation_day
   belongs_to_active_hash :status
-  # belongs_to :user
+  belongs_to :user
 
   with_options presence: true do
     validates :name
