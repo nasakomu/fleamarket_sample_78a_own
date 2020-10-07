@@ -1,4 +1,4 @@
-= link_to "#", class: "Item_box" do
+= link_to item_path(item.id), class: "Item_box" do
   = image_tag "#{item.item_images.first.url}", class: "Item_box__img", size:"180x180"
   .Item_box__text_block
     %h3.Item_box__text_block__item_name= item.name
@@ -6,4 +6,4 @@
     %dl.Item_box__text_block__favorite
       %dt.Item_box__text_block__favorite--icon= icon("fas", "star")
       %dd.Item_box__text_block__favorite--num 111
-    .Item_box__text_block__hide_area
+
