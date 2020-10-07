@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', ()=>{
+$(function() {
   //ヘッダーのカテゴリー表示
   function appendParentCategory(category){
     let html = `<a href="/categories/${category.id}" class="parent_nav_list" data-parent_id="${category.id}">${category.name}</a>`
