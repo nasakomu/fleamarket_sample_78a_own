@@ -381,9 +381,8 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano3-unicorn
   capybara (>= 2.15)
-
-  devise
   carrierwave
+  devise
   erb2haml
   factory_bot_rails
   faker
