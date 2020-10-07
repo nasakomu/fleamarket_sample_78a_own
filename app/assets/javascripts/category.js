@@ -81,4 +81,81 @@ $(function() {
     $('.child_nav_box').empty();
     $('.grandchild_nav_box').empty();
   });
+
+
+// 商品出品ページのcategory表示
+  // 挿入するHTMLの定義
+  const buildChildForm = (() => {
+    const html = `<dd class="FormItem__detail" id="Child__form">
+                    <select required="required" class="Child__form--content" name="item[category_id]" id="item_category_id">
+                      <option value="">選択してください</option>
+                    </select>
+                  </dd>`
+    $('#Parent__form').after(html);
+  });
+
+  const buildChildFormContent = ((child)=>{
+    child.forEach(child =>{
+      let content = `<option value="${child.id}">${child.name}</option>`
+      $('.Child__form--content').append(content);
+    });
+  });
+
+  const buildGrandChildForm = (()=>{
+    const html = `<dd class="FormItem__detail" id="GrandChild__form">
+                    <select required="required" class="GrandChild__form--content" name="item[category_id]" id="item_category_id">
+                      <option value="">選択してください</option>
+                    </select>
+                  </dd>`
+    $('#Child__form').after(html);
+  });
+
+  const buildGrandChildFormContent = ((grandchild)=>{
+    grandchild.forEach(grandchild =>{
+      let content = `<option value="${grandchild.id}">${grandchild.name}</option>`
+      $('.GrandChild__form--content').append(content);
+    });
+  });
+  // 親カテゴリー選択で子カテゴリーのFormが出現
+  $('#Parent__form').on('change', function(){
+    let parent_id = $('.Parent__form--content').val();
+    $.ajax({
+      url: '/categories/get_category_children',
+      type: 'GET',
+      data: {
+        parent_id: parent_id
+      },
+      dataType: 'json'
+    })
+    .done(function(child){
+      $('#Child__form').remove();
+      $('#GrandChild__form').remove();
+      buildChildForm();
+      buildChildFormContent(child);
+    })
+    .fail(function(){
+      alert('error');
+    })
+  });
+
+  // 子カテゴリー選択で孫カテゴリーのFormが出現
+  $(document).on('change','#Child__form', function(){
+    let child_id = $('.Child__form--content').val();
+    $.ajax({
+      url: '/categories/get_category_grandchildren',
+      type: 'GET',
+      data: {
+        child_id: child_id
+      },
+      dataType: 'json'
+    })
+    .done(function(grandchildren){
+      $('#GrandChild__form').remove();
+      buildGrandChildForm();
+      buildGrandChildFormContent(grandchildren)
+    })
+    .fail(function(){
+      alert('error');
+    })
+  });
 });

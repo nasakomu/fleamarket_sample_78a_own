@@ -9,6 +9,11 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.item_images.new
+    @categories = Category.where(ancestry: nil)
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def create  

@@ -37,8 +37,8 @@
           %dt.FormItem__label
             = form.label :category, "カテゴリー"
             %span.required 必須
-          %dd.FormItem__detail
-            = form.collection_select(:category_id, Category.all, :id, :name, {prompt: '選択してください'}, {required: true})
+          %dd.FormItem__detail#Parent__form
+            = form.collection_select(:category_id, @categories, :id, :name, {prompt: '選択してください'}, {required: true, class: "Parent__form--content"})
       .FormItem
         %dl
           %dt.FormItem__label
