@@ -49,4 +49,18 @@ $(document).on('turbolinks:load', ()=>{
       $('.FormItem__imagebox').append(buildFileField(fileIndex[0]));
     };
   });
+  // 商品出品画面で値段を入力すると販売手数料と利益が出力される
+  $('#FormItem__price--form_val').on('change', function(){
+    price = $(this).val();
+    fee = Math.round(price * 0.1, 1);
+    profit = price - fee;
+    if (price < 300 || price.match(/[^0-9]/)){
+      $(this).val("");
+      $('.FormItem__price--fee_val').text("ー");
+      $('.FormItem__price--profit_val').text("ー");
+    }else{
+      $('.FormItem__price--fee_val').text(`${fee}`);
+      $('.FormItem__price--profit_val').text(`${profit}`);
+    };
+  });
 });
