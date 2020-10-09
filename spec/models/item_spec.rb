@@ -16,6 +16,13 @@ RSpec.describe Item, type: :model do
         item.valid?
         expect(item).to be_valid
       end
+
+      # size_idが空でも登録できる
+      it "is valid without a size_id" do
+        item = build(:item, size_id: "")
+        item.valid?
+        expect(item).to be_valid
+      end
     end
     
     context 'cannot save' do
@@ -56,12 +63,6 @@ RSpec.describe Item, type: :model do
         expect(item.errors[:category_id]).to include("can't be blank")
       end
       
-      # size_idが空だと登録できない
-      it "is invalid without a size_id" do
-        item = build(:item, size_id: "")
-        item.valid?
-        expect(item.errors[:size_id]).to include("can't be blank")
-      end
       
       # item_condition_idが空だと登録できない
       it "is invalid without a item_condition_id" do
