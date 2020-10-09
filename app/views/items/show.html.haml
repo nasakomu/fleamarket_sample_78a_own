@@ -24,10 +24,14 @@
           %div=link_to "#{@item.category.name}", category_path(@item.category.id)
       %tr
         %td.leftColumn ブランド名
-        %td.rightColumn= @item.brand.name
+        %td.rightColumn
+          - if @item.brand_id
+            = @item.brand.name
       %tr
         %td.leftColumn 商品のサイズ
-        %td.rightColumn= @item.size.name
+        %td.rightColumn
+          - if @item.size_id
+            = @item.size.name
       %tr
         %td.leftColumn 商品の状態
         %td.rightColumn= @item.item_condition.name
