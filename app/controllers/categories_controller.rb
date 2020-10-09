@@ -9,8 +9,12 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:id])
-    @items = @category.items.where(status_id: 1)
+    @category = Category.find(params[:id])    
+    if @category.has_children?
+      @items = Item.where(status_id: 1, category_id: @category.descendant_ids.unshift(@category.id)) 
+    else
+      @items = @category.items.where(status_id: 1)
+    end
   end
 
   def get_category_children

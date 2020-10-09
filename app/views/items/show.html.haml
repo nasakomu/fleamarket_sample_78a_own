@@ -17,9 +17,9 @@
       %tr
         %td.leftColumn カテゴリー
         %td.rightColumn
-          - if @item.category.parent.parent.name
+          - if @item.category.has_parent? && @item.category.parent.has_parent?
             %div=link_to "#{@item.category.parent.parent.name}", category_path(@item.category.parent.parent.id)
-          - if @item.category.parent.name
+          - if @item.category.has_parent?
             %div=link_to "#{@item.category.parent.name}", category_path(@item.category.parent.id)
           %div=link_to "#{@item.category.name}", category_path(@item.category.id)
       %tr
