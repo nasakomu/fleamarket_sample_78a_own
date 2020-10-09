@@ -184,10 +184,16 @@ $(function() {
         dataType: 'json'
       })
       .done(function(grandchildren){
-        $('#GrandChild__form').remove();
-        $('#Size__form').remove();
-        buildGrandChildForm();
-        buildGrandChildFormContent(grandchildren)
+        // 孫カテゴリーが存在しない時表示されないようする分岐
+        if (grandchildren.length == 0){
+          $('#GrandChild__form').remove();
+          $('#Size__form').remove();
+        }else{
+          $('#GrandChild__form').remove();
+          $('#Size__form').remove();
+          buildGrandChildForm();
+          buildGrandChildFormContent(grandchildren)
+        }
       })
       .fail(function(){
         alert('error')
