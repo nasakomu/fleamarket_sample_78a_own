@@ -44,11 +44,15 @@ $(document).on('turbolinks:load', ()=>{
     $(this).parent().remove();
     $(`img[data-index="${targetIndex}"]`).remove();
     
+    // 最初の画像選択フォームにrequire属性を付与
+    $('.js-file').first().attr('required', 'required');
+
     // 画像入力欄が0個にならないようにする
     if ($('.js-file').length == 0){
       $('.FormItem__imagebox').append(buildFileField(fileIndex[0]));
     };
   });
+
   // 商品出品画面で値段を入力すると販売手数料と利益が出力される
   $('#FormItem__price--form_val').on('change', function(){
     price = $(this).val();
