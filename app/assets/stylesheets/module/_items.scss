@@ -450,6 +450,12 @@ footer {
     background-color: #fff;
     .FormItem {
       margin-bottom: 32px;
+      & #Parent__form{
+        margin-bottom: 15px;
+      }
+      & #Child__form{
+        margin-bottom: 15px;
+      }
       &__label {
         font-size: 14px;
         font-weight: bold;
@@ -513,6 +519,30 @@ footer {
           border-radius: 4px;
           padding: 15px 0;
           cursor: pointer;
+        }
+      }
+      &__price{
+        margin-top: 25px;
+        line-height: 14px;
+        height: 14px;
+        position: relative;
+        font-size: 14px;
+        font-weight: bold;
+        color: #777;
+        & span{
+          position: absolute;
+          left: 190px;
+        }
+        &--fee_val{
+          position: absolute;
+          left: 200px;
+          top: 0;
+        }
+        &--profit_val{
+          position: absolute;
+          left: 200px;
+          top: 0;
+
         }
       }
     }
