@@ -1,9 +1,11 @@
-const pay = ()=> {
-  Payjp.setPublicKey("pk_test_b8f8671c18b8abe265919ca5");　// PAY.JPテスト公開鍵
+$(document).on('turbolinks:load', ()=>{
+
+  Payjp.setPublicKey("pk_test_b8f8671c18b8abe265919ca5"); // PAY.JPテスト公開鍵
   const form = document.getElementById("charge-form");
   form.addEventListener("submit", (e) => {
+    
     e.preventDefault();
-
+  
     const formResult = document.getElementById("charge-form");
     const formData = new FormData(formResult);
     const card = {
@@ -12,7 +14,6 @@ const pay = ()=> {
       exp_month: formData.get("exp_month"),
       exp_year: formData.get("exp_year"),
     };
-
     Payjp.createToken(card, (status, response) => {
       if (status == 200) {
         const token = response.id;
@@ -29,6 +30,5 @@ const pay = ()=> {
       document.getElementById("charge-form").reset();
     })
   })
-}
+});
 
-window.addEventListener("load", pay);
