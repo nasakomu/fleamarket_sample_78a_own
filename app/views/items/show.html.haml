@@ -1,0 +1,75 @@
+= render partial: "header"
+
+.itemshow_wrapper
+  .itemInfoBox
+    %h1.itemInfoBox__itemName= @item.name
+    = image_tag "#{@item.item_images.first.url}", class: "itemInfoBox__mainImage"
+    .itemInfoBox__allImageBox
+      - @item.item_images.each do |image|
+        = image_tag "#{image.url}", class: "itemInfoBox__allImageBox__subImages"
+    %p.itemInfoBox__itemPrice= "#{@item.price}円"
+    %p.itemInfoBox__priceTax （税込）送料込み
+    %p.itemInfoBox__itemIntroduction= @item.introduction
+    %table.itemInfoBox__itemInfoTable{border: "1"}
+      %tr
+        %td.leftColumn 出品者
+        %td.rightColumn= @item.user.nickname
+      %tr
+        %td.leftColumn カテゴリー
+        %td.rightColumn
+          - if @item.category.has_parent? && @item.category.parent.has_parent?
+            %div=link_to "#{@item.category.parent.parent.name}", category_path(@item.category.parent.parent.id)
+          - if @item.category.has_parent?
+            %div=link_to "#{@item.category.parent.name}", category_path(@item.category.parent.id)
+          %div=link_to "#{@item.category.name}", category_path(@item.category.id)
+      %tr
+        %td.leftColumn ブランド名
+        %td.rightColumn
+          - if @item.brand_id
+            = @item.brand.name
+      %tr
+        %td.leftColumn 商品のサイズ
+        %td.rightColumn
+          - if @item.size_id
+            = @item.size.name
+      %tr
+        %td.leftColumn 商品の状態
+        %td.rightColumn= @item.item_condition.name
+      %tr
+        %td.leftColumn 配送料の負担
+        %td.rightColumn= @item.postage_payer.name
+      %tr
+        %td.leftColumn 発送元の地域
+        %td.rightColumn= JpPrefecture::Prefecture.find(@item.prefecture_code).name
+      %tr
+        %td.leftColumn 発送日の目安
+        %td.rightColumn= @item.preparation_day.name
+    .itemInfoBox__btnBox
+      = link_to "#", class:"favoriteBtn" do
+        = icon "fas", "star" , class: "favoriteIcon"
+        %p.favoriteBtnText お気に入り 1
+      = link_to "#", class: "reportBtn" do
+        = icon "fas", "flag", class: "reportIcon"
+        %p 不適切な商品の通報
+  .commentBox
+    = form_with url: "#", class: "commentForm" do |f|
+      = f.text_area :content, class: "commentForm__content", rows: "5"
+      %p.commentForm__attention 
+        相手のことを考え丁寧なコメントを心がけましょう。
+        %br 不快な言葉遣いなどは利用制限や退会処分となることがあります。
+      %label
+        = f.submit "送信", class: "commentForm__submitBtn"
+        .commentForm__btnLooking
+          = icon "fas", "comment", class: "speechBubbleIcon"
+          %p コメントする
+  .fowardAndNextBtnBox
+    - if (@items.index(@item)-1) >= 0
+      = link_to "〈 前の商品", item_path(@items[(@items.index(@item))-1].id), class: "fowardAndNextBtnBox__fowardBtn"
+    - if @items[(@items.index(@item))+1]
+      = link_to "後ろの商品 〉", item_path(@items[(@items.index(@item))+1].id), class: "fowardAndNextBtnBox__nextBtn"
+  .moreItemsShowBox
+    = link_to "#{@item.category.name}をもっと見る", category_path(@item.category_id), class: "moreItemsShowBox__headline"
+    .moreItemsShowBox__itemList
+      = render partial: "items_list", collection: @more_items, as: "item"
+
+= render partial: "footer"

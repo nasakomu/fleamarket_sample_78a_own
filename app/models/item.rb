@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :postage_payer
   belongs_to_active_hash :preparation_day
   belongs_to_active_hash :status
-  # belongs_to :user
+  belongs_to :user
 
   with_options presence: true do
     validates :name
@@ -20,7 +20,6 @@ class Item < ApplicationRecord
     validates :price, numericality: {only_integer: true}
     validates :category_id
     validates :item_images
-    validates :size_id
     validates :item_condition_id
     validates :postage_payer_id
     validates :preparation_day_id

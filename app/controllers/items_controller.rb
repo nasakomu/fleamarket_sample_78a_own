@@ -10,14 +10,20 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.item_images.new
+    @categories = Category.where(ancestry: nil)
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
-  def create  
+  def create
     @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
     else
       @item.item_images.new
+      @categories = Category.where(ancestry: nil)
       render :new
     end
   end
@@ -36,6 +42,15 @@ class ItemsController < ApplicationController
   end
 
   def payment_method
+  end
+  
+  def show
+    @item = Item.find(params[:id])
+    category = Category.find(@item.category_id)
+    # 「もっと見る」表示用のインスタンス
+    @more_items = category.items.where(status_id: 1).where.not(id: @item.id).order(created_at: :desc).limit(5)
+    # 「前の商品」「後ろの商品」表示用のインスタンス
+    @items = category.items.where(status_id: 1)
   end
 
   private

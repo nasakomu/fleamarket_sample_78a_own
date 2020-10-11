@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('turbolinks:load', function(){
   //ヘッダーのカテゴリー表示
   function appendParentCategory(category){
     let html = `<a href="/categories/${category.id}" class="parent_nav_list" data-parent_id="${category.id}">${category.name}</a>`
@@ -80,5 +80,148 @@ $(function() {
     $('.parent_nav_box').empty();
     $('.child_nav_box').empty();
     $('.grandchild_nav_box').empty();
+  });
+
+
+// 商品出品ページのcategory表示
+  // 挿入するHTMLの定義
+  const buildChildForm = (() => {
+    const html = `<dd class="FormItem__detail" id="Child__form">
+                    <select required="required" class="Child__form--content" name="item[category_id]" id="item_category_id">
+                      <option value="">選択してください</option>
+                    </select>
+                  </dd>`;
+    $('#Parent__form').after(html);
+  });
+
+  const buildChildFormContent = ((child)=>{
+    child.forEach(child =>{
+      let content = `<option value="${child.id}">${child.name}</option>`
+      $('.Child__form--content').append(content);
+    });
+  });
+
+  const buildGrandChildForm = (()=>{
+    const html = `<dd class="FormItem__detail" id="GrandChild__form">
+                    <select required="required" class="GrandChild__form--content" name="item[category_id]" id="item_category_id">
+                      <option value="">選択してください</option>
+                    </select>
+                  </dd>`;
+    $('#Child__form').after(html);
+  });
+
+  const buildGrandChildFormContent = ((grandchild)=>{
+    grandchild.forEach(grandchild =>{
+      let content = `<option value="${grandchild.id}">${grandchild.name}</option>`
+      $('.GrandChild__form--content').append(content);
+    });
+  });
+
+  const buildSizeForm = (() =>{
+    const html = `<div class="FormItem" id='Size__form'>
+                    <dl>
+                      <dt class="FormItem__label">
+                        <label for="item_size">サイズ</label>
+                          <span class="required">必須</span>
+                      </dt>
+                      <dd class="FormItem__detail">
+                        <select required="required" name="item[size_id]" id="item_size_id" class='Size__form--content'>
+                          <option value="">選択してください</option>
+                        </select>
+                      </dd>
+                    </dl>
+                  </div>`;
+    $('#Category__form').after(html);
+  });
+  const buildSizeFormContent = ((size) =>{
+    size.forEach(size => {
+      const html = `<option value="${size.id}">${size.name}</option>`;
+      $('.Size__form--content').append(html);
+    });
+  });
+  // 親カテゴリー選択で子カテゴリーのFormが出現
+  $('#Parent__form').on('change', function(){
+    if ($('.Parent__form--content').val() == ''){
+      $('#Child__form').remove();
+      $('#GrandChild__form').remove();
+      $('#Size__form').remove();
+    } else{
+      let parent_id = $('.Parent__form--content').val();
+      $.ajax({
+        url: '/categories/get_category_children',
+        type: 'GET',
+        data: {
+          parent_id: parent_id
+        },
+        dataType: 'json'
+      })
+      .done(function(child){
+        $('#Child__form').remove();
+        $('#GrandChild__form').remove();
+        $('#Size__form').remove();
+        buildChildForm();
+        buildChildFormContent(child);
+      })
+      .fail(function(){
+        alert('error')
+      })
+    };
+  });
+
+  // 子カテゴリー選択で孫カテゴリーのFormが出現
+  $(document).on('change','#Child__form', function(){
+    if ($('.Child__form--content').val() == ''){
+      $('#GrandChild__form').remove();
+      $('#Size__form').remove();
+    } else{
+      let child_id = $('.Child__form--content').val();
+      $.ajax({
+        url: '/categories/get_category_grandchildren',
+        type: 'GET',
+        data: {
+          child_id: child_id
+        },
+        dataType: 'json'
+      })
+      .done(function(grandchildren){
+        // 孫カテゴリーが存在しない時表示されないようする分岐
+        if (grandchildren.length == 0){
+          $('#GrandChild__form').remove();
+          $('#Size__form').remove();
+        }else{
+          $('#GrandChild__form').remove();
+          $('#Size__form').remove();
+          buildGrandChildForm();
+          buildGrandChildFormContent(grandchildren)
+        }
+      })
+      .fail(function(){
+        alert('error')
+      })
+    };
+  });
+  // 孫カテゴリー選択でサイズフォームが出現する
+  $(document).on('change','#GrandChild__form', function(){
+    if ($('.GrandChild__form--content').val() == ''){
+      $('#Size__form').remove();
+    } else{
+      let child_id = $('.Child__form--content').val();
+      $.ajax({
+        url: '/categories/get_size',
+        type: 'GET',
+        data: {
+          child_id: child_id
+        },
+        dataType: 'json'
+      })
+      .done(function(size){
+        $('#Size__form').remove();
+        buildSizeForm();
+        buildSizeFormContent(size);
+      })
+      .fail(function(){
+        alert('error')
+      })
+    };
   });
 });

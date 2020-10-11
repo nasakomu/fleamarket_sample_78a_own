@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :profieles
   resources :destinations
   root 'items#top'
-  resources :items, only: [:index, :new, :create] do
+  resources :items, only: [:index, :new, :create, :show] do
     collection do
       get 'top'
       get 'buy'
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     collection do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
+      get 'get_size', defaults: { format: 'json' }
     end
   end
 end

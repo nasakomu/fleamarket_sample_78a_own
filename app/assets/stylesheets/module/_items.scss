@@ -450,6 +450,12 @@ footer {
     background-color: #fff;
     .FormItem {
       margin-bottom: 32px;
+      & #Parent__form{
+        margin-bottom: 15px;
+      }
+      & #Child__form{
+        margin-bottom: 15px;
+      }
       &__label {
         font-size: 14px;
         font-weight: bold;
@@ -515,6 +521,30 @@ footer {
           cursor: pointer;
         }
       }
+      &__price{
+        margin-top: 25px;
+        line-height: 14px;
+        height: 14px;
+        position: relative;
+        font-size: 14px;
+        font-weight: bold;
+        color: #777;
+        & span{
+          position: absolute;
+          left: 190px;
+        }
+        &--fee_val{
+          position: absolute;
+          left: 200px;
+          top: 0;
+        }
+        &--profit_val{
+          position: absolute;
+          left: 200px;
+          top: 0;
+
+        }
+      }
     }
     .border {
       border-top: 1px dashed #dfdfdf;
@@ -523,6 +553,173 @@ footer {
     }
   }
 }
+
+
+//商品詳細ページ
+.itemshow_wrapper {
+  background-color: #f8f8f8;
+  padding: 40px 0;
+}
+
+.itemInfoBox {
+  background-color: #fff;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 24px 40px;
+  @include flex_box(flex-start, center);
+  flex-direction: column;
+  &__itemName {
+    font-size: 24px;
+    font-weight: bold;
+    padding-bottom: 15px;
+  }
+  &__mainImage {
+    width: 90%;
+    padding: 5px;
+    box-sizing: content-box;
+  }
+  &__allImageBox {
+    width: 100%;
+    @include flex_box(center, center);
+    flex-wrap: wrap;
+    &__subImages {
+      width: 30%;
+      padding: 10px;
+    }
+  }
+  &__itemPrice {
+    font-size: 46px;
+    font-weight: bold;
+  }
+  &__itemIntroduction {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  &__itemInfoTable {
+    width: 100%;
+    border: #dcdcdc;
+    & .leftColumn {
+      width: 25%;
+      padding: 10px;
+      text-align: center;
+      background-color: #eeeeee;
+      font-size: 14px;
+    }
+    & .rightColumn {
+      width: 75%;
+      padding: 10px;
+      font-size: 14px;
+    }
+  }
+  &__btnBox {
+    width: 100%;
+    padding: 20px 0;
+    @include flex_box(space-between, center);  
+    & .favoriteBtn {
+      padding: 8px 10px;
+      border: 1px solid #ffa500;
+      border-radius: 20px;
+      @include flex_box(flex-start, center);
+      text-decoration: none;
+      color: $LightBlue;
+      &:hover {
+        opacity: 0.6;
+      }
+      & .favoriteIcon {
+        padding-right: 5px;
+      }
+    }
+    & .reportBtn {
+      padding: 8px 10px;
+      border: 1px solid;
+      border-radius: 4px;
+      @include flex_box(flex-start, center);
+      text-decoration: none;
+      color: black;
+      font-size: 14px;
+      &:hover {
+        opacity: 0.6;
+      }
+      & .reportIcon {
+        padding-right: 5px;
+      }
+    }
+  }
+}
+
+.commentBox {
+  background-color: #fff;
+  max-width: 700px;
+  margin: 10px auto;
+  padding: 24px 24px;
+  @include flex_box(flex-start, center);
+  flex-direction: column;
+  & .commentForm {
+    width: 100%;
+    &__content {
+      width: 100%;
+      padding: 10px;
+    }
+    &__attention {
+      font-size: 14px;
+      padding: 5px;
+      margin: 10px 0; 
+      background-color: #f8f8f8;
+    }
+    &__submitBtn {
+      display: none;
+    }
+    &__btnLooking {
+      @include flex_box(center, center);
+      background-color: $LightBlue;
+      padding: 12px 100px;
+      width: 60%;
+      margin: 30px auto 0;
+      color: #fff;
+      border-radius: 50px;
+      font-size: 18px;
+      border: 2px solid #fff;
+      &:active {
+        border: solid 2px #0000ff;
+      }
+      & .speechBubbleIcon {
+        padding-right: 5px;
+      }
+    }
+  }
+}
+
+.fowardAndNextBtnBox {
+  max-width: 700px;
+  margin: 10px auto;
+  @include flex_box(space-between, center);
+  &__fowardBtn {
+    text-decoration: none;
+    color: $LightBlue;
+  }
+  &__nextBtn {
+    text-decoration: none;
+    color: $LightBlue;
+  }
+}
+
+.moreItemsShowBox {
+  max-width: 700px;
+  margin: 10px auto;
+  &__headline {
+    font-size: 22px;
+    font-weight: bold;
+    color: $LightBlue;
+    margin: 10px 0;
+    text-decoration: none;
+  }
+  &__itemList {
+    @include flex_box(flex-start, center);
+  }
+}
+
 
 // 商品購入確認ページ
 .BuyPage {
@@ -641,6 +838,7 @@ footer {
   }
 }
 
+
 // 支払い方法設定ページ
 .PaymentMethodPage {
   background-color: #f8f8f8;
@@ -702,3 +900,5 @@ footer {
     }
   }
 }
+
+
