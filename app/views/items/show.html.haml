@@ -6,7 +6,7 @@
     = image_tag "#{@item.item_images.first.url}", class: "itemInfoBox__mainImage"
     .itemInfoBox__allImageBox
       - @item.item_images.each do |image|
-        = image_tag "#{image.url}", class: "itemInfoBox__allImageBox__subImages"
+        = image_tag "#{image.url}", class: "itemInfoBox__allImageBox__subImages", data: {url: "#{image.url}" }
     %p.itemInfoBox__itemPrice= "#{@item.price}円"
     %p.itemInfoBox__priceTax （税込）送料込み
     %p.itemInfoBox__itemIntroduction= @item.introduction
