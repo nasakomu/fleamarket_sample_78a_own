@@ -38,15 +38,19 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    # @item.item_images.new
-    
+    @categories = Category.where(ancestry: nil)
+
     @category = @item.category
+
+    # @categories_grandchild = @category.siblings
+    # @categories_child = @category.parent.siblings
+    # @categories_parent = @category.parent.parent.siblings    
   end
 
   def update
-    @item = Item.find(item_params)
-    if @item.update
-      redirect_to :show
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to item_path(params[:id])
     else
       render :edit
     end
@@ -54,6 +58,6 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :introduction, :price, :category_id, :size_id, :brand_id,:item_condition_id, :postage_payer_id, :prefecture_code, :preparation_day_id, :status_id, item_images_attributes: [:url, :id]).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :introduction, :price, :category_id, :size_id, :brand_id,:item_condition_id, :postage_payer_id, :prefecture_code, :preparation_day_id, :status_id, item_images_attributes: [:url, :_destroy, :id]).merge(user_id: current_user.id)
   end
 end

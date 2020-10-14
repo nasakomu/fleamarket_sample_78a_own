@@ -15,6 +15,11 @@ $(document).on('turbolinks:load', ()=>{
   }
   
   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
+  // 既に使われているindexを除外
+  lastIndex = $('.js-file_group:last').data('index');
+  fileIndex.splice(0, lastIndex);
+  $('.hidden-destroy').hide();
+
   // 画像選択時に複数画像が送信できるようにhtmlを挿入
   $('.FormItem__imagebox').on('change', '.js-file', function(e){
     const targetIndex = $(this).parent().data('index');
@@ -38,14 +43,12 @@ $(document).on('turbolinks:load', ()=>{
   // 画像を削除
   $('.FormItem__imagebox').on('click', '.js-remove', function(){
     const targetIndex = $(this).parent().data('index');
-
+    const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
+    if (hiddenCheck) hiddenCheck.prop('checked', true);
     fileIndex.shift();
     
     $(this).parent().remove();
     $(`img[data-index="${targetIndex}"]`).remove();
-    
-    // 最初の画像選択フォームにrequire属性を付与
-    $('.js-file').first().attr('required', 'required');
 
     // 画像入力欄が0個にならないようにする
     if ($('.js-file').length == 0){
@@ -67,4 +70,10 @@ $(document).on('turbolinks:load', ()=>{
       $('.FormItem__price--profit_val').text(`${profit}`);
     };
   });
+  // 商品編集画面遷移時に販売手数料、利益が出力されるようにする
+  price = $('#FormItem__price--form_val').val();
+  fee = Math.round(price * 0.1, 1);
+  profit = price - fee;
+  $('.FormItem__price--fee_val').text(`${fee}`);
+  $('.FormItem__price--profit_val').text(`${profit}`);
 });
