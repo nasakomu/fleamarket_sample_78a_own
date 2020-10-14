@@ -42,9 +42,9 @@ class ItemsController < ApplicationController
     # 登録カテゴリーが子の場合か孫の場合で分岐
     if @category.parent.parent == nil
       @categories_child = @category.siblings
-      @categories_parent = @category.parent.siblings    
+      @categories_parent = @category.parent.siblings
     else
-      @categories_parent = @category.parent.parent.siblings    
+      @categories_parent = @category.parent.parent.siblings
       @categories_child = @category.parent.siblings
       @categories_grandchild = @category.siblings
     end
