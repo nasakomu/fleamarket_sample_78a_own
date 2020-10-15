@@ -9,21 +9,25 @@
           %dt.FormItem__label
             = form.label :name, "商品画像"
             %span.required 必須
-          %dd.FormItem__detail.FormItem__imagebox
+          %dd.FormItem__imagebox
             #previews
               - if @item.persisted?
                 - @item.item_images.each_with_index do |image, i|
-                  = image_tag image.url.to_s, data: { index: i }, width: "200", height: '200'
-            = form.fields_for :item_images do |i|
-              .js-file_group{data: {index: i.index}}
-                = i.file_field :url, class: 'js-file'
-                %span.js-remove 削除
+                  .preview
+                    = image_tag image.url.to_s, data: { index: i }, width: "200", height: '200'
+                    %span.js-remove 削除
+              = form.fields_for :item_images do |i|
+                .js-file_group{data: {index: i.index}}
+                  %label 
+                    = icon("fas", "camera-retro")
+                    = i.file_field :url, class: 'js-file'
+                - if @item.persisted?
+                  = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
               - if @item.persisted?
-                = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
-            - if @item.persisted?
-              .js-file_group{data: {index: @item.item_images.count}}
-                = file_field_tag :url, name: "item[item_images_attributes][#{@item.item_images.count}][url]", class: 'js-file'
-                .js-remove 削除
+                .js-file_group{data: {index: @item.item_images.count}}
+                  %label
+                    = icon("fas", "camera-retro")
+                    = file_field_tag :url, name: "item[item_images_attributes][#{@item.item_images.count}][url]", class: 'js-file'
       .FormItem.border
         %dl
           %dt.FormItem__label
@@ -44,7 +48,7 @@
             = form.label :category, "カテゴリー"
             %span.required 必須
           -# 登録カテゴリーが子の場合か孫の場合で分岐
-          - if @category.parent.parent == nil
+          - if @category.ancestors.length == 1 
             %dd.FormItem__detail#Parent__form
               = form.collection_select(:category_id, @categories_parent, :id, :name, {prompt: '選択してください', selected: @category.parent_id}, {required: true, class: "Parent__form--content"})
             %dd.FormItem__detail#Child__form

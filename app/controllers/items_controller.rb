@@ -40,10 +40,10 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @category = @item.category
     # 登録カテゴリーが子の場合か孫の場合で分岐
-    if @category.parent.parent == nil
+    if @category.ancestors.length == 1 
       @categories_child = @category.siblings
       @categories_parent = @category.parent.siblings
-    else
+    else 
       @categories_parent = @category.parent.parent.siblings
       @categories_child = @category.parent.siblings
       @categories_grandchild = @category.siblings
@@ -52,6 +52,16 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
+    @category = @item.category
+    # 登録カテゴリーが子の場合か孫の場合で分岐
+    if @category.ancestors.length == 1 
+      @categories_child = @category.siblings
+      @categories_parent = @category.parent.siblings
+    else 
+      @categories_parent = @category.parent.parent.siblings
+      @categories_child = @category.parent.siblings
+      @categories_grandchild = @category.siblings
+    end
     if @item.update(item_params)
       redirect_to item_path(params[:id])
     else
