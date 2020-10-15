@@ -56,7 +56,7 @@
     .editorBox
       -# %p.editorBox__headline 出品者編集
       .editorBox__btnBox
-        = link_to "商品情報編集", "#", class: "editorBtn edit"
+        = link_to "商品情報編集", edit_item_path, class: "editorBtn edit"
         = link_to "出品取消", "#", class: "editorBtn delete", method: :delete
   - else
     .purchaseBox
