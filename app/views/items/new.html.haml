@@ -20,6 +20,7 @@
                 .js-file_group{data: {index: i.index}}
                   %label 
                     = icon("fas", "camera-retro")
+                    %span クリックしてファイルをアップロード
                     = i.file_field :url, class: 'js-file'
                 - if @item.persisted?
                   = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
