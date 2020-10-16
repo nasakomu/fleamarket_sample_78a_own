@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
 
-  describe '#create' do
+  describe '#create #update' do
     context 'can save' do
       # 全てのデータが存在すると登録できる
       it "is valid with all data" do
