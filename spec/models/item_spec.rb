@@ -4,7 +4,7 @@ RSpec.describe Item, type: :model do
 
   describe '#create' do
     context 'can save' do
-      #全てのデータが存在すると登録できる
+      # 全てのデータが存在すると登録できる
       it "is valid with all data" do
         item = build(:item)
         expect(item).to be_valid
@@ -55,6 +55,13 @@ RSpec.describe Item, type: :model do
         item.valid?
         expect(item.errors[:price]).to include("can't be blank")
       end
+
+      #priceがintegerじゃないと登録できない
+      it "is invalid with data type of price except integer" do
+        item = build(:item, price: "test")
+        item.valid?
+        expect(item.errors[:price]).to include("is not a number")
+      end
       
       #category_idが空だと登録できない
       it "is invalid without a category_id" do
@@ -90,6 +97,13 @@ RSpec.describe Item, type: :model do
         item = build(:item, preparation_day_id: "")
         item.valid?
         expect(item.errors[:preparation_day_id]).to include("can't be blank")
+      end
+
+      # user_idが空だと登録できない
+      it "is invalid without a user_id" do
+        item = build(:item, user_id: "")
+        item.valid?
+        expect(item.errors[:user]).to include("must exist")
       end
 
     end
