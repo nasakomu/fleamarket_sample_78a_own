@@ -84,8 +84,3 @@ size12_child_ary = ["～20インチ","20～26インチ","26～32インチ","32�
 size12_child_ary.each do |child|
   parent12.children.create(name: child)
 end
-
-
-
-
-
