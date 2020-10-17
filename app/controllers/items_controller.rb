@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :correct_user, only: :destroy
+
   def top
     @new_items = Item.where(status_id: 1).order(created_at: :desc).limit(5)
   end
@@ -36,8 +38,19 @@ class ItemsController < ApplicationController
     @items = category.items.where(status_id: 1)
   end
 
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    redirect_to root_path, notice: "出品を取り消しました"
+  end
+
   private
   def item_params
     params.require(:item).permit(:name, :introduction, :price, :category_id, :size_id, :brand_id,:item_condition_id, :postage_payer_id, :prefecture_code, :preparation_day_id, :status_id, item_images_attributes: [:url, :id]).merge(user_id: current_user.id)
+  end
+
+  def correct_user
+    seler_user = Item.find(params[:id]).user
+    redirect_to(root_path) unless seler_user == current_user
   end
 end
