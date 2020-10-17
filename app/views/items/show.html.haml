@@ -52,7 +52,7 @@
         = icon "fas", "flag", class: "reportIcon"
         %p 不適切な商品の通報
 
-  - if current_user.id == @item.user.id
+  - if current_user && current_user.id == @item.user.id
     .editorBox
       -# %p.editorBox__headline 出品者編集
       .editorBox__btnBox
