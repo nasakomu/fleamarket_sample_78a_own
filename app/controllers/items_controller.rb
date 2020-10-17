@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :correct_user, only: :destroy
+  before_action :set_item, only: [:show, :destroy]
 
   def top
     @new_items = Item.where(status_id: 1).order(created_at: :desc).limit(5)
@@ -30,7 +31,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
     category = Category.find(@item.category_id)
     # 「もっと見る」表示用のインスタンス
     @more_items = category.items.where(status_id: 1).where.not(id: @item.id).order(created_at: :desc).limit(5)
@@ -39,9 +39,11 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
-    item.destroy
-    redirect_to root_path, notice: "出品を取り消しました"
+    if @item.destroy
+      redirect_to root_path, notice: "出品を取り消しました"
+    else
+      redirect_to root_path, alert: "エラーが発生しました"
+    end
   end
 
   private
@@ -52,5 +54,9 @@ class ItemsController < ApplicationController
   def correct_user
     seler_user = Item.find(params[:id]).user
     redirect_to(root_path) unless seler_user == current_user
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
