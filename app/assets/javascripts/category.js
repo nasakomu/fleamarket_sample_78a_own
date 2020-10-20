@@ -206,18 +206,22 @@ $(document).on('turbolinks:load', function(){
       $('#Size__form').remove();
     } else{
       let child_id = $('.Child__form--content').val();
+      let grandchild_id = $('.GrandChild__form--content').val();
       $.ajax({
         url: '/categories/get_size',
         type: 'GET',
         data: {
-          child_id: child_id
+          child_id: child_id,
+          grandchild_id: grandchild_id
         },
         dataType: 'json'
       })
       .done(function(size){
         $('#Size__form').remove();
-        buildSizeForm();
-        buildSizeFormContent(size);
+        if (size.length != 0){
+          buildSizeForm();
+          buildSizeFormContent(size);
+        }
       })
       .fail(function(){
         alert('error')
