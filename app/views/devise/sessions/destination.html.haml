@@ -3,7 +3,54 @@
 .MyPage
   = render partial: 'devise/sessions/side_nav'
   .MainField
-    destination
+    .RegistrationPage
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = render "devise/shared/error_messages", resource: resource
+        %h2.head-name 送り主住所
+        = f.fields_for :destination do |d|
+          .field
+            = d.label :first_name,"送り先の名字"
+            %span.sabu-red (必須)
+            %br/
+            = d.text_field :first_name, autofocus: true
+          .field
+            = d.label :family_name, "送り先名前"
+            %span.sabu-red (必須)
+            %br/
+            = d.text_field :family_name, autofocus: true
+          .field
+            = d.label :first_name_kana, "送り先名字フリガナ"
+            %span.sabu-red (必須)
+            %br/
+            = d.text_field :first_name_kana, autofocus: true
+          .field
+            = d.label :family_name_kana, "送り先名前フリガナ"
+            %span.sabu-red (必須)
+            %br/
+            = d.text_field :family_name_kana, autofocus: true
+          .field
+            = d.label :postal_code, "郵便番号"
+            %span.sabu-red (必須)
+            %br/
+            = d.text_field :postal_code, autofocus: true, placeholder: 'postal_code', class: "postal_code", id: "address_zipcode"
+          .field
+            = d.label :prefecture_code, "住所"
+            %span.sabu-red (必須)
+            %br/
+            = d.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, class: "address", id: "address_prefecture_name"
+            = d.text_field :city, autofocus: true, placeholder: 'city', class: "address", id:"address_city"
+            = d.text_field :house_number, autofocus: true, placeholder: 'house_number', class: "address", id: "address_street"
+          .field
+            = d.label :room_number,"マンションの場合は部屋の番号"
+            %br/
+            = d.text_field :room_number, autofocus: true
+          .lebel
+            = d.label :phone_number,"電話番号"
+            %span.sabu-red (必須)
+            %br/
+            = d.text_field :phone_number, autofocus: true
+        .actions
+          = f.submit "編集"
 
 = render partial: 'items/footer'
 = render partial: 'items/putting_up_btn'

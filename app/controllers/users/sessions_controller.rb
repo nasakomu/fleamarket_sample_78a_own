@@ -20,6 +20,10 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def profile
+    profile = @user.profile
+    # if profile.save
+    #   redirect 
+    # end
   end
 
   def destination
@@ -35,6 +39,8 @@ class Users::SessionsController < Devise::SessionsController
   def set_current_user
     @user = User.find(current_user.id)
   end
+
+
   # GET /resource/sign_in
   # def new
   #   super
