@@ -11,6 +11,7 @@ FactoryBot.define do
     status_id           {"1"}
     category_id         {create(:category).id}
     brand_id            {create(:brand).id}
+    user_id             {create(:user).id}
 
     after(:build) do |item|
       item.item_images << FactoryBot.build(:item_image, item: item)
