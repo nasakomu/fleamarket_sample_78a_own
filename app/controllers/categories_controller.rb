@@ -26,6 +26,13 @@ class CategoriesController < ApplicationController
   end
 
   def get_size
-    @size = Size.all
+    @category_children = Category.find(params[:child_id])
+    @category_grandchildren = Category.find(params[:grandchild_id])
+    if @category_grandchildren.sizes.length != 0
+      @sizes = @category_grandchildren.sizes.first.children
+    elsif @category_children.sizes.length != 0
+      @sizes = @category_children.sizes.first.children
+    else
+    end
   end
 end

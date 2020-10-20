@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :profieles
   resources :destinations
   root 'items#top'
-  resources :items, only: [:index, :new, :create, :show, :edit, :update] do
+  resources :items, only: [:new, :create, :show, :edit, :update, :destroy] do
     collection do
       get 'top'
     end
