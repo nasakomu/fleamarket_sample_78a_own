@@ -74,8 +74,9 @@
           %dt.FormItem__label
             = form.label :brand, "ブランド"
             %span.any 任意
+          -# 余裕があればインクリメンタルサーチでブランド検索実装、現状はbrandを数個用意してプルダウンで選択
           %dd.FormItem__detail
-            = form.collection_select(:brand_id, Brand.all, :id, :name, {prompt: '選択してください'}, {})
+            = form.collection_select(:brand_id, Brand.find(1,2,3), :id, :name, {prompt: '選択してください'}, {})
       .FormItem
         %dl
           %dt.FormItem__label
