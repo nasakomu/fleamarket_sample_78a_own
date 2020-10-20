@@ -668,6 +668,60 @@ footer {
   }
 }
 
+.editorBox {
+  background-color: #fff;
+  max-width: 700px;
+  margin: 10px auto;
+  padding: 24px 24px;
+  &__headline {
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 10px;
+  }
+  &__btnBox {
+    @include flex_box(space-around, center);
+    & .editorBtn {
+      padding: 10px 30px;
+      border-radius: 30px;
+      font-size: 20px;
+      color: #fff;
+      letter-spacing: 1px;
+      text-decoration: none;
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+    & .edit {
+      background-color: #ffa500;
+    }
+    & .delete {
+      background-color: red;
+    }
+  }
+}
+.purchaseBox {
+  background-color: #fff;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 24px 24px;
+  @include flex_box(center, center);
+  & .purchaseBtn {
+    padding: 10px 155px;
+    border-radius: 3px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,.2);
+    font-size: 20px;
+    color: #fff;
+    letter-spacing: 1px;
+    text-decoration: none;
+    background-color: #ffa500;
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}
+
+
 .commentBox {
   background-color: #fff;
   max-width: 700px;

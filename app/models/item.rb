@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   validates_associated :item_images
 
   belongs_to :category
-  belongs_to_active_hash :size
+  belongs_to :size, optional: true
   belongs_to :brand, optional: true
   belongs_to_active_hash :item_condition
   belongs_to_active_hash :postage_payer

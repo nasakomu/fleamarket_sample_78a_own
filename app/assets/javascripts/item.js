@@ -67,4 +67,12 @@ $(document).on('turbolinks:load', ()=>{
       $('.FormItem__price--profit_val').text(`${profit}`);
     };
   });
+
+  //商品詳細ページのサブ画像をクリックするとメイン画像に表示される
+  $('.itemInfoBox__allImageBox__subImages').on('click', function(){
+    let url = $(this).data('url');
+    $('.itemInfoBox__mainImage').remove();
+    let html = `<img class='itemInfoBox__mainImage' src='${url}'>`
+    $('.itemInfoBox__itemName').after(html);
+  });
 });

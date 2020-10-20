@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   end
 
   root 'items#top'
-  resources :items, only: [:index, :new, :create, :show] do
+  resources :items, only: [:new, :create, :show, :destroy] do
     collection do
       get 'top'
     end
