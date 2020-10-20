@@ -24,5 +24,6 @@ class Item < ApplicationRecord
     validates :postage_payer_id
     validates :preparation_day_id
     validates :prefecture_code
+    validates :user_id
   end
 end
