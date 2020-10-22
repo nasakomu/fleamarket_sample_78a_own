@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
+  before_action :move_to_root
   before_action :set_current_user
 
   def show
@@ -16,9 +16,6 @@ class Users::SessionsController < Devise::SessionsController
     @items = @user.items.where(status_id: 2)
   end
 
-  def edit
-  end
-
   def payment_method
   end
 
@@ -30,9 +27,8 @@ class Users::SessionsController < Devise::SessionsController
     @user = User.find(current_user.id)
   end
 
-  def user_params
-    devise_parameter_sanitizer.permit(:sign_up,
-      keys: [:nickname,:email,:encrypted_password])
+  def move_to_root
+    redirect_to action: :top unless user_signed_in?
   end
   # GET /resource/sign_in
   # def new

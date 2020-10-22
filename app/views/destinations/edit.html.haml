@@ -4,53 +4,69 @@
   = render partial: 'devise/sessions/side_nav'
   .MainField
     .RegistrationPage
-      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-        = render "devise/shared/error_messages", resource: resource
-        %h2.head-name 送り主住所
-        = f.fields_for :destination do |d|
-          .field
-            = d.label :first_name,"送り先の名字"
-            %span.sabu-red (必須)
-            %br/
-            = d.text_field :first_name, autofocus: true
-          .field
-            = d.label :family_name, "送り先名前"
-            %span.sabu-red (必須)
-            %br/
-            = d.text_field :family_name, autofocus: true
-          .field
-            = d.label :first_name_kana, "送り先名字フリガナ"
-            %span.sabu-red (必須)
-            %br/
-            = d.text_field :first_name_kana, autofocus: true
-          .field
-            = d.label :family_name_kana, "送り先名前フリガナ"
-            %span.sabu-red (必須)
-            %br/
-            = d.text_field :family_name_kana, autofocus: true
-          .field
-            = d.label :postal_code, "郵便番号"
-            %span.sabu-red (必須)
-            %br/
-            = d.text_field :postal_code, autofocus: true, placeholder: 'postal_code', class: "postal_code", id: "address_zipcode"
-          .field
-            = d.label :prefecture_code, "住所"
-            %span.sabu-red (必須)
-            %br/
-            = d.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, class: "address", id: "address_prefecture_name"
-            = d.text_field :city, autofocus: true, placeholder: 'city', class: "address", id:"address_city"
-            = d.text_field :house_number, autofocus: true, placeholder: 'house_number', class: "address", id: "address_street"
-          .field
-            = d.label :room_number,"マンションの場合は部屋の番号"
-            %br/
-            = d.text_field :room_number, autofocus: true
-          .lebel
-            = d.label :phone_number,"電話番号"
-            %span.sabu-red (必須)
-            %br/
-            = d.text_field :phone_number, autofocus: true
-        .actions
-          = f.submit "編集"
-
+      .FormArea
+        %h1.head-name 発送元・お届け先住所変更
+        = form_with model: @destination, local: true do |d|
+          .FormItem
+            %dl
+              %dt.FormItem__label
+                = d.label :first_name,"お名前(全角)"
+                %span.required 必須
+              %dd.FormItem__detail.FormItem__name
+                = d.text_field :first_name, autofocus: true, placeholder: '例）山田'
+                = d.text_field :family_name, autofocus: true, placeholder: '例）太郎'
+          .FormItem
+            %dl
+              %dt.FormItem__label
+                = d.label :first_name_kana, "お名前カナ(全角)"
+                %span.required 必須
+              %dd.FormItem__detail.FormItem__name
+                = d.text_field :first_name_kana, autofocus: true, placeholder: '例）ヤマダ'
+                = d.text_field :family_name_kana, autofocus: true, placeholder: '例）タロウ'
+          .FormItem
+            %dl
+              %dt.FormItem__label
+                = d.label :postal_code, "郵便番号"
+                %span.required 必須
+              %dd.FormItem__detail
+                = d.text_field :postal_code, autofocus: true, placeholder: '例）1500044', class: "postal_code", id: "address_zipcode"
+          .FormItem
+            %dl
+              %dt.FormItem__label
+                = d.label :prefecture_code, "都道府県"
+                %span.required 必須
+              %dd.FormItem__detail
+                = d.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, class: "address", id: "address_prefecture_name",prompt: "-"
+          .FormItem
+            %dl
+              %dt.FormItem__label
+                = d.label :prefecture_code, "市区町村"
+                %span.required 必須
+              %dd.FormItem__detail
+                = d.text_field :city, autofocus: true, placeholder: '例）渋谷区円山町', class: "address", id:"address_city"
+          .FormItem
+            %dl
+              %dt.FormItem__label
+                = d.label :prefecture_code, "番地"
+                %span.required 必須
+              %dd.FormItem__detail
+                = d.text_field :house_number, autofocus: true, placeholder: '例）19番1号', class: "address", id: "address_street"
+          .FormItem
+            %dl
+              %dt.FormItem__label
+                = d.label :room_number,"建物名"
+                %span.any 任意
+              %dd.FormItem__detail
+                = d.text_field :room_number, autofocus: true, placeholder: '例）渋谷プライムプラザ12階'
+          .FormItem
+            %dl
+              %dt.FormItem__label
+                = d.label :phone_number,"電話番号"
+                %span.required 必須
+              %dd.FormItem__detail
+                = d.text_field :phone_number, autofocus: true, placeholder: '例）00000000000'
+          .FormItem 
+            %p.FormItem__btn
+              = d.submit "変更する"
 = render partial: 'items/footer'
 = render partial: 'items/putting_up_btn'

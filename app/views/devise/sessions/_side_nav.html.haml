@@ -15,13 +15,13 @@
 
   %h3 設定
   %ul.Nav 
-    = link_to users_edit_info_path, class: "Nav__content" do
+    = link_to edit_user_registration_path, class: "Nav__content" do
       %li.Nav__content--name プロフィール
       = icon('fas', 'angle-double-right')
-    = link_to users_profile_path, class: "Nav__content" do
+    = link_to  edit_profile_path(current_user.id), class: "Nav__content" do
       %li.Nav__content--name 本人情報
       = icon('fas', 'angle-double-right')
-    = link_to users_destination_path, class: "Nav__content" do
+    = link_to edit_destination_path(current_user.id), class: "Nav__content" do
       %li.Nav__content--name お届け先住所変更
       = icon('fas', 'angle-double-right')
     = link_to users_payment_method_path, class: "Nav__content" do

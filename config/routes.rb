@@ -3,12 +3,11 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
-  resources :profieles, only: [:edit, :update]
+  
+  resources :profiles, only: [:edit, :update]
   resources :destinations, only: [:edit, :update]
-
   devise_scope :user do
     get '/users/show', to: 'users/sessions#show'
-    get '/users/edit', to: 'users/sessions#edit'
     get '/users/putting_up_list', to: 'users/sessions#putting_up_list'
     get '/users/completed_item', to: 'users/sessions#completed_item'
     get '/users/payment_method', to: 'users/sessions#payment_method'
