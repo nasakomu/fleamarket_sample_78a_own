@@ -1,0 +1,22 @@
+@import "../mixin";
+
+.Notification {
+
+  .notice {
+    background-color: $LightBlue;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .alert {
+    background-color: #F35500;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}

@@ -58,7 +58,7 @@
 |introduction|text|null: false|
 |price|integer|null: false|
 |category|references|null: false, foreign_key: true|
-|size|integer||
+|size|references|foreign_key: true|
 |brand|references|foreign_key: true|
 |item_condition|integer|null: false|
 |postage_payer|integer|null: false|
@@ -69,8 +69,8 @@
 ### Association
 - has_many :images, dependent: :destroy
 - belongs_to :category
-- belongs_to_active_hash :size
-- belongs_to :brand
+- belongs_to :size, optional: true
+- belongs_to :brand, optional: true
 - belongs_to_active_hash :item_condition
 - belongs_to_active_hash :potage_payer
 - belongs_to_active_hash :preparation_day
@@ -93,6 +93,27 @@
 |ancestry|string|null: false|
 ### Association
 - has_many :items
+- has_many :categories_sizes
+- has_many :sizes, through: :categories_sizes
+
+## categories_sizesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|category|references|null: false, foreign_key: true|
+|size|references|null: false, foreign_key: true|
+### Association
+- belongs_to :category
+- belongs_to :size
+
+## sizesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|ancestry|string|null: false|
+### Association
+- has_many :items
+- has_many :categories_sizes
+- has_many :categories, through: :categories_sizes
 
 ## brandsテーブル
 |Column|Type|Options|

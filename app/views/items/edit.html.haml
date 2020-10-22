@@ -20,7 +20,6 @@
                 .js-file_group{data: {index: i.index}}
                   %label 
                     = icon("fas", "camera-retro")
-                    %span クリックしてファイルをアップロード
                     = i.file_field :url, class: 'js-file'
                 - if @item.persisted?
                   = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
@@ -48,8 +47,28 @@
           %dt.FormItem__label
             = form.label :category, "カテゴリー"
             %span.required 必須
-          %dd.FormItem__detail#Parent__form
-            = form.collection_select(:category_id, @categories, :id, :name, {prompt: '選択してください'}, {required: true, class: "Parent__form--content"})
+          -# 登録カテゴリーが子の場合か孫の場合で分岐
+          - if @category.ancestors.length == 1 
+            %dd.FormItem__detail#Parent__form
+              = form.collection_select(:category_id, @categories_parent, :id, :name, {prompt: '選択してください', selected: @category.parent_id}, {required: true, class: "Parent__form--content"})
+            %dd.FormItem__detail#Child__form
+              = form.collection_select(:category_id, @categories_child, :id, :name, {prompt: '選択してください', selected: @category.id}, {required: true, class: "Child__form--content"})
+          - else
+            %dd.FormItem__detail#Parent__form
+              = form.collection_select(:category_id, @categories_parent, :id, :name, {prompt: '選択してください', selected: @category.parent.parent_id}, {required: true, class: "Parent__form--content"})
+            %dd.FormItem__detail#Child__form
+              = form.collection_select(:category_id, @categories_child, :id, :name, {prompt: '選択してください', selected: @category.parent_id}, {required: true, class: "Child__form--content"})
+            %dd.FormItem__detail#GrandChild__form
+              = form.collection_select(:category_id, @categories_grandchild, :id, :name, {prompt: '選択してください'}, {required: true, class: "GrandChild__form--content"})
+      -# サイズが登録してあるか？
+      - if @item.size != nil
+        .FormItem#Size__form
+          %dl
+            %dt.FormItem__label
+              = form.label :size, "サイズ"
+              %span.required 必須
+            %dd.FormItem__detail
+              = form.collection_select(:size_id, Size.all, :id, :name, {prompt: '選択してください'}, {required: true, class: "Size__form--content"})
       .FormItem
         %dl
           %dt.FormItem__label
@@ -107,7 +126,7 @@
         = form.hidden_field :status_id, value: 1
       .formItem 
         %p.FormItem__btn
-          = form.submit "出品する"
+          = form.submit "変更する"
   #FormFooter
     %h2
       = image_tag "logo.png", size: "107x31", alt: "FURIMA"

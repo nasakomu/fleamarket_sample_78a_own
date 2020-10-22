@@ -456,6 +456,54 @@ footer {
       & #Child__form{
         margin-bottom: 15px;
       }
+
+      &__imagebox{
+        @include flex_box(flex-start, center);
+        flex-wrap: wrap;
+        & #previews{
+          @include flex_box(flex-start, center);
+          flex-wrap: wrap;
+          padding: 1px;
+          font-size: 16px;
+          color: $LightBlue;
+          & .preview{
+            width: 200px;
+            margin: 3px;
+            @include flex_box(center, center);
+            flex-direction: column;
+            background-color: #f8f8f8;
+            & .js-remove{
+              border-top: 1px solid $LightBlue;
+              width: 100%;
+              text-align: center;
+              line-height: 30px;
+            }
+          }
+        }
+        & .js-file_group{
+          width: 100%;
+          background-color: #f8f8f8;
+          height: 230px;
+          border: 1px dotted #777;
+          border-radius: 7px;
+          & label{
+            @include flex_box(center, center);
+            height: 230px;
+            & .js-file{
+              display: none;
+            }
+            & span{
+              color: #555;
+              font-size: 14px;
+              margin-left: 10px;
+            }
+            & i{
+              font-size: 25px;
+              color: #555;
+            }
+          }
+        }
+      }
       &__label {
         font-size: 14px;
         font-weight: bold;
@@ -648,6 +696,60 @@ footer {
     }
   }
 }
+
+.editorBox {
+  background-color: #fff;
+  max-width: 700px;
+  margin: 10px auto;
+  padding: 24px 24px;
+  &__headline {
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 10px;
+  }
+  &__btnBox {
+    @include flex_box(space-around, center);
+    & .editorBtn {
+      padding: 10px 30px;
+      border-radius: 30px;
+      font-size: 20px;
+      color: #fff;
+      letter-spacing: 1px;
+      text-decoration: none;
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+    & .edit {
+      background-color: #ffa500;
+    }
+    & .delete {
+      background-color: red;
+    }
+  }
+}
+.purchaseBox {
+  background-color: #fff;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 24px 24px;
+  @include flex_box(center, center);
+  & .purchaseBtn {
+    padding: 10px 155px;
+    border-radius: 3px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,.2);
+    font-size: 20px;
+    color: #fff;
+    letter-spacing: 1px;
+    text-decoration: none;
+    background-color: #ffa500;
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}
+
 
 .commentBox {
   background-color: #fff;
