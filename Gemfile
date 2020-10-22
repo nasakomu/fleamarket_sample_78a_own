@@ -81,4 +81,5 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog-aws'
 gem 'erb2haml'
-
+gem 'devise-i18n'
+gem 'devise-i18n-views'
