@@ -57,9 +57,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  def payment_method
-  end
-
   # 登録したカードで支払い
   def pay
     item = Item.find(params[:id])
