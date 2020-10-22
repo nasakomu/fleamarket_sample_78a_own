@@ -230,3 +230,23 @@
     font-weight: bold;
   }
 }
+#error_explanation {
+  width: 100%;
+  margin: 0 auto;
+  color: red;
+  background-color: #ffd6ab;
+  text-align: center;
+  & h2{
+    background-color: #ff8205;
+    color: black;
+    border-radius: 10px 10px 0 0;
+    font-size: 18px;
+    padding: 10px 20px;
+  }
+  & ul{
+    padding: 10px 30px;
+    & li{
+      padding: 5px 0;
+    }
+  }
+}
