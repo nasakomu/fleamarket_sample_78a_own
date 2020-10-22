@@ -1,91 +1,34 @@
-// 支払い方法登録ページ
-.PaymentMethodPage {
-  background-color: #f8f8f8;
-  #PaymentMethodHeader {
-    height: 128px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  #PaymentMethodFooter {
-    font-size: 12px;
+// 新規カード登録ページ
+//ローディング画面
+#loading {
+  display: table;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  opacity: 0.8;
+  .loadingMsg {
+    display: table-cell;
     text-align: center;
-    padding: 20px 0 40px;
-  }
-  #PaymentMethodArea {
-    width: 700px;
-    padding: 40px 100px;
-    margin: 0 auto;
-    background-color: #fff;
-    h2 {
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      padding: 0 0 24px 0;
-    }
-    .PaymentMethodAreaBox {
-      border-top: 1px solid #f2f2f2;
-      padding: 24px 16px;
-      dl {
-        dt {
-          font-weight: bold;
-          margin-bottom: 10px;
-        }
-      }
-    }
-    #DecideBtn {
-      text-align: center;
-      a.btn {
-        display: block;
-        width: 360px;
-        margin: 0 auto;
-        background: #ffb340;
-        color: #fff;
-        font-weight: bold;
-        text-decoration: none;
-        border-radius: 4px;
-        margin-bottom: 20px;
-        padding: 15px 50px;
-      }
-      a:hover {
-        opacity: 0.8;
-      }
-    }
+    vertical-align: middle;
+    padding-top: 140px;
+    background: url("/assets/loading.gif") center center no-repeat;
   }
 }
 
-// 新規カード登録ページ
 .CardRegistPage{
-  background-color: #f8f8f8;
-  a {
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
+  @include no-header_page_default();
   #CardRegistHeader {
-    height: 128px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include sub_header();
   }
   #CardRegistFooter {
-    font-size: 12px;
-    text-align: center;
-    padding: 20px 0 40px;
+    @include sub_footer();
   }
     
   #CardRegistArea {
-    width: 700px;
-    padding: 40px 100px;
-    margin: 0 auto;
-    background-color: #fff;
-    h2 {
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      padding: 0 0 24px 0;
-    }
+    @include no-header_area_default();
     .FormItem {
       margin-bottom: 32px;
       &__label {
@@ -93,7 +36,7 @@
         font-weight: bold;
         line-height: 18px;
         margin-bottom: 16px;
-        & span {
+        span {
           display: inline-block;
           color: #fff;
           background-color: #ffb340;
@@ -103,15 +46,15 @@
           margin-left: 5px;
           border-radius: 2px;
         }
-        & .required {
+        .required {
           background-color: #ffb340;
         }
-        & .any {
+        .any {
           background-color: #bfbfbf;
         }
       }
       &__detail {
-        & input {
+        input {
           display: block;
           width: 100%;
           border: 1px solid #ccc;
@@ -129,7 +72,7 @@
         width: 200px;
         margin: 0 auto;
         text-align: center;
-        & input {
+        input {
           width: 100%;
           appearance: none;
           background: #ffb340;
@@ -141,14 +84,14 @@
           margin-bottom: 20px;
           cursor: pointer;
         }
-        & input:hover {
+        input:hover {
           opacity: 0.8
         }
       }
       &__exp_date {
         display: flex;
         align-items: center;
-        & p {
+        p {
           padding: 0 10px;
         }
       }
@@ -158,41 +101,28 @@
       padding-top: 32px;
       margin-bottom: 32px;
     }
+    .Notification {
+      .alert {
+        color: #ff2222;
+        text-align: center;
+        margin-bottom: 24px;
+      }
+    }
   }
 }
 
 // カード詳細ページ
 .CardShowPage{
-  background-color: #f8f8f8;
-  a {
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
+  @include no-header_page_default();
   #CardShowHeader {
-    height: 128px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include sub_header();
   }
   #CardShowFooter {
-    font-size: 12px;
-    text-align: center;
-    padding: 20px 0 40px;
+    @include sub_footer();
   }
     
   #CardShowArea {
-    width: 700px;
-    padding: 40px 100px;
-    margin: 0 auto;
-    background-color: #fff;
-    h2 {
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      padding: 0 0 24px 0;
-    }
+    @include no-header_area_default();
     .Card {
       display: flex;
       justify-content: space-between;
@@ -210,7 +140,7 @@
         }
       }
       &__deleteBtn {
-        & a {
+        a {
           color: #ff2222;
           font-size: 14px;
           font-weight: bold;
@@ -218,7 +148,7 @@
           border: 1px solid #ff2222;
           padding: 8px 15px;
         }
-        & a:hover {
+        a:hover {
           opacity: 0.8;
           text-decoration: none;
         }
@@ -229,7 +159,7 @@
         width: 200px;
         margin: 0 auto;
         text-align: center;
-        & a {
+        a {
           display: block;
           background: #ffb340;
           color: #fff;
@@ -240,7 +170,7 @@
           margin-bottom: 20px;
           cursor: pointer;
         }
-        & a:hover {
+        a:hover {
           opacity: 0.8;
           text-decoration: none;
         }

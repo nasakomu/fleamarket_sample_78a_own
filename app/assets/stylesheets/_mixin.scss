@@ -9,5 +9,40 @@
   width: $width;
 }
 
+//ヘッダーがないページのデフォルトレイアウト
+@mixin no-header_page_default(){
+  background-color: #f8f8f8;
+  min-height: 100vh;
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+@mixin no-header_area_default(){
+  width: 700px;
+  padding: 40px 100px;
+  margin: 0 auto;
+  background-color: #fff;
+  h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 0 0 24px 0;
+  }
+}
+@mixin sub_header(){
+  height: 128px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin sub_footer(){
+  font-size: 12px;
+  text-align: center;
+  padding: 20px 0 40px;
+}
+
 //variables
 $LightBlue: #3ccace;

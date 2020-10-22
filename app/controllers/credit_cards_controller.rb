@@ -8,7 +8,8 @@ class CreditCardsController < ApplicationController
   def create
     Payjp.api_key = Rails.application.credentials[:payjp][:secret_key]
     if params[:token].blank?
-      redirect_to new_credit_card_path
+      flash.now[:alert] = "保存できませんでした。<br>カード情報を確認の上、再度入力してください。".html_safe
+      render :new
     else
       customer = Payjp::Customer.create(
         card: params[:token]
@@ -22,23 +23,26 @@ class CreditCardsController < ApplicationController
         card = CreditCard.where(user_id: current_user.id)
         redirect_to credit_card_path(card)
       else
-        redirect_to new_credit_card_path
+        flash.now[:alert] = "保存できませんでした。<br>カード情報を確認の上、再度入力してください。".html_safe
+        render :new
       end
     end
   end
 
-  def show #Cardのデータpayjpに送り情報を取り出します
+  # Cardのデータをpayjpに送り情報を取り出して表示
+  def show
     card = CreditCard.where(user_id: current_user.id).first
     if card.blank?
       redirect_to new_credit_card_path
     else
       Payjp.api_key = Rails.application.credentials[:payjp][:secret_key]
       customer = Payjp::Customer.retrieve(card.customer_id)
-      @default_card_information = customer.cards.retrieve(card.card_id)
+      @default_card_info = customer.cards.retrieve(card.card_id)
     end
   end
 
-  def destroy #PayjpとCardデータベースを削除します
+  # PayjpとCardデータベースを削除
+  def destroy
     card = CreditCard.where(user_id: current_user.id).first
     if card.blank?
     else
@@ -47,6 +51,13 @@ class CreditCardsController < ApplicationController
       customer.delete
       card.delete
     end
-    redirect_to buy_items_path
+    redirect_back
   end
+
+  # 記憶したURLにリダイレクト
+  def redirect_back
+    redirect_to(session[:forwarding_url])
+    session.delete(:forwarding_url)
+  end
+
 end
