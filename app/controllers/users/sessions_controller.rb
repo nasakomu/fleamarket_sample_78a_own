@@ -16,17 +16,7 @@ class Users::SessionsController < Devise::SessionsController
     @items = @user.items.where(status_id: 2)
   end
 
-  def edit_info
-  end
-
-  def profile
-    profile = @user.profile
-    # if profile.save
-    #   redirect 
-    # end
-  end
-
-  def destination
+  def edit
   end
 
   def payment_method
@@ -40,7 +30,10 @@ class Users::SessionsController < Devise::SessionsController
     @user = User.find(current_user.id)
   end
 
-
+  def user_params
+    devise_parameter_sanitizer.permit(:sign_up,
+      keys: [:nickname,:email,:encrypted_password])
+  end
   # GET /resource/sign_in
   # def new
   #   super
