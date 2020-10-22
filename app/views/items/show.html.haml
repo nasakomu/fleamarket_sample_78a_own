@@ -6,7 +6,7 @@
     = image_tag "#{@item.item_images.first.url}", class: "itemInfoBox__mainImage"
     .itemInfoBox__allImageBox
       - @item.item_images.each do |image|
-        = image_tag "#{image.url}", class: "itemInfoBox__allImageBox__subImages"
+        = image_tag "#{image.url}", class: "itemInfoBox__allImageBox__subImages", data: {url: "#{image.url}" }
     %p.itemInfoBox__itemPrice= "#{@item.price}円"
     %p.itemInfoBox__priceTax （税込）送料込み
     %p.itemInfoBox__itemIntroduction= @item.introduction
@@ -51,6 +51,17 @@
       = link_to "#", class: "reportBtn" do
         = icon "fas", "flag", class: "reportIcon"
         %p 不適切な商品の通報
+
+  - if current_user && current_user.id == @item.user.id
+    .editorBox
+      -# %p.editorBox__headline 出品者編集
+      .editorBox__btnBox
+        = link_to "商品情報編集", edit_item_path, class: "editorBtn edit"
+        = link_to "出品取消", "#", class: "editorBtn delete", method: :delete
+  - else
+    .purchaseBox
+      = link_to "購入する", "#", class: "purchaseBtn"
+
   .commentBox
     = form_with url: "#", class: "commentForm" do |f|
       = f.text_area :content, class: "commentForm__content", rows: "5"
