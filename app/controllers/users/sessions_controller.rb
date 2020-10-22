@@ -28,7 +28,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def move_to_root
-    redirect_to action: :top unless user_signed_in?
+    redirect_to root_path unless user_signed_in?
   end
   # GET /resource/sign_in
   # def new
