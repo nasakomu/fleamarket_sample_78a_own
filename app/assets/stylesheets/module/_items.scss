@@ -430,17 +430,12 @@ footer {
 
 // 商品出品ページ
 .SettingExhibitionForm {
-  background-color: #f8f8f8;
+  @include no-header_page_default();
   #FormHeader {
-    height: 128px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include sub_header();
   }
   #FormFooter {
-    font-size: 12px;
-    text-align: center;
-    padding: 20px 0 40px;
+    @include sub_footer();
   }
     
   .FormArea {
