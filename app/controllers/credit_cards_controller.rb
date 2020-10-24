@@ -8,7 +8,7 @@ class CreditCardsController < ApplicationController
   def create
     Payjp.api_key = Rails.application.credentials[:payjp][:secret_key]
     if params[:token].blank?
-      flash.now[:alert] = "保存できませんでした。<br>カード情報を確認の上、再度入力してください。".html_safe
+      flash.now[:alert] = "保存できませんでした。カード情報を確認の上、再度入力してください。".html_safe
       render :new
     else
       customer = Payjp::Customer.create(
@@ -23,7 +23,7 @@ class CreditCardsController < ApplicationController
         card = CreditCard.where(user_id: current_user.id)
         redirect_to credit_card_path(card)
       else
-        flash.now[:alert] = "保存できませんでした。<br>カード情報を確認の上、再度入力してください。".html_safe
+        flash.now[:alert] = "保存できませんでした。カード情報を確認の上、再度入力してください。".html_safe
         render :new
       end
     end

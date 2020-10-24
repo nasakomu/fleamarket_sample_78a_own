@@ -3,7 +3,6 @@
 class Users::SessionsController < Devise::SessionsController
   before_action :move_to_root
   before_action :set_current_user
-  before_action :redirect_back, only: [:payment_method]
 
   def show
     @items = @user.items.where(status_id: 1)
@@ -18,7 +17,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def payment_method
-    # store_location
+    store_location
     @card = CreditCard.where(user_id: current_user.id).first
     if @card.blank?
       @card = CreditCard.new
@@ -41,9 +40,9 @@ class Users::SessionsController < Devise::SessionsController
     redirect_to root_path unless user_signed_in?
   end
 
-  # def store_location
-  #   session[:forwarding_url] = request.original_url if request.get?
-  # end
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
+  end
 
   # GET /resource/sign_in
   # def new
