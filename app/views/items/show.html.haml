@@ -60,7 +60,7 @@
         = link_to "出品取消", "#", class: "editorBtn delete", method: :delete
   - else
     .purchaseBox
-      = link_to "購入する", "#", class: "purchaseBtn"
+      = link_to "購入する", buy_item_path(@item.id), class: "purchaseBtn"
 
   .commentBox
     = form_with url: "#", class: "commentForm" do |f|
