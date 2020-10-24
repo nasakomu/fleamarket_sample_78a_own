@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :move_to_root, only: [:new, :edit]
   before_action :correct_user, only: [:destroy, :edit, :update]
-  before_action :set_item, only: [:edit, :update, :show, :destroy]
+  before_action :set_item, only: [:edit, :update, :show, :destroy, :buy, :pay]
   before_action :set_category, only: [:edit, :update]
 
   def top
@@ -42,7 +42,6 @@ class ItemsController < ApplicationController
 
   def buy
     store_location
-    @item = Item.find(params[:id])
     if user_signed_in?
       @user = current_user.destination
       @card = CreditCard.where(user_id: current_user.id).first
@@ -59,18 +58,17 @@ class ItemsController < ApplicationController
 
   # 登録したカードで支払い
   def pay
-    item = Item.find(params[:id])
     card = CreditCard.where(user_id: current_user.id).first
     if card.blank?
       redirect_to new_credit_card_path
     else
       Payjp.api_key = Rails.application.credentials[:payjp][:secret_key]
       Payjp::Charge.create(
-        amount: item.price,
+        amount: @item.price,
         customer: card.customer_id, 
         currency: 'jpy'
       )
-      item.update(status_id: '2')
+      @item.update(status_id: '2')
       redirect_to thanks_items_path
     end
   end
