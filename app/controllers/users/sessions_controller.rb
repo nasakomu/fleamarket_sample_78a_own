@@ -2,18 +2,17 @@
 
 class Users::SessionsController < Devise::SessionsController
   before_action :move_to_root
-  before_action :set_current_user
 
   def show
-    @items = user.items.where(status_id: 1)
+    @items = current_user.items.where(status_id: 1)
   end
   
   def putting_up_list
-    @items = user.items.where(status_id: 1)
+    @items = current_user.items.where(status_id: 1)
   end
 
   def completed_item
-    @items = user.items.where(status_id: 2)
+    @items = current_user.items.where(status_id: 2)
   end
 
   def payment_method
@@ -32,9 +31,6 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   private
-  def set_current_user
-    user = User.find(current_user.id)
-  end
 
   def move_to_root
     redirect_to root_path unless user_signed_in?
