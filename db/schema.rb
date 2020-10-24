@@ -44,15 +44,6 @@ ActiveRecord::Schema.define(version: 2020_10_16_121142) do
     t.index ["user_id"], name: "index_credit_cards_on_user_id"
   end
 
-  create_table "categories_sizes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "category_id"
-    t.bigint "size_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "index_categories_sizes_on_category_id"
-    t.index ["size_id"], name: "index_categories_sizes_on_size_id"
-  end
-
   create_table "destinations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "family_name", null: false
@@ -83,7 +74,7 @@ ActiveRecord::Schema.define(version: 2020_10_16_121142) do
     t.text "introduction", null: false
     t.integer "price", null: false
     t.bigint "category_id", null: false
-    t.integer "size_id"
+    t.bigint "size_id"
     t.bigint "brand_id"
     t.integer "item_condition_id", null: false
     t.integer "postage_payer_id", null: false
@@ -95,6 +86,7 @@ ActiveRecord::Schema.define(version: 2020_10_16_121142) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["size_id"], name: "index_items_on_size_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
@@ -130,12 +122,13 @@ ActiveRecord::Schema.define(version: 2020_10_16_121142) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "credit_cards", "users"
   add_foreign_key "categories_sizes", "categories"
   add_foreign_key "categories_sizes", "sizes"
+  add_foreign_key "credit_cards", "users"
   add_foreign_key "destinations", "users"
   add_foreign_key "item_images", "items"
   add_foreign_key "items", "brands"
   add_foreign_key "items", "categories"
+  add_foreign_key "items", "sizes"
   add_foreign_key "items", "users"
 end

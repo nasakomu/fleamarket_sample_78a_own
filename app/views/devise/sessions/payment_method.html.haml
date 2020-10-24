@@ -3,7 +3,59 @@
 .MyPage
   = render partial: 'devise/sessions/side_nav'
   .MainField
-    pay
-
+    -if @card.persisted?
+      .CardShowPage
+        #CardShowArea
+          %h2 登録情報
+          .ShowArea
+            .Card
+              .Card__detail
+                %dl
+                  %dt.Card__detail__label
+                    クレジットカード
+                  %dd.Card__detail__contents
+                    = "**** **** **** #{@default_card_info.last4}"
+                  %dd.Card__detail__contents
+                    = "有効期限 #{@default_card_info.exp_month} / #{@default_card_info.exp_year}"
+              .Card__deleteBtn
+                = link_to "削除する", credit_card_path(@default_card_info.id), method: :delete, class: "btn"
+    - else
+      .CardRegistPage
+        #CardRegistArea
+          %h2 新規カード登録
+          .Notification
+            - flash.each do |key, value|
+              = content_tag :div, value, class: key
+          .FormArea
+            = form_with url: credit_cards_path, id: "regist-form", local: true do |form|
+              .FormItem
+                %dl
+                  %dt.FormItem__label
+                    = form.label :number, "カード番号"
+                    %span.required 必須
+                  %dd.FormItem__detail
+                    = form.text_field :number, class: "form_detail", placeholder: "半角数字のみ", maxlength: "16", required: true, onInput: "value = value.replace(/[^0-9]+/i,'')"
+                  %dd.FormItem__note
+                    VISA / MASTERCARD / JCB / AMEX / DINERS / DISCOVER
+              .FormItem
+                %dl
+                  %dt.FormItem__label
+                    = form.label :exp_date, "有効期限"
+                    %span.required 必須
+                  %dd.FormItem__detail.FormItem__exp_date
+                    = form.text_field :exp_month, class: "exp_month", placeholder: "例）09", maxlength: "2", required: true, onInput: "value = value.replace(/[^0-9]+/i,'')"
+                    %p 月&nbsp;／
+                    = form.text_field :exp_year, class: "exp_year", placeholder: "例）2020", maxlength: "4", required: true, onInput: "value = value.replace(/[^0-9]+/i,'')"
+                    %p 年
+              .FormItem
+                %dl
+                  %dt.FormItem__label
+                    = form.label :cvc, "セキュリティコード"
+                    %span.required 必須
+                  %dd.FormItem__detail
+                    = form.text_field :cvc, class: "form_detail", placeholder: "カード背面3桁または4桁の数字", maxlength: "4", required: true, onInput: "value = value.replace(/[^0-9]+/i,'')"
+              .FormItem
+                %p.FormItem__btn
+                  = form.submit "登録する", class: "card_submit_btn"
 = render partial: 'items/footer'
 = render partial: 'items/putting_up_btn'
