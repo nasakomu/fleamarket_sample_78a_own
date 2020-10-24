@@ -1,0 +1,65 @@
+-# - if user_signed_in?
+.BuyPage
+  #BuyHeader
+    %h1
+      = link_to image_tag('logo.png', size: "214x62", alt: "FURIMA"), root_path
+  #BuyArea
+    %h2 購入内容の確認
+    .ItemDetail.BuyAreaBox
+      .ItemDetail__image
+        = image_tag "#{@item.item_images.first.url}", class: "ItemImage", size: "100x100", alt: "ItemImage"
+      .ItemDetail__text 
+        .ItemDetail__text__name
+          = @item.name
+        .ItemDetail__text__price
+          送料込み（税込）
+          %span= "¥#{@item.price}"
+    .PaymentAmount.BuyAreaBox
+      %dl.PaymentAmount__detail
+        %dt.PaymentAmount__detail__title 支払い金額
+        %dd.PaymentAmount__detail__price= "¥#{@item.price}"
+    .PaymentMethod.BuyAreaBox
+      - if @card.blank?
+        %dl.PaymentMethod__detail
+          %dt 支払い方法
+          %dd
+            =icon('far', 'plus-square')
+            = link_to 'クレジットカードを登録して下さい', new_credit_card_path
+      - else
+        %dl.PaymentMethod__detail
+          %dt 支払い方法
+          %dd
+            %dl
+              %dt クレジットカード
+              %dd
+                = "**** **** **** #{@default_card_info.last4}"
+              %dd
+                = "有効期限 #{@default_card_info.exp_month} / #{@default_card_info.exp_year}"
+        .PaymentMethod__changeBtn
+          = link_to "変更する", credit_card_path(@card), class: "btn"
+    #Destination.BuyAreaBox
+      %dl
+        %dt 配送先
+        %dd
+          = current_user.destination.postal_code
+          %br
+            ="#{@pref.name} #{@user.city} #{@user.house_number}"
+          - if @user.room_number.blank?
+          - else
+            %br
+            = @user.room_number
+    #BuyBtn.BuyAreaBox
+      - if @card.blank?
+        %p.alert 支払い方法を登録してください
+        %p.btn 購入する
+      - elsif @user.blank?
+        %p.alert ログインしてください
+        %p.btn 購入する
+      - else
+        = form_with url: pay_item_path, local: true do |form|
+          = form.submit "購入する", class: 'btn', name: 'kounyuu'
+  #BuyFooter
+    %h2
+      = image_tag "logo.png", size: "107x31", alt: "FURIMA"
+    %p &copy; FURIMA
+-# - else
