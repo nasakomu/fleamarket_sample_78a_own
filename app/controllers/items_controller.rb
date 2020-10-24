@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :move_to_root, only: [:new, :edit]
   before_action :correct_user, only: [:destroy, :edit, :update]
-  before_action :set_item, only: [:edit, :update, :show, :destroy]
+  before_action :set_item, only: [:edit, :update, :show, :destroy, :buy, :pay]
   before_action :set_category, only: [:edit, :update]
 
   def top
@@ -31,7 +31,7 @@ class ItemsController < ApplicationController
       render :new, alert: "エラーが発生しました"
     end
   end
-
+  
   def show
     category = Category.find(@item.category_id)
     # 「もっと見る」表示用のインスタンス
@@ -40,6 +40,42 @@ class ItemsController < ApplicationController
     @items = category.items.where(status_id: 1)
   end
 
+  def buy
+    store_location
+    if user_signed_in?
+      @user = current_user.destination
+      @card = CreditCard.where(user_id: current_user.id).first
+      unless @card.blank?
+        Payjp.api_key = Rails.application.credentials[:payjp][:secret_key]
+        customer = Payjp::Customer.retrieve(@card.customer_id)
+        @default_card_info = customer.cards.retrieve(@card.card_id)
+      end
+      @pref = JpPrefecture::Prefecture.find(@user.prefecture_code)
+    else
+      redirect_to new_user_session_path
+    end
+  end
+
+  # 登録したカードで支払い
+  def pay
+    card = CreditCard.where(user_id: current_user.id).first
+    if card.blank?
+      redirect_to new_credit_card_path
+    else
+      Payjp.api_key = Rails.application.credentials[:payjp][:secret_key]
+      Payjp::Charge.create(
+        amount: @item.price,
+        customer: card.customer_id, 
+        currency: 'jpy'
+      )
+      @item.update(status_id: '2')
+      redirect_to thanks_items_path
+    end
+  end
+
+  def thanks
+  end
+  
   def edit
   end
 
@@ -57,6 +93,9 @@ class ItemsController < ApplicationController
     else
       redirect_to root_path, alert: "エラーが発生しました"
     end
+  end
+
+  def edit
   end
 
   private
@@ -88,5 +127,14 @@ class ItemsController < ApplicationController
       @categories_child = @category.parent.siblings
       @categories_grandchild = @category.siblings
     end
+  end
+
+  def order_params
+    params.permit(:token)
+  end
+
+  # アクセスしようとしたURLを覚えておく
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
   end
 end

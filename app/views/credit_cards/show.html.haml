@@ -1,0 +1,28 @@
+.CardShowPage
+  #CardShowHeader
+    %h1
+      = link_to image_tag('logo.png', size: "214x62", alt: "FURIMA"), root_path
+  #CardShowArea
+    %h2 登録情報
+    .ShowArea
+      .Card
+        .Card__detail
+          %dl
+            %dt.Card__detail__label
+              クレジットカード
+            %dd.Card__detail__contents
+              = "**** **** **** #{@default_card_info.last4}"
+            %dd.Card__detail__contents
+              = "有効期限 #{@default_card_info.exp_month} / #{@default_card_info.exp_year}"
+        .Card__deleteBtn
+          = link_to "削除する", credit_card_path(@default_card_info.id), method: :delete, class: "btn"
+      .Button.border
+        %p.Button__btn
+          = link_to "このカードを使う", {controller: 'credit_cards', action: 'redirect_back'}
+          -# = link_to "トップページへ", root_path
+          -# %p.Button__back
+          -#   = link_to "もどる", :back
+  #CardShowFooter
+    %h2
+      = image_tag "logo.png", size: "107x31", alt: "FURIMA"
+    %p &copy; FURIMA

@@ -1,0 +1,21 @@
+.ThanksPage
+  #ThanksHeader
+    %h1
+      = link_to image_tag('logo.png', size: "214x62", alt: "FURIMA"), root_path
+  #ThanksArea
+    %h2 購入完了
+    .MessageArea
+      %p.MessageArea__image
+        =icon('fas', 'gifts')
+      %p.MessageArea__message
+        %span
+          Congratulations!
+        %br
+        購入が完了しました
+    .Button
+      %p.Button__btn
+        = link_to "トップページへ", root_path
+  #ThanksFooter
+    %h2
+      = image_tag "logo.png", size: "107x31", alt: "FURIMA"
+    %p &copy; FURIMA

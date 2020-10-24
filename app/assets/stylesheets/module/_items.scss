@@ -430,17 +430,12 @@ footer {
 
 // 商品出品ページ
 .SettingExhibitionForm {
-  background-color: #f8f8f8;
+  @include no-header_page_default();
   #FormHeader {
-    height: 128px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include sub_header();
   }
   #FormFooter {
-    font-size: 12px;
-    text-align: center;
-    padding: 20px 0 40px;
+    @include sub_footer();
   }
     
   .FormArea {
@@ -602,8 +597,8 @@ footer {
   }
 }
 
-//商品詳細ページ
 
+//商品詳細ページ
 .itemshow_wrapper {
   background-color: #f8f8f8;
   padding: 40px 0;
@@ -821,3 +816,164 @@ footer {
     @include flex_box(flex-start, center);
   }
 }
+
+
+// 商品購入確認ページ
+.BuyPage {
+  @include no-header_page_default();
+  #BuyHeader {
+    @include sub_header();
+  }
+  #BuyFooter {
+    @include sub_footer();
+  }
+    
+  #BuyArea {
+    @include no-header_area_default();
+    .BuyAreaBox {
+      border-top: 1px solid #f2f2f2;
+      padding: 24px 16px;
+      dl {
+        dt {
+          font-weight: bold;
+          margin-bottom: 10px;
+        }
+      }
+    }
+    .ItemDetail {
+      display: flex;
+      justify-content: left;
+      &__image {
+        margin-right: 20px;
+        .ItemImage {
+          border-radius: 4px;
+        }
+      }
+      &__text {
+        width: 100%;
+        &__name {
+          margin-bottom: 1em;
+        }
+        &__price {
+          text-align: right;
+          font-size: 14px;
+          span {
+            font-size: 16px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+    .PaymentAmount {
+      font-weight: bold;
+      &__detail {
+        display: flex;
+        justify-content: space-between;
+        &__title {
+          font-size: 18px;  
+        }
+        &__price {
+          font-size: 24px;
+        }
+      }
+    }
+    .PaymentMethod {
+      display: flex;
+      justify-content: space-between;
+      &__changeBtn {
+        a {
+          color: #ff2222;
+          font-size: 14px;
+          font-weight: bold;
+          border-radius: 4px;
+          border: 1px solid #ff2222;
+          padding: 8px 15px;
+        }
+        a:hover {
+          opacity: 0.8;
+          text-decoration: none;
+        }
+      }
+    }
+    #BuyBtn {
+      .btn {
+        width: 200px;
+        margin: 0 auto;
+        background: #bbb;
+        color: #fff;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 4px;
+        padding: 15px 50px;
+      }
+      input.btn {
+        display: block;
+        background: #ffb340;
+        border: none !important;
+        cursor: pointer;
+      }
+      input.btn:hover {
+        opacity: 0.8;
+      }
+      .alert {
+        color: #ff2222;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+
+// サンクスページ
+.ThanksPage{
+  @include no-header_page_default();
+  #ThanksHeader {
+    @include sub_header();
+  }
+  #ThanksFooter {
+    @include sub_footer();
+  }  
+  #ThanksArea {
+    @include no-header_area_default();
+    .MessageArea {
+      text-align: center;
+      &__image {
+        font-size: 50px;
+        color: #ffb340;
+      }
+      &__message {
+        line-height: 2em;
+        margin: 24px;
+        span {
+          font-size: 24px;
+          font-weight: bold;
+        }
+      }
+    }
+    .Button {
+      &__btn {
+        width: 200px;
+        margin: 0 auto;
+        text-align: center;
+        & a {
+          display: block;
+          background: #ffb340;
+          color: #fff;
+          font-weight: bold;
+          border: none;
+          border-radius: 4px;
+          padding: 15px 0;
+          margin-bottom: 20px;
+          cursor: pointer;
+        }
+        & a:hover {
+          opacity: 0.8;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
