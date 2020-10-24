@@ -2,11 +2,11 @@ class ProfilesController < ApplicationController
   before_action :set_current_user, only: [:edit, :update]
 
   def edit
-    @profile = @user.profile
+    @profile = user.profile
   end
 
   def update
-    @profile = @user.profile
+    @profile = user.profile
     if @profile.update(profile_params)
       redirect_to users_show_path, notice: "情報を変更しました"
     else
@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
 
   private
   def set_current_user
-    @user = User.find(current_user.id)
+    user = User.find(current_user.id)
   end
 
   def profile_params

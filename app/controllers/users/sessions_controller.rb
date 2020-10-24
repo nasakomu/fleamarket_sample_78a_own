@@ -5,15 +5,15 @@ class Users::SessionsController < Devise::SessionsController
   before_action :set_current_user
 
   def show
-    @items = @user.items.where(status_id: 1)
+    @items = user.items.where(status_id: 1)
   end
   
   def putting_up_list
-    @items = @user.items.where(status_id: 1)
+    @items = user.items.where(status_id: 1)
   end
 
   def completed_item
-    @items = @user.items.where(status_id: 2)
+    @items = user.items.where(status_id: 2)
   end
 
   def payment_method
@@ -33,7 +33,7 @@ class Users::SessionsController < Devise::SessionsController
 
   private
   def set_current_user
-    @user = User.find(current_user.id)
+    user = User.find(current_user.id)
   end
 
   def move_to_root

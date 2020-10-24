@@ -2,11 +2,11 @@ class DestinationsController < ApplicationController
   before_action :set_current_user, only: [:edit, :update]
 
   def edit
-    @destination = @user.destination
+    @destination = user.destination
   end
 
   def update
-    @destination = @user.destination
+    @destination = user.destination
     if @destination.update(destination_params)
       redirect_to users_show_path, notice: "情報を変更しました"
     else
@@ -16,7 +16,7 @@ class DestinationsController < ApplicationController
 
   private
   def set_current_user
-    @user = User.find(current_user.id)
+    user = User.find(current_user.id)
   end
 
   def destination_params
