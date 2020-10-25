@@ -464,13 +464,16 @@ footer {
     background-color: #fff;
     .FormItem {
       margin-bottom: 32px;
+      &__error_message{
+        font-size: 13px;
+        color: red;
+      }
       & #Parent__form{
         margin-bottom: 15px;
       }
       & #Child__form{
         margin-bottom: 15px;
       }
-
       &__imagebox{
         @include flex_box(flex-start, center);
         flex-wrap: wrap;
