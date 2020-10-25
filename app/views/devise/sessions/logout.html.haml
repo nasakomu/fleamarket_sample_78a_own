@@ -1,0 +1,9 @@
+= render partial: 'items/header'
+
+.MyPage
+  = render partial: 'devise/sessions/side_nav'
+  .MainField
+    .MainField__logout
+      = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "MainField__logout--btn" 
+= render partial: 'items/footer'
+= render partial: 'items/putting_up_btn'

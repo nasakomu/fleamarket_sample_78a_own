@@ -1,0 +1,37 @@
+= render partial: 'items/header'
+
+.MyPage
+  = render partial: 'devise/sessions/side_nav'
+  .MainField
+    .RegistrationPage
+      .FormArea
+        %h1.head-name 本人情報変更
+        = form_with model: @profile, local: true do |p|
+          .FormItem
+            %dl
+              %dt.FormItem__label
+                = p.label :first_name,"お名前(全角)"
+                %span.required 必須
+              %dd.FormItem__detail.FormItem__name
+                = p.text_field :first_name, autofocus: true, placeholder: '例）山田'
+                = p.text_field :family_name, autofocus: true, placeholder: '例）太郎'
+          .FormItem
+            %dl
+              %dt.FormItem__label
+                = p.label :first_name_kana, "お名前カナ(全角)"
+                %span.required 必須
+              %dd.FormItem__detail.FormItem__name
+                = p.text_field :first_name_kana, autofocus: true, placeholder: '例）ヤマダ'
+                = p.text_field :family_name_kana, autofocus: true, placeholder: '例）タロウ'
+          .FormItem
+            %dl
+              %dt.FormItem__label
+                = p.label :birth_date,"生年月日"
+                %span.required 必須
+              %dd.FormItem__detail.FormItem__birthday
+                = raw sprintf(p.date_select(:birth_date,use_month_numbers: true,start_year: 1930,end_year: (Time.now.year - 18),default: Date.new(1990, 1, 1),date_separator: '%s'),'年', '月') + '日'
+          .FormItem 
+            %p.FormItem__btn
+              = p.submit "変更する"
+= render partial: 'items/footer'
+= render partial: 'items/putting_up_btn'

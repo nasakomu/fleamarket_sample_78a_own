@@ -1,7 +1,44 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
+  before_action :move_to_root
+
+  def show
+    @items = current_user.items.where(status_id: 1)
+  end
+  
+  def putting_up_list
+    @items = current_user.items.where(status_id: 1)
+  end
+
+  def completed_item
+    @items = current_user.items.where(status_id: 2)
+  end
+
+  def payment_method
+    store_location
+    @card = CreditCard.where(user_id: current_user.id).first
+    if @card.blank?
+      @card = CreditCard.new
+    else
+      Payjp.api_key = Rails.application.credentials[:payjp][:secret_key]
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      @default_card_info = customer.cards.retrieve(@card.card_id)
+    end
+  end
+
+  def logout
+  end
+
+  private
+
+  def move_to_root
+    redirect_to root_path unless user_signed_in?
+  end
+
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
+  end
 
   # GET /resource/sign_in
   # def new

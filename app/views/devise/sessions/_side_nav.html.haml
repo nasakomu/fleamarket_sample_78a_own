@@ -1,0 +1,32 @@
+.SideBar
+  %ul.Nav
+    = link_to users_show_path, class: "Nav__content" do
+      %li.Nav__content--name マイページ
+      = icon('fas', 'angle-double-right')
+    = link_to new_item_path, class: "Nav__content" do
+      %li.Nav__content--name 出品する
+      = icon('fas', 'angle-double-right')
+    = link_to users_putting_up_list_path, class: "Nav__content" do
+      %li.Nav__content--name 出品中の商品
+      = icon('fas', 'angle-double-right')
+    = link_to users_completed_item_path, class: "Nav__content" do
+      %li.Nav__content--name 売却済の商品
+      = icon('fas', 'angle-double-right')
+
+  %h3 設定
+  %ul.Nav 
+    = link_to edit_user_registration_path, class: "Nav__content" do
+      %li.Nav__content--name プロフィール
+      = icon('fas', 'angle-double-right')
+    = link_to  edit_profile_path(current_user.id), class: "Nav__content" do
+      %li.Nav__content--name 本人情報
+      = icon('fas', 'angle-double-right')
+    = link_to edit_destination_path(current_user.id), class: "Nav__content" do
+      %li.Nav__content--name お届け先住所変更
+      = icon('fas', 'angle-double-right')
+    = link_to users_payment_method_path, class: "Nav__content" do
+      %li.Nav__content--name 支払い方法
+      = icon('fas', 'angle-double-right')
+    = link_to users_logout_path, class: "Nav__content" do
+      %li.Nav__content--name ログアウト
+      = icon('fas', 'angle-double-right') 

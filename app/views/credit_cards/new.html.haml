@@ -4,9 +4,6 @@
       = link_to image_tag('logo.png', size: "214x62", alt: "FURIMA"), root_path
   #CardRegistArea
     %h2 新規カード登録
-    .Notification
-      - flash.each do |key, value|
-        = content_tag :div, value, class: key
     .FormArea
       = form_with url: credit_cards_path, id: "regist-form", local: true do |form|
         .FormItem
