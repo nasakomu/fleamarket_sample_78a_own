@@ -14,6 +14,9 @@ class Item < ApplicationRecord
   belongs_to_active_hash :status
   belongs_to :user
 
+  has_many :favorite
+  has_many :users, through: :favorite
+
   with_options presence: true do
     validates :name
     validates :introduction
