@@ -76,7 +76,7 @@
               = form.label :size, "サイズ"
               %span.required 必須
             %dd.FormItem__detail
-              = form.collection_select(:size_id, Size.all, :id, :name, {prompt: '選択してください'}, {required: true, class: "Size__form--content"})
+              = form.collection_select(:size_id, @sizes, :id, :name, {prompt: '選択してください'}, {class: "Size__form--content"})
       .FormItem
         %dl
           %dt.FormItem__label

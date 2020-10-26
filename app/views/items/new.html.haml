@@ -54,10 +54,36 @@
           %dt.FormItem__label
             = form.label :category, "カテゴリー"
             %span.required 必須
+        - if @item.category.blank?
           %dd.FormItem__detail#Parent__form
             = form.collection_select(:category_id, @categories, :id, :name, {prompt: '選択してください'}, {class: "Parent__form--content"})
+        - else
+          -# 登録カテゴリーが子の場合か孫の場合で分岐
+          - if @category.ancestors.length == 1 
+            %dd.FormItem__detail#Parent__form
+              = form.collection_select(:category_id, @categories_parent, :id, :name, {prompt: '選択してください', selected: @category.parent_id}, {class: "Parent__form--content"})
+            %dd.FormItem__detail#Child__form
+              = form.collection_select(:category_id, @categories_child, :id, :name, {prompt: '選択してください', selected: @category.id}, {required: true, class: "Child__form--content"})
+          - else
+            %dd.FormItem__detail#Parent__form
+              = form.collection_select(:category_id, @categories_parent, :id, :name, {prompt: '選択してください', selected: @category.parent.parent_id}, {class: "Parent__form--content"})
+            %dd.FormItem__detail#Child__form
+              = form.collection_select(:category_id, @categories_child, :id, :name, {prompt: '選択してください', selected: @category.parent_id}, {required: true, class: "Child__form--content"})
+            %dd.FormItem__detail#GrandChild__form
+              = form.collection_select(:category_id, @categories_grandchild, :id, :name, {prompt: '選択してください'}, {required: true, class: "GrandChild__form--content"})
         - if @item.errors.include?(:category)
           .FormItem__error_message カテゴリーを選択してください
+      -# サイズが選択してあるか？
+      - if @item.size != nil
+        .FormItem#Size__form
+          %dl
+            %dt.FormItem__label
+              = form.label :size, "サイズ"
+              %span.required 必須
+            %dd.FormItem__detail
+              = form.collection_select(:size_id, @sizes, :id, :name, {prompt: '選択してください'}, {class: "Size__form--content"})
+          - if @item.errors.include?(:size)
+            .FormItem__error_message サイズを選択してください
       .FormItem
         %dl
           %dt.FormItem__label
