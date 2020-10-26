@@ -29,9 +29,15 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path, notice: "商品を出品しました"
     else
+      if @item.category != nil
+        set_category
+        if @item.size !=nil
+          @sizes = @item.size.siblings
+        end
+      end
       @item.item_images.new
       @categories = Category.where(ancestry: nil)
-      render :new, alert: "エラーが発生しました"
+      render :new
     end
   end
   
@@ -80,13 +86,19 @@ class ItemsController < ApplicationController
   end
   
   def edit
+    if @item.size !=nil
+      @sizes = @item.size.siblings
+    end
   end
 
   def update
     if @item.update(item_params)
       redirect_to item_path(params[:id]), notice: "商品情報を変更しました"
     else
-      render :edit, alert: "エラーが発生しました"
+      if @item.size !=nil
+        @sizes = @item.size.siblings
+      end
+      render :edit
     end
   end
 
@@ -96,9 +108,6 @@ class ItemsController < ApplicationController
     else
       redirect_to root_path, alert: "エラーが発生しました"
     end
-  end
-
-  def edit
   end
 
   private

@@ -28,20 +28,26 @@
                   %label
                     = icon("fas", "camera-retro")
                     = file_field_tag :url, name: "item[item_images_attributes][#{@item.item_images.count}][url]", class: 'js-file'
+        - if @item.errors.include?(:item_images)
+          .FormItem__error_message 商品画像をアップロードしてください
       .FormItem.border
         %dl
           %dt.FormItem__label
             = form.label :name, "商品名"
             %span.required 必須
           %dd.FormItem__detail
-            = form.text_field :name, class: "form_detail",required: true
+            = form.text_field :name, class: "form_detail"
+        - if @item.errors.include?(:name)
+          .FormItem__error_message 商品名を入力してください
       .FormItem
         %dl
           %dt.FormItem__label
             = form.label :introduction, "商品の説明"
             %span.required 必須
           %dd.FormItem__detail
-            = form.text_area :introduction, rows: 6, class: "form_detail",required: true
+            = form.text_area :introduction, rows: 6, class: "form_detail"
+        - if @item.errors.include?(:introduction)
+          .FormItem__error_message 商品説明を入力してください
       .FormItem.border#Category__form
         %dl
           %dt.FormItem__label
@@ -50,16 +56,18 @@
           -# 登録カテゴリーが子の場合か孫の場合で分岐
           - if @category.ancestors.length == 1 
             %dd.FormItem__detail#Parent__form
-              = form.collection_select(:category_id, @categories_parent, :id, :name, {prompt: '選択してください', selected: @category.parent_id}, {required: true, class: "Parent__form--content"})
+              = form.collection_select(:category_id, @categories_parent, :id, :name, {prompt: '選択してください', selected: @category.parent_id}, {class: "Parent__form--content"})
             %dd.FormItem__detail#Child__form
               = form.collection_select(:category_id, @categories_child, :id, :name, {prompt: '選択してください', selected: @category.id}, {required: true, class: "Child__form--content"})
           - else
             %dd.FormItem__detail#Parent__form
-              = form.collection_select(:category_id, @categories_parent, :id, :name, {prompt: '選択してください', selected: @category.parent.parent_id}, {required: true, class: "Parent__form--content"})
+              = form.collection_select(:category_id, @categories_parent, :id, :name, {prompt: '選択してください', selected: @category.parent.parent_id}, {class: "Parent__form--content"})
             %dd.FormItem__detail#Child__form
               = form.collection_select(:category_id, @categories_child, :id, :name, {prompt: '選択してください', selected: @category.parent_id}, {required: true, class: "Child__form--content"})
             %dd.FormItem__detail#GrandChild__form
               = form.collection_select(:category_id, @categories_grandchild, :id, :name, {prompt: '選択してください'}, {required: true, class: "GrandChild__form--content"})
+        - if @item.errors.include?(:category)
+          .FormItem__error_message カテゴリーを選択してください
       -# サイズが登録してあるか？
       - if @item.size != nil
         .FormItem#Size__form
@@ -68,7 +76,7 @@
               = form.label :size, "サイズ"
               %span.required 必須
             %dd.FormItem__detail
-              = form.collection_select(:size_id, Size.all, :id, :name, {prompt: '選択してください'}, {required: true, class: "Size__form--content"})
+              = form.collection_select(:size_id, @sizes, :id, :name, {prompt: '選択してください'}, {class: "Size__form--content"})
       .FormItem
         %dl
           %dt.FormItem__label
@@ -83,35 +91,45 @@
             = form.label :item_condition, "商品の状態"
             %span.required 必須
           %dd.FormItem__detail
-            = form.collection_select(:item_condition_id, ItemCondition.all, :id, :name, {prompt: '選択してください'}, {required: true})
+            = form.collection_select(:item_condition_id, ItemCondition.all, :id, :name, {prompt: '選択してください'}, {})
+        - if @item.errors.include?(:item_condition_id)
+          .FormItem__error_message 商品の状態を選択してください
       .FormItem.border
         %dl
           %dt.FormItem__label
             = form.label :postage_payer, "配送料の負担"
             %span.required 必須
           %dd.FormItem__detail
-            = form.collection_select(:postage_payer_id, PostagePayer.all, :id, :name, {prompt: '選択してください'}, {required: true})
+            = form.collection_select(:postage_payer_id, PostagePayer.all, :id, :name, {prompt: '選択してください'}, {})
+        - if @item.errors.include?(:postage_payer_id)
+          .FormItem__error_message 配送料の負担を選択してください
       .FormItem
         %dl
           %dt.FormItem__label
             = form.label :prefecture_code, "発送元の地域"
             %span.required 必須
           %dd.FormItem__detail
-            = form.collection_select(:prefecture_code, JpPrefecture::Prefecture.all, :code, :name, {prompt: "選択してください"}, {required: true})
+            = form.collection_select(:prefecture_code, JpPrefecture::Prefecture.all, :code, :name, {prompt: "選択してください"}, {})
+        - if @item.errors.include?(:prefecture_code)
+          .FormItem__error_message 発送元の地域を選択してください
       .FormItem
         %dl
           %dt.FormItem__label
             = form.label :preparation_day, "発送までの日数"
             %span.required 必須
           %dd.FormItem__detail
-            = form.collection_select(:preparation_day_id, PreparationDay.all, :id, :name, {prompt: '選択してください'}, {required: true})
+            = form.collection_select(:preparation_day_id, PreparationDay.all, :id, :name, {prompt: '選択してください'}, {})
+        - if @item.errors.include?(:preparation_day_id)
+          .FormItem__error_message 発送までの日数を選択してください
       .FormItem.border
         %dl
           %dt.FormItem__label
             = form.label :price, "価格 （¥300 ~）"
             %span.required 必須
           %dd.FormItem__detail.FormItem__price--form
-            = form.text_field :price, class: "form_detail", id: "FormItem__price--form_val", required: true
+            = form.text_field :price, class: "form_detail", id: "FormItem__price--form_val"
+        - if @item.errors.include?(:price)
+          .FormItem__error_message 価格を入力してください
         .FormItem__price
           販売手数料 (10%)
           %span ¥

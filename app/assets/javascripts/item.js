@@ -54,9 +54,6 @@ $(document).on('turbolinks:load', ()=>{
     if (hiddenCheck) hiddenCheck.prop('checked', false);
   });
 
-  // if (hiddenCheck) hiddenCheck.prop('checked', true);
-  // if ()
-
   // 画像選択時に複数画像が送信できるようにhtmlを挿入
   $('.FormItem__imagebox').on('change', '.js-file', function(e){
     const targetIndex = $(this).parent().parent().data('index');
