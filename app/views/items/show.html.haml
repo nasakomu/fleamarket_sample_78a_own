@@ -45,7 +45,7 @@
         %td.leftColumn 発送日の目安
         %td.rightColumn= @item.preparation_day.name
     .itemInfoBox__btnBox
-      = link_to "#", class:"favoriteBtn" do
+      .favoriteBtn
         = icon "fas", "star" , class: "favoriteIcon"
         %p.favoriteBtnText お気に入り 1
       = link_to "#", class: "reportBtn" do

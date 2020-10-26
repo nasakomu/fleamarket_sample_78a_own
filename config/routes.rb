@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get 'top'
       get 'payment_method'
       get 'thanks'
+      post 'favorite', defaults: { format: 'json' }
     end
     member do
       get 'buy'
