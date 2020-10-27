@@ -14,8 +14,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :status
   belongs_to :user
 
-  has_many :favorite
-  has_many :users, through: :favorite
+  has_many :favorite, dependent: :destroy
 
   with_options presence: true do
     validates :name
