@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', ()=>{
   itemId = $(location).attr('pathname').replace("/items/", "");
-  $(".favoriteBtn").on("click", function(){
+  $("#favoriteBtn").on("click", function(){
     $.ajax({
       url: 'favorite',
       type: 'POST',
