@@ -684,17 +684,18 @@ footer {
     padding: 20px 0;
     @include flex_box(space-between, center);  
     & .favoriteBtn {
+      user-select: none;
       padding: 8px 10px;
       border: 1px solid #ffa500;
-      border-radius: 20px;
+      border-radius: 10px;
       @include flex_box(flex-start, center);
-      text-decoration: none;
       color: $LightBlue;
-      &:hover {
-        opacity: 0.6;
-      }
       & .favoriteIcon {
         padding-right: 5px;
+      }
+      & .favoriteNumber{
+        font-size: 18px;
+        margin: auto 5px;
       }
     }
     & .reportBtn {
@@ -714,6 +715,7 @@ footer {
     }
   }
 }
+
 
 .editorBox {
   background-color: #fff;

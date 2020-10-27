@@ -9,11 +9,13 @@ $(document).on('turbolinks:load', ()=>{
       },
       dataType: 'json'
     })
-    .done(function(id){
-      console.log(id);
+    .done(function(params){
+      $(".favoriteNumber").text(params.favorite_number);
+      $(".favoriteIcon").toggleClass("fas");
+      $(".favoriteIcon").toggleClass("far");
     })
     .fail(function(){
-      alert('error')
+      alert('error');
     })
   });
 });

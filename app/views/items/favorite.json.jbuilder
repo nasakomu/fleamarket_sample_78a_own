@@ -1,1 +1,1 @@
-json.id @id
+json.favorite_number @favorite_number
