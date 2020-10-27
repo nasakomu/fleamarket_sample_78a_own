@@ -47,7 +47,7 @@
     .itemInfoBox__btnBox
       - if @item.user == current_user
         .favoriteBtn
-          = icon "fas", "star" , class: "favoriteIcon"
+          = icon "far", "star" , class: "favoriteIcon"
           %p.favoriteBtnText いいね！
           %span.favoriteNumber=@favorite_number
       - else
