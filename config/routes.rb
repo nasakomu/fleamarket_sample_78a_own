@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get '/users/show', to: 'users/sessions#show'
     get '/users/putting_up_list', to: 'users/sessions#putting_up_list'
     get '/users/completed_item', to: 'users/sessions#completed_item'
+    get '/users/favorite_item', to: 'users/sessions#favorite_item'
     get '/users/payment_method', to: 'users/sessions#payment_method'
     get '/users/logout', to: 'users/sessions#logout'
   end
