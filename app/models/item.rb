@@ -13,8 +13,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :preparation_day
   belongs_to_active_hash :status
   belongs_to :user
-
-  has_many :favorite, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   with_options presence: true do
     validates :name

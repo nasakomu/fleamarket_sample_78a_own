@@ -5,5 +5,5 @@
     .Item_box__text_block__price ¥ #{item.price}
     %dl.Item_box__text_block__favorite
       %dt.Item_box__text_block__favorite--icon= icon("fas", "star")
-      %dd.Item_box__text_block__favorite--num 111
+      %dd.Item_box__text_block__favorite--num #{item.favorites.length}
 
