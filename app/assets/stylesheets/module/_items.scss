@@ -293,7 +293,7 @@ header {
     padding-bottom: 25px;
   }
   &__lists {
-    @include flex_box(flex-start, start);
+    @include flex_box(space-around, start);
     flex-wrap: wrap;
     margin: 0 auto;
   }
@@ -699,6 +699,9 @@ footer {
         font-size: 18px;
         margin: auto 5px;
       }
+    }
+    & #favoriteBtn:hover{
+      opacity: 0.8;
     }
     & .reportBtn {
       padding: 8px 10px;

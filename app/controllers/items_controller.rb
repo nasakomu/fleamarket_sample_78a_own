@@ -45,7 +45,10 @@ class ItemsController < ApplicationController
     # 「前の商品」「後ろの商品」表示用のインスタンス
     @items = category.items.where(status_id: 1)
     @favorite_number = Favorite.where(item_id: @item.id).length
-    @exist_favorite = Favorite.find_by(item_id: @item.id, user_id: current_user.id).blank?
+    # current_userのいいねが存在するかどうか
+    if user_signed_in?
+      @exist_favorite = Favorite.find_by(item_id: @item.id, user_id: current_user.id).blank?
+    end
     respond_to do |format|
       format.html
       format.json

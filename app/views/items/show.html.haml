@@ -45,7 +45,7 @@
         %td.leftColumn 発送日の目安
         %td.rightColumn= @item.preparation_day.name
     .itemInfoBox__btnBox
-      - if @item.user == current_user
+      - unless user_signed_in? && @item.user != current_user
         .favoriteBtn
           = icon "far", "star" , class: "favoriteIcon"
           %p.favoriteBtnText いいね！

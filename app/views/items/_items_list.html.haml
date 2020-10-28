@@ -5,7 +5,7 @@
     .Item_box__text_block__price ¥ #{item.price}
     - unless item.favorites.length == 0
       %dl.Item_box__text_block__favorite
-        - if Favorite.find_by(user_id: current_user.id, item_id: item.id)
+        - if user_signed_in? && Favorite.find_by(user_id: current_user.id, item_id: item.id)
           %dt.Item_box__text_block__favorite--icon= icon("fas", "star")
         - else
           %dt.Item_box__text_block__favorite--icon= icon("far", "star")
